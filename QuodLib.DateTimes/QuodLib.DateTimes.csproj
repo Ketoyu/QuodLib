@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="protobuf-net.Core" Version="3.2.30" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuodLib.Math\QuodLib.Math.csproj" />
+    <ProjectReference Include="..\QuodLib.Proto\QuodLib.Proto.csproj" />
+    <ProjectReference Include="..\QuodLib.Strings\QuodLib.Strings.csproj" />
+  </ItemGroup>
+
+</Project>

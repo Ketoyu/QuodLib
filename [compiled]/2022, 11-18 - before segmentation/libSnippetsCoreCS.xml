@@ -1,0 +1,3957 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>libSnippetsCoreCS</name>
+    </assembly>
+    <members>
+        <member name="P:libSnippetsCoreCS.classDatetime.SimpleTimes.TimeFrame.HourLength">
+            <summary>
+            The duration, in fractional hours, contained between the Start and End times.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.classDatetime.SimpleTimes.Time.Hour12">
+            <summary>
+            12-hour format for the hour value. 12:00 is used for midnight and noon.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.classDatetime.SimpleTimes.Time.Hour24">
+            <summary>
+            24-hour format for the hour value. 0:00 is used for midnight.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.classDatetime.SimpleTimes.Time.Afternoon">
+            <summary>
+            Boolean value for if the hour value is between noon (inclusive) and midnight (non-inclusive).
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.classDatetime.SimpleTimes.Time.Morning">
+            <summary>
+            Boolean value for whether the hour value is between midnight (inclusive) and noon (non-inclusive).
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classDatetime.SimpleTimes.Time.op_Subtraction(libSnippetsCoreCS.classDatetime.SimpleTimes.Time,libSnippetsCoreCS.classDatetime.SimpleTimes.Time)">
+            <summary>
+            Returns a duration difference, in fractional hours, between two Time objects.
+            </summary>
+            <param name="before"></param>
+            <param name="after"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.classDatetime.SimpleTimes.Weekday">
+            <summary>
+            Simple value, with conversions to and from "int" and "byte" types as well as strings, defining a day of the week.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.classDatetime.SimpleTimes.Date">
+            <summary>
+            Simplified object for defining a date without defining a time of day.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.classDatetime.SimpleTimes.Date.Day">
+            <summary>
+            The numeric day of the month.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.classDatetime.SimpleTimes.Date.Month">
+            <summary>
+            The numeric month.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.classDatetime.SimpleTimes.Date.Weekday">
+            <summary>
+            An object instance of the day of week.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classDatetime.SimpleTimes.Date.AddDays(System.Int32)">
+            <summary>
+            Adds the provided number of days to the date.
+            </summary>
+            <param name="days"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classDatetime.SimpleTimes.Date.AddMonths(System.Int32)">
+            <summary>
+            Adds the number of months to the date.
+            </summary>
+            <param name="months"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classDatetime.Date_ToString(System.DateTime,System.Byte,System.Boolean)">
+            <summary>
+            Format: YYYY---MM.DD-(am|pm)hh.mm.ss.lll
+            </summary>
+            <param name="dt"></param>
+            <param name="Accuracy">1: year | 2: month | 3: day | 4: hour | 5: minute | 6: second | 7: millisecond</param>
+            <param name="NoonMidnightIsUnderscored">Replaces am00.00 with am_12.00</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classFiles.GetAllSubdirectories(System.String)">
+            <summary>
+            Gets all immediate and nested subdirectories within <paramref name="rootDir"/>.
+            </summary>
+            <param name="rootDir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classFiles.GetAllSubdirectories(System.String,System.Boolean)">
+            <summary>
+            Gets all immediate and nested subdirectories within <paramref name="rootDir"/>.
+            </summary>
+            <param name="rootDir"></param>
+            <param name="outputFullPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classFiles.DirScanRecursive(System.String)">
+            <summary>
+            Recursively scan a directory for dubdirectories.
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classFiles.Dir_MakeIfNotExist(System.String)">
+            <summary>
+            Creates <paramref name="dir"/> if that directory does not exist; does nothing otherwise.
+            </summary>
+            <param name="dir"></param>
+            <returns>False if the directory tried and failed to be created, True otherwise.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classFiles.Serialization.Do(System.Object)">
+            <summary>
+            Convert the object to a serialized data string.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classFiles.TextFile_Append(System.String,System.String)">
+            <summary>
+            Appends the text in a file.
+            </summary>
+            <param name="filename"></param>
+            <param name="data">The text to send; it is recommended to prefix it with a new-line character</param>
+        </member>
+        <member name="T:libSnippetsCoreCS.classMath">
+            <summary>
+            A class 'classMath' of helpful mathematical functions not found in the list of built-in mathematical functions in C#;
+            Boolean IntIs(Double 'num'), Integer IntRound(Double 'num'), Boolean IntIs(Double 'num'), Dictionary(Of Integer, Integer) IntDivis(Integer 'num'),
+            Double ABS(Double 'num'), Single numNegIs_Sng(Double 'num), Boolean numNegIs_Bool(Double 'num'), Integer IntRandom(Integer 'num', Integer 'num2'),
+            Double CDouble(String 'str'), and String Ad0(Integer 'num', Integer 'num0s').
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Coords_ToPolar(System.Double,System.Double)">
+            <summary>
+            Converts Cartesian coordinates (x,y) to polar (magnitude, angle), using the pythagorean theorem for the magnitude (hypoteneus) and arctan for the angle (in radians).
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Coords_FromPolar(System.Double,System.Double)">
+            <summary>
+            Converts polar coordinates (magnitude, angle) to Cartesian (x, y) by multiplying the magnitude by cosine(th) and sine(th) respectively.
+            </summary>
+            <param name="m">The magnitude o the polar coordinates.</param>
+            <param name="th">The angle of the polar coordinates, in radians.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.DegToRad(System.Double)">
+            <summary>
+            Converts degrees to radians by multiplying by (pi / 180).
+            </summary>
+            <param name="deg">The angle, in degrees.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.RadToDeg(System.Double)">
+            <summary>
+            Converts radians to degrees by multiplying by (180 / pi).
+            </summary>
+            <param name="rad">The andlge, in radians.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.RollOver(System.Int32,System.Int32)">
+            <summary>
+            Processes a small unit and returns it as part itself, part higher unit.
+            </summary>
+            <param name="value">The value to process.</param>
+            <param name="limit">The value at which to carry.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PercentError(System.Double,System.Double)">
+            <summary>
+            The percent-error of <paramref name="value"/>, compared to <paramref name="target"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.IntIs(System.Double)">
+            <summary>
+            Returns a Boolean value 'True' if the Double 'num' is an Integer value and 'False' if 'num' contains a decimal.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.RInt(System.Double)">
+            <summary>
+            Returns a rounded Integer value of the Double 'num'.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.CInt(System.Double)">
+            <summary>
+            Returns a Integer value, rounded up from the Double 'num'.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.FInt(System.Double)">
+            <summary>
+            Returns a Integer value, rounded down from the Double 'num'.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.FLng(System.Decimal)">
+            <summary>
+            Returns a Long value, rounded down from the Decimal 'num'.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.Int64,System.Int64)">
+            <summary>
+            Returns a Boolean value of whether the Long 'num' is evenly divisible by the Long 'qt'.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.UInt64,System.UInt64)">
+            <summary>
+            Returns a Boolean value of whether the ULong 'num' is evenly divisible by the ULong 'qt'.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.SByte,System.SByte)">
+            <summary>
+            Returns a Boolean value of whether the SByte 'num' is evenly divisible by the SByte 'qt'.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.Byte,System.Byte)">
+            <summary>
+            Returns a Boolean value of whether the Byte 'num' is evenly divisible by the Byte 'qt'.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.Int16,System.Int16)">
+            <summary>
+            Returns a Boolean value of whether the Short 'num' is evenly divisible by the Short 'qt'.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.UInt16,System.UInt16)">
+            <summary>
+            Returns a Boolean value of whether the UShort 'num' is evenly divisible by the UShort 'qt'.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.Int32,System.Int32)">
+            <summary>
+            Returns a Boolean value of whether the Integer 'num' is evenly divisible by the Integer 'qt'.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.UInt32,System.UInt32)">
+            <summary>
+            Returns a Boolean value of whether the UInteger 'num' is evenly divisible by the UInteger 'qt'.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.Single,System.Single)">
+            <summary>
+            Returns a Boolean value of whether the Double 'num' is evenly divisible by the Double 'qt' and holds no more than the higher number decimal places.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divis(System.Double,System.Double)">
+            <summary>
+            Returns a Boolean value of whether the Double 'num' is evenly divisible by the Double 'qt' and holds no more than the higher number decimal places.
+            </summary>
+            <param name="num"></param>
+            <param name="qt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Flt_CountDecimals(System.Single)">
+            <summary>
+            Counts the number of digits past the decimal point of <paramref name="num"/>.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PowerTenIs(System.UInt64)">
+            <summary>
+            Returns a Boolean value of whether the given number consists of only "1" followed by several "0"s.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PowerTenIs(System.Int64)">
+            <summary>
+            Returns a Boolean value of whether the given number consists of only "1" followed by several "0"s.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PowerTenIs(System.SByte)">
+            <summary>
+            Returns a Boolean value of whether the given number consists of only "1" followed by several "0"s.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PowerTenIs(System.Byte)">
+            <summary>
+            Returns a Boolean value of whether the given number consists of only "1" followed by several "0"s.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PowerTenIs(System.Int16)">
+            <summary>
+            Returns a Boolean value of whether the given number consists of only "1" followed by several "0"s.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PowerTenIs(System.UInt16)">
+            <summary>
+            Returns a Boolean value of whether the given number consists of only "1" followed by several "0"s.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PowerTenIs(System.Int32)">
+            <summary>
+            Returns a Boolean value of whether the given number consists of only "1" followed by several "0"s.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.PowerTenIs(System.UInt32)">
+            <summary>
+            Returns a Boolean value of whether the given number consists of only "1" followed by several "0"s.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Reduce(System.Int64,System.Int64)">
+            <summary>
+            Returns an int[1] {top, bottom} of the reduced fraction 'top' / 'bottom', or {top, bottom, -1} if the fraction could not be reduced.
+            </summary>
+            <param name="top"></param>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Reduce(System.UInt64,System.UInt64)">
+            <summary>
+            Returns an int[1] {top, bottom} of the reduced fraction 'top' / 'bottom', or {top, bottom, -1} if the fraction could not be reduced.
+            </summary>
+            <param name="top"></param>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Reduce(System.SByte,System.SByte)">
+            <summary>
+            Returns an int[1] {top, bottom} of the reduced fraction 'top' / 'bottom', or {top, bottom, -1} if the fraction could not be reduced.
+            </summary>
+            <param name="top"></param>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Reduce(System.Byte,System.Byte)">
+            <summary>
+            Returns an int[1] {top, bottom} of the reduced fraction 'top' / 'bottom', or {top, bottom, -1} if the fraction could not be reduced.
+            </summary>
+            <param name="top"></param>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Reduce(System.Int16,System.Int16)">
+            <summary>
+            Returns an int[1] {top, bottom} of the reduced fraction 'top' / 'bottom', or {top, bottom, -1} if the fraction could not be reduced.
+            </summary>
+            <param name="top"></param>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Reduce(System.UInt16,System.UInt16)">
+            <summary>
+            Returns an int[1] {top, bottom} of the reduced fraction 'top' / 'bottom', or {top, bottom, -1} if the fraction could not be reduced.
+            </summary>
+            <param name="top"></param>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Reduce(System.UInt32,System.UInt32)">
+            <summary>
+            Returns an int[1] {top, bottom} of the reduced fraction 'top' / 'bottom', or {top, bottom, -1} if the fraction could not be reduced.
+            </summary>
+            <param name="top"></param>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Int_Factors(System.Int32)">
+            <summary>
+            Returns a Dictionary&lt;int, int&gt; of the factors of the Integer 'num' and their pairs.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Int_NegIs(System.Int32)">
+            <summary>
+            Returns a Boolean value of whether the Integer 'num' is a negative number.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Int_NegIs_Str(System.Int32)">
+            <summary>
+            -#, # } Returns "-" if the Integer 'num' is a negative number.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Int_NegIs_Str_Plus(System.Int32)">
+            <summary>
+            -#, +# } Returns "-" if the Integer 'num' is a negative number or a '+' if it's positive.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.NegIs_SByte(System.Int64)">
+            <summary>
+            -1, 1 } Returns -1 if the Long 'num' is a negative number or a 1 if it's positive.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.NegIs_SByte(System.SByte)">
+            <summary>
+            -1, 1 } Returns -1 if the SByte 'num' is a negative number or a 1 if it's positive.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.NegIs_SByte(System.Int16)">
+            <summary>
+            -1, 1 } Returns -1 if the Short 'num' is a negative number or a 1 if it's positive.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.NegIs_SByte(System.Int32)">
+            <summary>
+            -1, 1 } Returns -1 if the Integer 'num' is a negative number or a 1 if it's positive.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.Int64)">
+            <summary>
+            Returns a Boolean value of whether the Long 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.UInt64)">
+            <summary>
+            Returns a Boolean value of whether the ULong 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.SByte)">
+            <summary>
+            Returns a Boolean value of whether the Byte 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.Byte)">
+            <summary>
+            Returns a Boolean value of whether the SByte 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.Int16)">
+            <summary>
+            Returns a Boolean value of whether the Short 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.UInt16)">
+            <summary>
+            Returns a Boolean value of whether the UShort 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.Int32)">
+            <summary>
+            Returns a Boolean value of whether the Integer 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.UInt32)">
+            <summary>
+            Returns a Boolean value of whether the UInteger 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.Single)">
+            <summary>
+            Returns a Boolean value of whether the Float 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.num_IsEven(System.Double)">
+            <summary>
+            Returns a Boolean value of whether the Double 'num' is evenly divisible by two.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.CDbl(System.String)">
+            <summary>
+            Returns a Double value of the String 'str'.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.CFlt(System.String)">
+            <summary>
+            Returns a Float value of the String 'str'.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.listSum(System.Collections.Generic.List{System.String})">
+            <summary>
+            Returns the Double sum of a List(string) 'nums'.
+            </summary>
+            <param name="nums"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.listSum(System.Collections.Generic.List{System.Double})">
+            <summary>
+            Returns the Double sum of a List(double) 'nums'.
+            </summary>
+            <param name="nums"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.listSum(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Returns the Integer sum of a List(int) 'nums'.
+            </summary>
+            <param name="nums"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.ToFraction(System.Double,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="accuracy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.ToFractions(System.Double,System.Collections.Generic.List{libSnippetsCoreCS.classMath.Fraction})">
+            <summary>
+            Approximates the <paramref name="value"/> as a combination of the <paramref name="options"/> provided.
+            </summary>
+            <param name="value">The decimal value, to approximate.</param>
+            <param name="options">The <see cref="T:System.Collections.Generic.List`1"/> of available fractions to approximate the <paramref name="value"/>.</param>
+            <returns></returns>
+            <remarks>Currently, this function is intended for positive values/fractions only.</remarks>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.FTL(System.Int32)">
+            <summary>
+            Returns a Integer factoral (n!). FTL(4) = 4 * 3 * 2 * 1, FTL(8) = 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1, etc.
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.FTL_L(System.Int32)">
+            <summary>
+            Returns a List(Integer) of factors in factoral (n!). FTL(4) returns (4, 3, 2, and 1); FTL(8) returns (8, 7, 6, 5, 4, 3, 2, and 1); etc.
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.FTL_cut(System.Int32,System.Int32)">
+            <summary>
+            Returns a Integer factorial (n!), ending after iteration 'n_'. FTL(4, 2) = 4 * 3 * 2, FTL(8, 5) = 8 * 7 * 6 * 5, etc.
+            </summary>
+            <param name="n"></param>
+            <param name="n_"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.FTL_cut_L(System.Int32,System.Int32)">
+            <summary>
+            Returns a List(Integer) of factors in factoral (n!), ending after iteration 'n_'. FTL(4, 2) returns (4, 3, and 2);
+            FTL(8, 5) returns (8, 7, 6, and 5); etc.
+            </summary>
+            <param name="n"></param>
+            <param name="n_"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.CHS(System.Int32,System.Int32)">
+            <summary>
+            Returns an Integer "n choose r". CHS(n, r) = n! / ((n - r)! * r!)
+            </summary>
+            <param name="n"></param>
+            <param name="r"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.CHS_simp(System.Int32,System.Int32)">
+            <summary>
+            Returns an Integer "n choose r" after simplifying repeating factors; has increased size limit from "CHS". CHS(n, r) = n! / ((n - r)! * r!)
+            </summary>
+            <param name="n"></param>
+            <param name="r"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Ad0(System.Int32,System.Int32)">
+            <summary>
+            Returns a String value format of the Integer 'num' which takes up the number of spaces 'digits' by adding 0s to the start of the string of 'num'.
+            For example, the parameters (128, 8) will return the String value "00000128".
+            </summary>
+            <param name="num"></param>
+            <param name="digits"></param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:libSnippetsCoreCS.classMath.Range`1">
+            <summary>
+            A simple range, defining low- and high-ends (i.e. 0 or 100) and inclusiveness (i.e. ( or [ {&lt; vs &lt;=}, ) or ] {&gt; vs &gt;=}).
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Range`1.#ctor(`0,System.Boolean,`0,System.Boolean)">
+            <summary>
+            Creates a new instance of Range, with "sbyte" as its primary data type.
+            </summary>
+            <param name="low">The range's minumum.</param>
+            <param name="lowinc">Whether the range includes its minimum ( (min, max} vs [min, max} ).</param>
+            <param name="high">The range's maximum.</param>
+            <param name="highinc">Whether the range includes its minimum ( {min, max) vs {min, max] ).</param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Range`1.#ctor(`0,`0)">
+            <summary>
+            Creates a new instance of Range, with "sbyte" as its primary data type.
+            </summary>
+            <param name="low">The range's minumum.</param>
+            <param name="high">The range's maximum.</param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Range`1.#ctor(`0,`0,System.Boolean)">
+            <summary>
+            Creates a new instance of Range, with "sbyte" as its primary data type.
+            </summary>
+            <param name="low">The range's minumum.</param>
+            <param name="high">The range's maximum.</param>
+            <param name="inclusive">Whether the range includes its extremes ( (min, max) vs [min, max] ).</param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Range`1.#ctor(`0)">
+            <summary>
+            Creates a new instance of range, with only one number as its bounds [m,m].
+            </summary>
+            <param name="exact">Both the minimum and maximum of the range (inclusive).</param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Range`1.ToString">
+            <summary>
+            Outputs a mathematical range (i.e. (x,y] ) depending on the range's defined bounds and inclusiveness.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Range`1.Contains(`0)">
+            <summary>
+            Returns whether the provided Value falls within the Range.
+            </summary>
+            <param name="Value">The value being tested for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Range`1.Contains(libSnippetsCoreCS.classMath.Range{`0},`0)">
+            <summary>
+            Detects whether the value is within a given range's bounds.
+            </summary>
+            <param name="rg"></param>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Range`1.Ranges_FallsWithin(libSnippetsCoreCS.classMath.Range{`0}[],`0)">
+            <summary>
+            Accepts a Range[] collection and outputs an int based on the indexed location of the first one containing the provided value. Returns -1 if the value is not contained at all.
+            </summary>
+            <param name="rgs">A given array of ranges.</param>
+            <param name="Value">The value being tested for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Mod_n(System.Int32,System.Int32)">
+            <summary>
+            Performs modulus-[mod] on <paramref name="Input"/>. If the [result] &lt; 0, also increments by <paramref name="mod"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="mod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Mod_n(System.SByte,System.SByte)">
+            <summary>
+            Performs modulus-[mod] on <paramref name="Input"/>. If the [result] &lt; 0, also increments by <paramref name="mod"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="mod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Mod_n(System.Int16,System.Int16)">
+            <summary>
+            Performs modulus-[mod] on <paramref name="Input"/>. If the [result] &lt; 0, also increments by <paramref name="mod"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="mod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divides(System.Int32,System.Int32)">
+            <summary>
+            Returns whether <paramref name="greater"/> is evenly divisible by <paramref name="Input"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="greater"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divides(System.SByte,System.Int32)">
+            <summary>
+            Returns whether <paramref name="greater"/> is evenly divisible by <paramref name="Input"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="greater"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Divides(System.Int16,System.Int32)">
+            <summary>
+            Returns whether <paramref name="greater"/> is evenly divisible by <paramref name="Input"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="greater"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.IsMultipleOf(System.Int32,System.Int32)">
+            <summary>
+            Returns whether <paramref name="Input"/> is a multiple of <paramref name="lower"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="lower"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.IsMultipleOf(System.SByte,System.Int32)">
+            <summary>
+            Returns whether <paramref name="Input"/> is a multiple of <paramref name="lower"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="lower"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.IsMultipleOf(System.Int16,System.Int32)">
+            <summary>
+            Returns whether <paramref name="Input"/> is a multiple of <paramref name="lower"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="lower"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.IsCoprimeTo(System.Int16,System.Int32)">
+            <summary>
+            Returns whether the Greatest Common Factor of <paramref name="Input"/> and <paramref name="partner"/> is equal to one, via the Euclidian Algorithm.
+            </summary>
+            <param name="Input"></param>
+            <param name="partner"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.LCM(System.Int32,System.Int32)">
+            <summary>
+            Finds the Least Common Multiple of two Integers, using their Greatest Common Divisor via the Euclidian Algorithm.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.LCM(System.Int64,System.Int64)">
+            <summary>
+            Finds the Least Common Multiple of two Integers, using their Greatest Common Divisor via the Euclidian Algorithm.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.GCD(System.Int32,System.Int32)">
+            <summary>
+            Finds the Greatest Common Divisor of two Integers, using the Euclidian Algorithm.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.GCD(System.Int64,System.Int64)">
+            <summary>
+            Finds the greatest common divisor of two Long integers, using the Euclidian Algorithm.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.GCD(System.UInt64,System.UInt64)">
+            <summary>
+            Finds the greatest common divisor of two Long integers, using the Euclidian Algorithm.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Rotate(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Rotates the values of three Integers counter-clockwise, by reference. a->c, b->a, &amp; c->b.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="c"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Rotate(System.UInt64@,System.UInt64@,System.UInt64@)">
+            <summary>
+            Rotates the values of three Unsigned Long integers counter-clockwise, by reference. a->c, b->a, &amp; c->a.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="c"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Swap(System.Int32@,System.Int32@)">
+            <summary>
+            Swaps the values of two Integers, by reference.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Swap(System.UInt64@,System.UInt64@)">
+            <summary>
+            Swaps the values of two Unsigned Long integers, by reference.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Digits(System.Int32)">
+            <summary>
+            Returns an array of digits within "num". Example: 100 = {1, 0, 0}.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Digits(System.Double,System.Boolean)">
+            <summary>
+            Returns an array of digits within "num". Example: 100.55 = (indicateDecimal: TRUE {1, 0, 0, -1, 5, 5} | FALSE {1, 0, 0, 5, 5})
+            </summary>
+            <param name="num"></param>
+            <param name="indicateDecimal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.SplitDigits(System.Double)">
+            <summary>
+            [0]: whole-array | [1]: decimal-array | [#][i] the ith digit.
+            If there are no decimals, an array of length 0 is sent to [1].
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Length(System.Int32)">
+            <summary>
+            Returns the character length of <paramref name="num"/>.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Length(System.Double)">
+            <summary>
+            Returns the character length of <paramref name="num"/>.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classMath.Lengths(System.Double)">
+            <summary>
+            Returns the character lengths {left-of, right-of} the decimal point of the Double <paramref name="num"/>.
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.classNetworking">
+            <summary>
+            Contains functions for page requests and 'dissection, mostly.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classNetworking.Page_GetSourceAsync(System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            Accepts a String 'url' web-address;
+            downloads and returns a String of the source-code text of the given web-address.
+            </summary>
+            <param name="url">web-address</param>
+            <param name="timeout">Timeout</param>
+            <returns>String of the source-code text of the given web-address</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.classNetworking.Page_GetImageAsync(System.String)">
+            <summary>
+            Return an image object from an image url ("http://... .../___.png").
+            [ SOURCES: http://www.vcskicks.com/download_file_http.php &amp; http://www.vcskicks.com/image-from-url.php ]
+            </summary>
+            <param name="imageUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classNetworking.Page_GetDataPieceAsync(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Returns a portion of the string between <paramref name="locS"/> and <paramref name="locE"/>, using webpage data from <paramref name="sourceOrUrl"/>, using <paramref name="tag"/> as a rougher starting point.
+            </summary>
+            <param name="sourceOrUrl">URL or Source-Text</param>
+            <param name="tag"></param>
+            <param name="locS">Rough starting-point</param>
+            <param name="locE">Rough end-point</param>
+            <param name="IsTheSource">Whether <paramref name="sourceOrUrl"/> is the URL (false) or the source text (true)</param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.classObjects">
+            <summary>
+            Contains general functions for many object types.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Real``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Filters out null values.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Real``1(System.Linq.ParallelQuery{``0})">
+            <summary>
+            Filters out null values.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.AddIfReal``1(System.Collections.Generic.List{``0},``0)">
+            <summary>
+            Adds an item to the list, unless that item is null.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="input"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.WithCapacity``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            A fluid implementation for setting <see cref="P:System.Collections.Generic.List`1.Capacity"/>, if you're adding a mass but determinate amount of items.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="input"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.SameCapacity``2(System.Collections.Generic.List{``0},System.Collections.Generic.IList{``1})">
+            <summary>
+            A fluid implementation for setting <see cref="P:System.Collections.Generic.List`1.Capacity"/>, if you're adding a mass but determinate amount of items.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="U"></typeparam>
+            <param name="input"></param>
+            <param name="sameAs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Remove``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            A predicate-based implementation of <see cref="M:System.Collections.Generic.List`1.Remove(`0)"/>, by using <see cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="input"></param>
+            <param name="predicate"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.MakeRectangle(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Creates a rectangle from two Points.
+            </summary>
+            <param name="upperLeft"></param>
+            <param name="lowerRight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.ExtractPoints(System.Drawing.Rectangle,System.Drawing.Point@,System.Drawing.Point@)">
+            <summary>
+            Returns the upperl-left and lower-right vertices.
+            </summary>
+            <param name="rect"></param>
+            <param name="upperLeft"></param>
+            <param name="lowerRight"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.List_ToDic``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Organizes each entry into groups of &lt;entry, #ofinstances&gt;. Ex: {1, 1, 1, 1, 1, 2} -> { {1, 5}, {2, 1} }.
+            </summary>
+            <param name="lst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Dic_Add_ct``1(System.Collections.Generic.Dictionary{``0,System.Int32},``0)">
+            <summary>
+            Increments the entry's #ofinstances value.
+            </summary>
+            <param name="dic"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Dic_Rem_ct``1(System.Collections.Generic.Dictionary{``0,System.Int32},``0)">
+            <summary>
+            Decrements the entry's #ofinstances value.
+            </summary>
+            <param name="dic"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Dic_ct_Set``1(System.Collections.Generic.Dictionary{``0,System.Int32},``0,System.Int32)">
+            <summary>
+            Sets the entry's #ofinstances value
+            </summary>
+            <param name="dic"></param>
+            <param name="key"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Dic_ct_Add``1(System.Collections.Generic.Dictionary{``0,System.Int32},``0,System.Int32)">
+            <summary>
+            Adds an entry to the dictionary, or increments its #ofinstances value if the entry already exists.
+            </summary>
+            <param name="dic"></param>
+            <param name="key"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Dic_ct_Rem``1(System.Collections.Generic.Dictionary{``0,System.Int32},``0,System.Int32)">
+            <summary>
+            Decrements an entry's #ofinstances value, or removes the entry if its #ofinstances value reaches zero.
+            </summary>
+            <param name="dic"></param>
+            <param name="key"></param>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Dic_keys_toList``1(System.Collections.Generic.Dictionary{``0,System.Int32})">
+            <summary>
+            Decompiles the group-by-entry dictionary's keys to a normal list. Ex: { {1, 5}, {2, 1} } -> {1, 2}.
+            </summary>
+            <param name="dic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.Dic_ct_toList``1(System.Collections.Generic.Dictionary{``0,System.Int32})">
+            <summary>
+            Decompiles the group-by-entry dictionary to a normal list. Ex: { {1, 5}, {2, 1} } -> {1, 1, 1, 1, 1, 2}.
+            </summary>
+            <param name="dic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.LastIndex``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            The maximum index.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="col"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.IsEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            Whether the collection has zero items.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="que"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.IsEmpty``1(System.Collections.Generic.Stack{``0})">
+            <summary>
+            Whether the collection has zero items.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="stk"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.IsEmpty``1(System.Collections.Generic.Queue{``0})">
+            <summary>
+            Whether the collection has zero items.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="stk"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.ConvertAll``2(System.Collections.Generic.IList{``0},System.Converter{``0,``1})">
+            <summary>
+            Converts an IList&lt;<typeparamref name="T"/>&gt; to a List&lt;<typeparamref name="L"/>&gt;.
+            </summary>
+            <typeparam name="T">Source type</typeparam>
+            <typeparam name="L">Destination type</typeparam>
+            <param name="source"></param>
+            <param name="converter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.ConvertAll``2(``0[],System.Converter{``0,``1})">
+            <summary>
+            Converts an array <typeparamref name="T"/>[] to an array <typeparamref name="L"/>[].
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="L"></typeparam>
+            <param name="source"></param>
+            <param name="converter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.MakeList``1(System.Action{System.Collections.Generic.List{``0}})">
+            <summary>
+            Creates a List&lt;<typeparamref name="T"/>&gt; without having to declare and return it.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="AppendAll"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.MakeArray``1(System.Int32,System.Action{System.Int32,``0[]})">
+            <summary>
+            Creates a List&lt;<typeparamref name="T"/>&gt; without having to declare and return it.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="size"></param>
+            <param name="Assign"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.MakeArray``1(System.Int32,System.Func{System.Int32,``0})">
+            <summary>
+            Creates a List&lt;<typeparamref name="T"/>&gt; without having to declare and return it.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="size"></param>
+            <param name="Get"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.ShowByte(System.Byte)">
+            <summary>
+            "xxxxxxxx"
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.ShowNibbles(System.Byte)">
+            <summary>
+            "xxxx xxxx"
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.GetNibbles(System.Byte)">
+            <summary>
+            Divides a byte into two four-bit nibbles.
+            [0]: Rightmost (lower) four bits. | [1]: Leftmost (higher) four bits.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.ShowCrumbs(System.Byte)">
+            <summary>
+            "xx xx xx xx"
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.DivideNibble(System.Byte)">
+            <summary>
+            Divides a nibble (four bits) into two crumbs (two pairs of two bits).
+            [0]: Rightmost (lower) two bits. | [1]: Leftmost (higher) two bits.
+            </summary>
+            <param name="nibble"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.GetCrumbs(System.Byte)">
+            <summary>
+            Divides a byte into four two-bit "crumbs".
+            [0]: Rightmost (lowest) two bits. | [1]: "8" &amp; "4" bits. | [2]: "16" &amp; "32" bits. | [3]: Leftmost (highest) two bits.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.GetBool(System.Byte,System.Byte)">
+            <summary>
+            Returns the [place]th bit as a boolean value, starting at rightmost index and stopping at bit 2^[number] (number=4: stop at 5th bit).
+            </summary>
+            <param name="bits"></param>
+            <param name="place"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.GetBools(System.Byte,System.Byte)">
+            <summary>
+            Returns an [number]-index array of boolean values, starting at rightmost index and stopping at bit 2^[number] (number=4: stop at 5th bit).
+            </summary>
+            <param name="bits"></param>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.GetBit(System.Byte,System.Byte)">
+            <summary>
+            Returns the [place]th bit, starting at rightmost index and stopping at bit 2^[number] (number=4: stop at 5th bit).
+            </summary>
+            <param name="bits"></param>
+            <param name="place"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.GetBits(System.Byte)">
+            <summary>
+            Returns an 8-index array of bit values, starting at rightmost index (2^0) and stopping at bit 2^7 (leftmost index).
+            </summary>
+            <param name="bits"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classObjects.GetBits(System.Byte,System.Byte)">
+            <summary>
+            Returns an [number]-index array of boolean values, starting at rightmost index and stopping at bit 2^[number] (number=4: stop at 5th bit).
+            </summary>
+            <param name="bits"></param>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Edge.Invert">
+            <summary>
+            Swaps the <see cref="F:libSnippetsCoreCS.DataStructures.Graph`1.Edge.Source"/> and <see cref="F:libSnippetsCoreCS.DataStructures.Graph`1.Edge.Dest"/> Verteces.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Edge.Equals(libSnippetsCoreCS.DataStructures.Graph{`0}.Edge)">
+            <summary>
+            Returns true if this edge and the provided edge both connect the same pair of verteces, and either have the same direction or are both directionless.
+            </summary>
+            <param name="edge"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Edge.LooslyEquals(libSnippetsCoreCS.DataStructures.Graph{`0}.Edge)">
+            <summary>
+            Returns true if this edge and the provided edge connect the same pair of verteces.
+            </summary>
+            <param name="edge"></param>
+            <returns></returns>
+        </member>
+        <member name="P:libSnippetsCoreCS.DataStructures.Graph`1.Vertex.Neighbors">
+            <summary>
+            Queries <see cref="P:libSnippetsCoreCS.DataStructures.Graph`1.Vertex.Edges"/> for Verteces that either connect directionlessly to or are destined from [this] Vertex.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.DataStructures.Graph`1.Vertex.Edges">
+            <summary>
+            Queries the parent Graph for edges that contain [this] Vertex.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Vertex.#ctor(libSnippetsCoreCS.DataStructures.Graph{`0},`0)">
+            <summary>
+            Creates a new Vertex under the <paramref name="parent"/> Graph; should only be called directly by the Graph itself.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Add(`0)">
+            <summary>
+            Creates and adds a disconnected Vertex to [this] Graph.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Connect(libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex,libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex)">
+            <summary>
+            Creates an undirected edge between the two Verteces and adds it to [this] Graph.
+            </summary>
+            <param name="source"></param>
+            <param name="dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Connect(libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex,libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex,System.Boolean)">
+            <summary>
+            Creates an edge (directed if <paramref name="directed"/>) between the two Verteces and adds it to [this] Graph.
+            </summary>
+            <param name="source"></param>
+            <param name="dest"></param>
+            <param name="directed"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Disconnect(libSnippetsCoreCS.DataStructures.Graph{`0}.Edge)">
+            <summary>
+            Disconnects and returns the provided edge only if it both exists and is undirected, or has the same [Source] and [Dest] Verteces (in that order); returns null otherwise.
+            </summary>
+            <param name="edge"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Disconnect(libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex,libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex,System.Boolean)">
+            <summary>
+            Disconnects the two verteces and returns their edge, only if the edge both exists and has the provided <paramref name="directed"/> value; returns null otherwise.
+            </summary>
+            <param name="source"></param>
+            <param name="dest"></param>
+            <param name="directed"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.DisconnectLoosly(libSnippetsCoreCS.DataStructures.Graph{`0}.Edge)">
+            <summary>
+            Disconnects and returns the provided edge if it exists, regardless of whether it's directed; returns null otherwise.
+            </summary>
+            <param name="edge"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.DisconnectLoosly(libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex,libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex)">
+            <summary>
+            Disconnects the two verteces and returns their edge, if it exists, whether or not it was directional; returns null otherwise.
+            </summary>
+            <param name="source"></param>
+            <param name="dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Search_DepthFirst(libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex,libSnippetsCoreCS.DataStructures.Graph{`0}.Predicate)">
+            <summary>
+            Returns a Vertex matching the <paramref name="criteria"/>, but not the path leading to it.
+            </summary>
+            <param name="start"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Graph`1.Search_DepthFirst(libSnippetsCoreCS.DataStructures.Graph{`0}.Vertex,libSnippetsCoreCS.DataStructures.Graph{`0}.Predicate,libSnippetsCoreCS.DataStructures.Queue{libSnippetsCoreCS.DataStructures.Graph{`0}.Edge}@)">
+            <summary>
+            Returns a Vertex matching the <paramref name="criteria"/> and stores the path leading to it in <paramref name="path"/>.
+            </summary>
+            <param name="start"></param>
+            <param name="criteria"></param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.DataStructures.HashTable`2">
+            <summary>
+            A simple Hash Table. The hashing algorithm is hard-coded {TODO: but can be overriden}. {TODO: Can} Cannot be resized.
+            </summary>
+            <typeparam name="K"></typeparam>
+            <typeparam name="V"></typeparam>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.#ctor(System.Int32)">
+            <summary>
+            Creates new HashTable of the provided size.
+            </summary>
+            <param name="size"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.Add(`0,`1)">
+            <summary>
+            Adds the <paramref name="item"/> to the HashTable using the provided <paramref name="key"/>. Probe()s if <paramref name="key"/> is taken.
+            </summary>
+            <param name="key"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.Overflow(`1)">
+            <summary>
+            Action to take if an item tries to enter when the HashTable is full.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.Set(`0,`1)">
+            <summary>
+            Sets GetHash[key]) to the provided <paramref name="item"/> - overwrites <paramref name="key"/>'s item it not empty.
+            </summary>
+            <param name="key"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.Remove(`0)">
+            <summary>
+            Removes GetHash(<paramref name="key"/>)'s item from the Table.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.Remove(`1)">
+            <summary>
+            Searches for the first occurrance of <paramref name="value"/> in the Table and removes it.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.Get(`0)">
+            <summary>
+            Gets GetHash([key])'s item and returns it.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.Search(`1)">
+            <summary>
+            Searches for <paramref name="item"/> in the Table and returns it.
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.ProbeIndex(System.Int32,`1)">
+            <summary>
+            Probes for and returns an open index in the Table holding <paramref name="value"/>, starting at <paramref name="index"/>.
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.Probe(`0,`1)">
+            <summary>
+            Probes for and returns an index in the Table holding <paramref name="value"/>, starting at GetHash(<paramref name="key"/>).
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.GetHash(`0)">
+            <summary>
+            Generates and returns an index from the provided <paramref name="key"/>.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.ToString">
+            <summary>
+            Outputs the contents of the Table in text format - does not print the corresponding keys.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.HashTable`2.ToString(System.Boolean)">
+            <summary>
+            Outputs the contents of the Table in text format.
+            </summary>
+            <param name="includeKeys"></param>
+            <returns></returns>
+        </member>
+        <member name="F:libSnippetsCoreCS.DataStructures.NibbleQueue.PartialIn">
+            <summary>
+            (first last) nibbles.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.DataStructures.NibbleQueue.PartialOut">
+            <summary>
+            (first last) nibbles.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.DataStructures.NibbleQueue.MidNibble_In">
+            <summary>
+            False: empty (0000 0000) | True: half-full (In[xxxx 0000] || Out[0000 xxxx])
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.DataStructures.NibbleQueue.MidNibble_Out">
+            <summary>
+            False: empty (0000 0000) | True: half-full (In[xxxx 0000] || Out[0000 xxxx])
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.NibbleQueue.Peek">
+            <summary>
+            Peeks one nibble (four bits) of data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.NibbleQueue.PeekTwoCrumbs">
+            <summary>
+            Peeks two crumbs (two pairs of bits) of data.
+            [0]: Rightmost (lower) two bits. | [1]: Leftmost (higher) two bits.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.NibbleQueue.Enqueue(System.Byte,System.Byte)">
+            <summary>
+            Enqueues two crumbs (two pairs of bits) of data.
+            </summary>
+            <param name="crumbRight">Rightmost (lower) two bits.</param>
+            <param name="crumbLeft">Leftmost (higher) two bits.</param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.NibbleQueue.Enqueue(System.Byte)">
+            <summary>
+            Enqueues a nibble (four bits) of data.
+            </summary>
+            <param name="nibble"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.NibbleQueue.Dequeue">
+            <summary>
+            Dequeues a nibble (four bits) of data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.NibbleQueue.DequeueTwoCrumbs">
+            <summary>
+            Dequeues two crumbs (two pairs of bits) of data.
+            [0]: Rightmost (lower) two bits. | [1]: Leftmost (hither) two bits.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.DataStructures.Queue`1">
+            <summary>
+            A from-scratch implementation of a Queue.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Queue`1.Enqueue(`0)">
+            <summary>
+            Adds the provided Node to the front of the Queue.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Queue`1.Dequeue">
+            <summary>
+            Removes the Node at the end of the Queue and returns that Node's value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Queue`1.Peek">
+            <summary>
+            Returns the value at the top of the stack without removing it.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Queue`1.Clear">
+            <summary>
+            Set every item in the Queue to null.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Queue`1.IsEmpty">
+            <summary>
+            Whether the Queue() is empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Queue`1.Reverse">
+            <summary>
+            Reverses the item order in [this] Queue and returns [this] Queue.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.DataStructures.SLList`1">
+            <summary>
+            A from-scratch implementation of a Singly-Linked List.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.SLList`1.Add(`0)">
+            <summary>
+            Appends a new Node containing the provided value to the end of the SLList. Returns the created Node.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.SLList`1.Remove(System.UInt32)">
+            <summary>
+            Removes the node at the provided location and returns the Node now at that location.
+            </summary>
+            <param name="location"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.SLList`1.Remove(libSnippetsCoreCS.DataStructures.SLList{`0}.Node)">
+            <summary>
+            Locates and removes the provided Node and returns the Node which was perviously pointed to by the removed node.
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.SLList`1.Insert(libSnippetsCoreCS.DataStructures.SLList{`0}.Node,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="node"></param>
+            <param name="location"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.SLList`1.Insert(libSnippetsCoreCS.DataStructures.SLList{`0}.Node,libSnippetsCoreCS.DataStructures.SLList{`0}.Node)">
+            <summary>
+            Inserts the provided node behind the provided location.
+            </summary>
+            <param name="node"></param>
+            <param name="location"></param>
+        </member>
+        <member name="T:libSnippetsCoreCS.DataStructures.Stack`1">
+            <summary>
+            A from-scratch implementation of a Stack.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Stack`1.Push(`0)">
+            <summary>
+            Adds the provided Node to the top of the stack.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Stack`1.Pop">
+            <summary>
+            Returns and removes the Node at the top of the Stack.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Stack`1.Peek">
+            <summary>
+            Returns a copy of the Node at the top of the stack without removing it.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Stack`1.Clear">
+            <summary>
+            Set every item in the Stack to null.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Stack`1.IsEmpty">
+            <summary>
+            Whether [this] Stack is empty.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.DataStructures.Stack`1.Reverse">
+            <summary>
+            Reverses the item order in [this] Stack and returns [this] Stack.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.classConsole">
+            <summary>
+            Color tag format: &lt;f=__&gt;&lt;b=__&gt;,&lt;f=__,b=__&gt;,&lt;f,b=_,_&gt; | __=(d){b,g,c,r,m,y,w,G,B} | 
+            &lt;&gt; for reset, &lt;p&gt; for pause.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.CWrite(System.String,System.Byte)">
+            <summary>
+            Color tag format: &lt;f=__&gt;&lt;b=__&gt;,&lt;f=__,b=__&gt;,&lt;f,b=_,_&gt; | __=(d){b,g,c,r,m,y,w,G,B} | 
+            &lt;&gt; for reset, &lt;p&gt; for pause.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.CWrite(System.String,System.Byte,System.Boolean)">
+            <summary>
+            Color tag format: &lt;f=__&gt;&lt;b=__&gt;,&lt;f=__,b=__&gt;,&lt;f,b=_,_&gt; | __=(d){b,g,c,r,m,y,w,G,B} | 
+            &lt;&gt; for reset, &lt;p&gt; for pause.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.CWriteL(System.String,System.Byte)">
+            <summary>
+            Color tag format: &lt;f=__&gt;&lt;b=__&gt;,&lt;f=__,b=__&gt;,&lt;f,b=_,_&gt; | __=(d){b,g,c,r,m,y,w,G,B} | 
+            &lt;&gt; for reset, &lt;p&gt; for pause.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.CWriteL(System.String,System.Byte,System.Boolean)">
+            <summary>
+            Color tag format: &lt;f=__&gt;&lt;b=__&gt;,&lt;f=__,b=__&gt;,&lt;f,b=_,_&gt; | __=(d){b,g,c,r,m,y,w,G,B} | 
+            &lt;&gt; for reset, &lt;p&gt; for pause.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.CWrite(System.String)">
+            <summary>
+            Color tag format: &lt;f=__&gt;&lt;b=__&gt;,&lt;f=__,b=__&gt;,&lt;f,b=_,_&gt; | __=(d){b,g,c,r,m,y,w,G,B} | 
+            &lt;&gt; for reset, &lt;p&gt; for pause.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.CWriteL(System.String)">
+            <summary>
+            Color tag format: &lt;f=__&gt;&lt;b=__&gt;,&lt;f=__,b=__&gt;,&lt;f,b=_,_&gt; | __=(d){b,g,c,r,m,y,w,G,B} | 
+            &lt;&gt; for reset, &lt;p&gt; for pause.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.input_parseAlt(System.String,System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Returns the input and whether it was in the list of alternates.
+            </summary>
+            <param name="input"></param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputFloat(System.String,System.Nullable{System.ValueTuple{System.Single,System.Single}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to a float (default -3.4E-38 to 3.4E+38, inclusive) or a List&lt;string&gt; of alternative inputs (default case-sensitive).
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default -3.4E-38 to 3.4E+38, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputDouble(System.String,System.Nullable{System.ValueTuple{System.Double,System.Double}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to a double, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default -4.9E-324 to 1.7E+308, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputDecimal(System.String,System.Nullable{System.ValueTuple{System.Decimal,System.Decimal}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to a decimal, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default -7.9E+28 to 7.9E+28, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputLong(System.String,System.Nullable{System.ValueTuple{System.Int64,System.Int64}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to an long-integer, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputULong(System.String,System.Nullable{System.ValueTuple{System.UInt64,System.UInt64}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to an unsigned long-integer, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default 0 to 18,446,744,073,709,551,616, inclusive, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputInt(System.String,System.Nullable{System.ValueTuple{System.Int32,System.Int32}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to an integer, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default -2,147,483,648 to 2,147,483,647, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputUInt(System.String,System.Nullable{System.ValueTuple{System.UInt32,System.UInt32}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to an unsigned uinteger, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default 0 to 4,294,967,295, inclusive, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputShort(System.String,System.Nullable{System.ValueTuple{System.Int16,System.Int16}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to a short, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default -32,768 to 32,767, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputUShort(System.String,System.Nullable{System.ValueTuple{System.UInt16,System.UInt16}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to an unsigned short, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default 0 to 65,535, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputSByte(System.String,System.Nullable{System.ValueTuple{System.SByte,System.SByte}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to a signed byte, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default -128 to 127, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classConsole.InputByte(System.String,System.Nullable{System.ValueTuple{System.Byte,System.Byte}},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Restricts console user-input to a byte, or alternative inputs if provided.
+            </summary>
+            <param name="consoleColor">Color &lt;_=__&gt; of user-input</param>
+            <param name="bounds">Minimum/Maximum of numeric input (default 0 to 255, inclusive)</param>
+            <param name="alternates">Alternative String inputs (input is returned in all-caps if case-sensitivity is False)</param>
+            <param name="caseSensitive">Case-sensitivity of alternate String inputs (input is returned in all-caps if False)</param>
+            <returns>String user-input</returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.classFonts">
+            <summary>
+            Contains definitions for GFont objects, mostly.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.classFonts.GFont">
+            <summary>
+            An imaged imaged font (GFont) created from an information file and a character-image sheet.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.GFont.ErrChar">
+            <summary>
+            Displayed as a character when the printed text contains a character not found within the font's files.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.GFont.Characters">
+            <summary>
+            Dictinary of character images created from the font's files.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.GFont.CharWidth">
+            <summary>
+            The standard character width defined by the font's information file.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.GFont.CharHeight">
+            <summary>
+            The standard character height defined by the font's information file.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.GFont.NumericWidth">
+            <summary>
+            The greatest width of all contained numeric characters.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.GFont.NumericHeight">
+            <summary>
+            The predefined height, in pixels, of numbers 0-9.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.GFont.Padding">
+            <summary>
+            The amount of vertical space, in pixels, between lines of text.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.#ctor(System.String,System.Drawing.Image,System.String)">
+            <summary>
+            Creates a new font from the information file (specs) and the character-image sheet (charSheet).
+            </summary>
+            <param name="specs"></param>
+            <param name="charSheet"></param>
+            <param name="fontName"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.GetWidth(System.String)">
+            <summary>
+            Returns the graphical width, in pixels, of the provided text.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.GetHeight(System.String)">
+            <summary>
+            Returns the graphical height, in pixels, of the provided text.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.GetSize(System.String)">
+            <summary>
+            Returns the graphical size, in pixels, of the provided text.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.GetSize(libSnippetsCoreCS.Objects.classFonts.CString)">
+            <summary>
+            Returns the graphical size, in pixels, of the provided colored text.
+            </summary>
+            <param name="cText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.Print(System.String)">
+            <summary>
+            Creates a white graphical image from the provided text.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.Print(System.String,System.Drawing.Color)">
+            <summary>
+            Creates a graphical image from the provided text and color.
+            </summary>
+            <param name="text"></param>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.Print(libSnippetsCoreCS.Objects.classFonts.CString)">
+            <summary>
+            Creates a graphical image from the provided colored text.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.PrintCenterW(libSnippetsCoreCS.Objects.classFonts.CString,System.Int32)">
+            <summary>
+            Creates a graphical image from the provided colored text, centered horizontally within the provided width.
+            </summary>
+            <param name="text"></param>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.PrintRight(libSnippetsCoreCS.Objects.classFonts.CString,System.Int32)">
+            <summary>
+            Creates a graphical image from the provided colored text, right-centered horizontally within the provided width.
+            </summary>
+            <param name="text"></param>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.PrintRightCenter(libSnippetsCoreCS.Objects.classFonts.CString,System.Int32,System.Int32)">
+            <summary>
+            Creates a graphical image from the provided colored text, right-centered horizontally within the provided width and centered vertically within the provied height.
+            </summary>
+            <param name="text"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.PrintCenterH(libSnippetsCoreCS.Objects.classFonts.CString,System.Int32)">
+            <summary>
+            Creates a graphical image from the provided colored text, centered vertically within the provided height.
+            </summary>
+            <param name="text"></param>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.GFont.PrintCenter(libSnippetsCoreCS.Objects.classFonts.CString,System.Int32,System.Int32)">
+            <summary>
+            Creates a graphical image from the provided colored text, centered within the provided width and height.
+            </summary>
+            <param name="text"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.classFonts.CString">
+            <summary>
+            An object defining a string of colored text.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.CString.GetColor(System.Int32)">
+            <summary>
+            Returns the color of the specified string index, based on color tags in the object's text definition.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.CString.Text">
+            <summary>
+            The actual string of text, without color tags, contained within the object.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.CString.ModDefinition">
+            <summary>
+            The actual string of text, with color tags, contained within the object.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.CString.DefaultColor">
+            <summary>
+            The default text color.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.CString.ColorPresets">
+            <summary>
+            A dictionary of XTML-esque tags for color presets and the colors they represent.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.CString.GetLines">
+            <summary>
+            Splits the object's colored text into an array of colored strings based on locations of the new-line escape character.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.classFonts.CString.Rewrite(System.String)">
+            <summary>
+            Returns a copy of the object, using the provided new colored string.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.classFonts.Fonts">
+            <summary>
+            A static collection of imaged fonts (GFonts) custom made for this class library.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.Fonts.FurDomus_6x9">
+            <summary>
+            A 6x9-pixel imaged font (GFont) custom made for this class library.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.Fonts.FurDomus_8x12">
+            <summary>
+            An 8x12-pixel imaged font (GFont) custom made for this class library.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.classFonts.Fonts.FurDomus_12x18_bold">
+            <summary>
+            A 12x18-pixel bold imaged font (GFont) custom made for this class library.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.Animation">
+            <summary>
+            A wrapper for a sequences of images to be played.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CButton.#ctor(System.UInt32,System.UInt32,System.Byte,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="brightness">0-15</param>
+            <param name="hue">0=white || 1=red, 2=green, 3=blue ||
+                                    4=yellow, 5=cyan, 6=violet ||
+                                    7=orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink</param>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.TOOLBAR_HEIGHT">
+            <summary>
+            The height of the toolbar.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.BUTTON_WIDTH">
+            <summary>
+            The width of a single toolbar-button.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.clrForm">
+            <summary>
+            0=BG, 1=edgeOutside, 2=edgeFocused
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.clrButtons">
+            <summary>
+            0=MenuBG, 1=Normal_Hover, 2=Normal_Pressed, 3=close_Hover, 4=close_Pressed
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.clrFonts">
+            <summary>
+            0=Normal, 1=close_NormalBlend, 2=close_Hover, 3=close_HoverBlend, 4=closed_PressedBlend
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.Log_FormPos">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.Log_MousePos">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.Log_MouseRel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CForm.Log_FormSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CForm.startBtns">
+            <summary>
+            The x coordinate where the button-group is drawn.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CForm.updateMouseLogs">
+            <summary>
+            Updates the logs for the Mouse literal- and relative-position. Used for toggling <see cref="P:libSnippetsCoreCS.Objects.CForm.Maximized"/>. Also calls <see cref="M:libSnippetsCoreCS.Objects.CForm.updateFormLogs"/>.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CForm.updateFormLogs">
+            <summary>
+            Updates the logs for Form position and size. Used for toggling <see cref="P:libSnippetsCoreCS.Objects.CForm.Maximized"/>.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CForm.Recolor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="hue"></param>
+            <param name="brightness"></param>
+            <param name="colorType">0=BG, 1=Trim, 2=BG+Trim</param>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CForm.DragForm">
+            <summary>
+            Moves the form as the user drags the mouse. WARNING: Make sure to use updateMouse beforehand!
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CForm.Draw">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CForm.mouseClick">
+            <summary>
+            Return of {0=NOP} {1=Minimize} {2=ToggleMax} {3=Close} {4=ToggleMax_Toolbar}.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CForm.InItem">
+            <summary>
+            Return of {0=Outside} {1=Minimize} {2=ToggleMax} {3=Close} {4=Toolbar} {5=Form} {6=FormEdge}.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CHoverable.State">
+            <summary>
+            0: Normal | 1: Hovered | 2: Pressed
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CHoverable.State_Previous">
+            <summary>
+            0: Normal | 1: Hovered | 2: Pressed
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CHoverable.State_HasChanged">
+            <summary>
+            Whether the State has changed since the last interaction (left, entered, pressed, unpressed).
+            </summary>
+        </member>
+        <member name="E:libSnippetsCoreCS.Objects.CHoverable.EOnEnter">
+            <summary>
+            The method(s) that activate(s) upon the user interacting with [this] object via mouse movement.
+            </summary>
+        </member>
+        <member name="E:libSnippetsCoreCS.Objects.CHoverable.EOnLeave">
+            <summary>
+            The method(s) that activate(s) upon the user interacting with [this] object via mouse movement.
+            </summary>
+        </member>
+        <member name="E:libSnippetsCoreCS.Objects.CHoverable.EOnMove">
+            <summary>
+            The method(s) that activate(s) upon the user interacting with [this] object via mouse movement.
+            </summary>
+        </member>
+        <member name="E:libSnippetsCoreCS.Objects.CHoverable.EOnDrag">
+            <summary>
+            The method(s) that activate(s) upon the user interacting with [this] object via mouse movement.
+            </summary>
+        </member>
+        <member name="E:libSnippetsCoreCS.Objects.CHoverable.EOnMouseDown">
+            <summary>
+            The method(s) that activate(s) upon the user interacting with [this] object via mouse-click.
+            </summary>
+        </member>
+        <member name="E:libSnippetsCoreCS.Objects.CHoverable.EOnMouseUp">
+            <summary>
+            The method(s) that activate(s) upon the user interacting with [this] object via mouse-click.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CHoverable.OnClick">
+            <summary>
+            The internal method that [this] object runs upon the user interacting with [this] object via mouse-click.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CHoverable.OnMouseOver">
+            <summary>
+            The internal method that [this] object runs upon the user interacting with [this] object via mouse movement.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CHoverable.OnMouseDown">
+            <summary>
+            The internal method that [this] object runs upon the user interacting with [this] object via mouse-down.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CHoverable.OnMouseUp">
+            <summary>
+            The internal method that [this] object runs upon the user interacting with [this] object via mouse-up.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CHoverable.Redraw">
+            <summary>
+            The internal method that [this] object runs for its draw-call.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CNumericUpDown.clrTxt">
+            <summary>
+            0=BG, 1=border, 2=fontColor
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CNumericUpDown.clrBtn">
+            <summary>
+            0=buttonsFill, 1=buttonsEdge, 2=arrows
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CNumericUpDown.Width">
+            <summary>
+            [Digits] + [decimal separator] + [Decimals].
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CNumericUpDown.Area_Places">
+            <summary>
+            Areas covering each digit, not including decimal point.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CNumericUpDown.VDigits">
+            <summary>
+            Returns an array of digits within <see cref="P:libSnippetsCoreCS.Objects.CNumericUpDown.Value"/>. Example: 100.55 = {1, 0, 0, -1, 5, 5}.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CNumericUpDown.VHalves">
+            <summary>
+            Returns a 2D array of digits within <see cref="P:libSnippetsCoreCS.Objects.CNumericUpDown.Value"/>. Example: 100.55 = { {1, 0, 0}, {5, 5} }.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CNumericUpDown.Digits">
+            <summary>
+            Returns the number of whole-number digits in <see cref="P:libSnippetsCoreCS.Objects.CNumericUpDown.Maximum"/>.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CNumericUpDown.In_Digit">
+            <summary>
+            {0: Is whole | 1: Is decimal}, {whole: right to left | decimal: left to right}.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CObject.Location">
+            <summary>
+            The lcoation of this container, relative to its host container.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CObject.ContainerLocation">
+            <summary>
+            The location of the container hosting [this] object.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CObject.MouseOffset">
+            <summary>
+            Error-correcting calibration reference-point.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CObject.Image">
+            <summary>
+            The Image depicting [this] object.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CObject.Width">
+            <summary>
+            Part of [this] object's dimensions.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CObject.Height">
+            <summary>
+            Part of [this] object's dimensions.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CObject.Enabled">
+            <summary>
+            Whether user-interaction with [this] object is recognized.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.CObject.Tag">
+            <summary>
+            String tag containing contextual information about [this] object.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CObject.Size">
+            <summary>
+            [This] object's dimensions.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CObject.GlobalMousePosition">
+            <summary>
+            The global mouse-position.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CObject.MousePosition">
+            <summary>
+            The mouse-position, relative [this] object.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.CObject.IsHovered">
+            <summary>
+            Whether the mouse-position is within [this] object.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CObject.Mouse_IsIn">
+            <summary>
+            Whether the mouse-position is within [this] object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CObject.Mouse_IsIn(System.Drawing.Rectangle)">
+            <summary>
+            Whether the mouse-position is within the provided Rectangle.
+            </summary>
+            <param name="rect"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.CObject.DClick">
+            <summary>
+            The void delegate definition for mouse-clicks.
+            </summary>
+        </member>
+        <member name="E:libSnippetsCoreCS.Objects.CObject.EOnMouseDown">
+            <summary>
+            The method(s) that activate(s) upon the user interacting with [this] object via mouse-click.
+            </summary>
+        </member>
+        <member name="E:libSnippetsCoreCS.Objects.CObject.EOnMouseUp">
+            <summary>
+            The method(s) that activate(s) upon the user interacting with [this] object via mouse-click.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CObject.OnClick">
+            <summary>
+            The internal method that [this] object runs upon the user interacting with [this] object via mouse-click.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CustomNotifTray`1.IsIn(libSnippetsCoreCS.Objects.CustomNotifTray{`0}.Notif)">
+            <summary>
+            Whether the <paramref name="notif"/> is finished appearing.
+            </summary>
+            <param name="notif"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.CustomNotifTray`1.IsOut(libSnippetsCoreCS.Objects.CustomNotifTray{`0}.Notif)">
+            <summary>
+            Whether the <paramref name="notif"/> is finished hiding.
+            </summary>
+            <param name="notif"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.DelegatedTimer">
+            <summary>
+            A Timer which calls a delegate function on each tick.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphData.Data">
+            <summary>
+            Data within the Object.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphData.MovingAverage">
+            <summary>
+            Moving average of Data
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphData.Length">
+            <summary>
+            The greatest index which is currently being occupied by the datafield Data.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphData.Size">
+            <summary>
+            The maximum number of data points contained.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphData.Push(System.Single)">
+            <summary>
+            Inserts a new data value in the next available index. If Data is full, all values for Data are shifted toward [0].
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphData.Clear">
+            <summary>
+            Clear all Data and MovingAverage.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphData.Average(System.UInt16,System.UInt16)">
+            <summary>
+            Averages the data between indexes period[0] and period[1] (inclusive).
+            </summary>
+            <param name="start">Data</param>
+            <param name="end">Index span</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphData.Average">
+            <summary>
+            Averages all data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphData.Sum(System.UInt16,System.UInt16)">
+            <summary>
+            Adds up the data between indexes bounds[0] and bounds[1] (inclusive).
+            </summary>
+            <param name="start">Data</param>
+            <param name="end">Index span</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphData.Sum">
+            <summary>
+            Adds up all data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.GraphDisplay">
+            <summary>
+            A wrapper, containing a compiled image, for (a) set(s) of data-points.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphDisplay.Datasets">
+            <summary>
+            The number of datasets contained.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphDisplay.Colors">
+            <summary>
+            0: BG | 1: TopmostToggle main | 2: TopmostToggle secondary | 3: NumberArrows | 4: ConfigCog |
+            5: ConfigArrow | 6: XConfig | 7: YConfig | 8: RegionConfig
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphDisplay.Animated">
+            <summary>
+            Whether to gradually draw (to the next point)/(the next bar).
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphDisplay.IsLine">
+            <summary>
+            True: Lines &amp; dots
+            False: Bar graph
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.GraphDisplay.Image">
+            <summary>
+            The Image final Image of the GraphDisplay.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.GraphDisplay.Specs">
+            <summary>
+            0=XMax | 1=YMin, 2=YMax | 3=YScale, 4=YPix, 5=YMark | 6=XPix, 7=XMark | 8=Regions, 9=SelRegion | 10=SelMin, 11=SelMax.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.GraphDisplay.SpecsSplit">
+            <summary>
+            0: {0=XMax} | 1: {0=YMin, 1=YMax} | 2: {0=YScale, 1=YPix, 2=YMark} | 3: {0=XPix, 1=XMark} | 4: {0=Regions, 1=SelRegion} | 5: {0=SelMin, 1=SelMax}.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.GraphDisplay.Controls">
+            <summary>
+            {0-11: CNums, 12-13: RadioTopmost, 14: ConfigToggle, 15: ColorPick}
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.GraphDisplay.RegionBounds">
+            <summary>
+            [#]: nth region | [#]{ 0: YMin | 1: YMax }.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphDisplay.MoveControls">
+            <summary>
+            Update Locations of all controls (CNumericUpDowns, config toggle, Color-Pick).
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphDisplay.ImageStatic_Update">
+            <summary>
+            Update the casing, controls and data-background.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.GraphDisplay.ImageData_Update">
+            <summary>
+            Update the graph image.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.ICHoverable">
+            <summary>
+            An interface for Image-based controls which have hover actions.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.ICObject">
+            <summary>
+            An Interface for Image-based controls.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.ImageSequence">
+            <summary>
+            A wrapper for a sequence of Images.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.Looper`1">
+            <summary>
+            A wrapper for walking an <see cref="T:System.Collections.Generic.IList`1"/> from start to end, then seamlessly over again.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.MouseStatus">
+            <summary>
+            An instanced object for tracking how the mouse interacts with a Windows Form. Includes functions and flags that handle such things as mouse-dragging and relative position.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.MousePosition">
+            <summary>
+            The Windows Form that the MouseStatus is most concerned with.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.MouseStatus.AllowDragging">
+            <summary>
+            Whether [this] object is allowed to change the parent Form's position.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.IsInForm">
+            <summary>
+            Whether the mouse is currently within the [parent] Form.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.IsDown">
+            <summary>
+            Whether the mouse is currently held down.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.IsDragging">
+            <summary>
+            Whether the dragging process {is ready / has initiated}.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.HasDragged">
+            <summary>
+            Whether the mouse has dragged since the most recent MouseDown() event. Lingers after the MouseUp() event.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.Relative_HasChanged">
+            <summary>
+            Whether the relative mouse position has changed.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.Form_HasMoved">
+            <summary>
+            Set true by the MouseUp event if "Dragging" was true during its call.
+            Set false by the MouseDown event regardless during its call.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.MouseOrigin">
+            <summary>
+            The literal origin of the mouse at the start of dragging.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.FormOrigin">
+            <summary>
+            The origin of the Form at the start of dragging.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.RelativeOrigin">
+            <summary>
+            The relative origin of the mouse at the start of dragging.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Objects.MouseStatus.RelativePosition">
+            <summary>
+            The position of the mouse, relative to the Form.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.MouseStatus.#ctor(System.Windows.Forms.Form)">
+            <summary>
+            Creates an instance of the MouseStatus object and sets its parent to the provided Windows Form.
+            </summary>
+            <param name="puppet"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.MouseStatus.OnMouseDown">
+            <summary>
+            Make this call in the parent Form's "MouseDown" event handler.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.MouseStatus.OnMouseUp">
+            <summary>
+            Make this call in the parent Form's "MouseUp" event handler.
+            Warning: Calls the parent Form's "Refresh()" method.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.MouseStatus.OnMouseMove">
+            <summary>
+            Make this call in the Form's "MosueMove" event handler.
+            Warning: If applicable, moves the parent Form.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Objects.objButtonG.SplitSheet(System.Drawing.Image,System.Byte,System.Boolean)">
+            <summary>
+            Divide a multi-phase image (ex: {normal, hover, pressed}) into its phases.
+            </summary>
+            <param name="sheet">The source image that will be split into distinct button states.</param>
+            <param name="phaseType">0: static image | 1: Default &amp; pressed | 2: Default, hovered, &amp; pressed</param>
+            <param name="vertical">Whether the image phases go top-down (true) or left to right (false).</param>
+            <returns>An Image[] of the button states.</returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.objCPick">
+            <summary>
+            An Image-based control for changing the color-palette of a containing object.
+            </summary>
+        </member>
+        <member name="F:libSnippetsCoreCS.Objects.objCPick.CPSrc">
+            <summary>
+            [section][item] {Section [items]} | { <br />
+                - 0: [0: Overlay] | 1: RingInner[0: bars | 1: rightmost | 2-14: (clockwise)] | <br />
+                - 2: RingOuter[0-3: Home, Rightmost + 2 | 4-6: Bottom + 2 | 7-9: Leftmost + 2 | 10-12: Topmost + 2] | <br />
+                - 3: Arrows[0: Top outer | 2: Bottom outer | 3: Top shade | 4: Bottom shade] | <br />
+                - 4: TypeSwitch[0: Inner circle | 1: OuterTop | 2: OuterLeft | 3: OuterBottom | 4: InnerTop | 5: InnerLeft | 6: InnerBottom] | <br />
+                - 5: Shades[0: Selected | 1: Selected_dots | 2: Unselected | 4: Big divider | 5: Small divider] <br />
+                - 6: Transparency[0: Background image] <br />
+            }
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.Puppeteer`1">
+            <summary>
+            Takes control of an attached object, pulling its strings by running its functions and adding event-fires.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Objects.PuppetMaster`1">
+            <summary>
+            Takes control of many attached objects, pulling their strings by running their functions and adding event-fires.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.classGraphics">
+            <summary>
+            Contains many functions for working with colors, mostly, as well as pens, brushes, and images.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.GBrush(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="hue">0=white || 1=red, 2=green, 3=blue ||
+            					 4=yellow, 5=cyan, 6=violet ||
+            					 7=orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink</param>
+            <param name="level">Pale[2-14], Pure[1-13], Light[]</param>
+            <param name="colorDepth">0=pale, 1=pure, 2=light</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.GPen(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="hue">0=white || 1=red, 2=green, 3=blue ||
+            					 4=yellow, 5=cyan, 6=violet ||
+            					 7=orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink</param>
+            <param name="level">Pale[2-14], Pure[1-13], Light[]</param>
+            <param name="colorDepth">0=pale, 1=pure, 2=light</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.CLevel_Average(System.Byte,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="c1">0-13</param>
+            <param name="c2">0-13</param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.classGraphics.GColors">
+            <summary>
+            A list of the constants ready to use in place of GColor's "hue" parameter
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.GColor(System.Byte,System.Single,System.Byte,System.Boolean)">
+            <summary>
+            [<paramref name="hue"/>: 0=white || 1=red, 2=green, 3=blue || 4=yellow, 5=cyan, 6=violet || =orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink]<br />
+            [<paramref name="level"/>: Pale{scaled along the lines of 'brightness = 2^level', with some minor shifts of level (+-)=2 or so]} Pale{high=255, [mid/low] scaled to (255/10) * [level,level/2]}<br />
+            [<paramref name="colorDepth"/>: 0=pale,1=pure,2=light]
+            </summary>
+            <param name="hue">0=white || <br />
+            1=red, 2=green, 3=blue || <br />
+            4=yellow, 5=cyan, 6=violet || <br />
+            7=orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink</param>
+            <param name="level">Pale[2-14]<br />
+            Pure[1-13]<br />
+            Light[]</param>
+            <param name="colorDepth">0=pale, 1=pure, 2=light</param>
+            <param name="allowFloats"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.GColor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            [<paramref name="hue"/>: 0=white || 1=red, 2=green, 3=blue || 4=yellow, 5=cyan, 6=violet || =orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink]<br />
+            [<paramref name="level"/>: Pale{scaled along the lines of 'brightness = 2^level', with some minor shifts of level (+-)=2 or so]} Pale{high=255, [mid/low] scaled to (255/10) * [level,level/2]}<br />
+            [<paramref name="colorDepth"/>: 0=pale,1=pure,2=light]
+            </summary>
+            <param name="hue">0=white || <br />
+            1=red, 2=green, 3=blue || <br />
+            4=yellow, 5=cyan, 6=violet || <br />
+            7=orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink</param>
+            <param name="level">Pale[2-14]<br />
+            Pure[1-13] //revise: 2-14 (have user input 0-12)<br />
+            Light[0-10]
+            </param>
+            <param name="colorDepth">0=pale, 1=pure, 2=light</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.objGColor.op_Implicit(System.Drawing.Color)~libSnippetsCoreCS.classGraphics.objGColor">
+            <summary>
+            Sets GColor.Color to the given color; Brightness, Hue, and colorDepth values are left at the default of zero.
+            </summary>
+            <param name="C">Custom Color(byte red, byte green, byte blue)</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.objGColor.op_Explicit(libSnippetsCoreCS.classGraphics.objGColor)~System.Drawing.Color">
+            <summary>
+            Returns a color processed from Brightness, Hue, and ColorDepth! To get a custom-set color, use GColor.Color!
+            </summary>
+            <param name="G">Processed from Brightness, Hue, and ColorDepth.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.Bitmap_ScreenForColor(System.Drawing.Bitmap,System.Drawing.Color)">
+            <summary>
+            Copies all pixels matching the specified color to equal places in a new bitmap.
+            </summary>
+            <param name="img"></param>
+            <param name="c"></param>
+            <param name="tolerence"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.Bitmap_ScreenForColor(System.Drawing.Bitmap,System.Drawing.Color,System.Int32)">
+            <summary>
+            Copies all pixels matching the specified color, within the specified tolerance, to equal places in a new bitmap.
+            </summary>
+            <param name="img"></param>
+            <param name="c"></param>
+            <param name="tolerence"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.classGraphics.Bitmap_GetStructure(System.Drawing.Bitmap,System.Drawing.Point,System.Drawing.Color,System.Int32)">
+            <summary>
+            Acts like the wand-select tool in paint programs (using local/contiguous select).
+            </summary>
+            <param name="img"></param>
+            <param name="start"></param>
+            <param name="c"></param>
+            <param name="tolerence"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.classScreens">
+            <summary>
+            Contains functions for getting information about the positions of multiple displays.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.IOTasks">
+            <summary>
+            A class of methods for running System.IO methods asynchronously.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.IOTasks.OnChange``1(System.Progress{``0},System.EventHandler{``0})">
+            <summary>
+            A fluid implementation of adding <paramref name="progressChanged"/> to <see cref="E:System.Progress`1.ProgressChanged"/> of <paramref name="progress"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="progress">The <see cref="T:System.Progress`1"/> to affect.</param>
+            <param name="progressChanged">The <see cref="T:System.EventHandler`1"/> to attach.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Linq.Extensions.GetRange``1(System.Collections.Generic.IEnumerable{``0},System.Range)">
+            <summary>
+            Returns an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <typeparamref name="T"/> for the provided <paramref name="range"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="range"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Linq.Extensions.GetRange``1(System.Collections.Generic.IList{``0},System.Range)">
+            <summary>
+            Returns an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <typeparamref name="T"/> for the provided <paramref name="range"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="range"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Linq.Group.Partition``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Partitions <paramref name="source"/> into blocks of <paramref name="size"/>; if it's uneven, the final block will be the smallest.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="size"></param>
+            <returns></returns>
+            <remarks>
+            <i>This method must enumerate the <paramref name="source"/>!</i><br />
+            If you happen to already have the expected <see cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0})"/>, use <see cref="M:libSnippetsCoreCS.Linq.Group.Partition``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)"/> instead.
+            </remarks>
+        </member>
+        <member name="M:libSnippetsCoreCS.Linq.Group.Partition``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            Partitions <paramref name="source"/> into blocks of <paramref name="size"/>; if it's uneven, the final block will be the smallest.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Linq.Group.Partition``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <summary>
+            Partitions <paramref name="source"/> into blocks of <paramref name="size"/>; if it's uneven, the final block will be the smallest.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.CP_TileSheet">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.Furdomus_12x18_bold_ch">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.Furdomus_12x18_bold_df">
+             <summary>
+               Looks up a localized string similar to Size=12,18
+            NumHeight=14
+            Padding=2
+            
+            A=0,0,10
+            B=1,0,10
+            C=2,0,10
+            D=3,0,10
+            E=4,0,10
+            F=5,0,10
+            G=6,0,10
+            H=7,0,10
+            I=8,0,8
+            J=9,0,10
+            K=10,0,11
+            L=11,0,10
+            M=12,0,12
+            N=13,0,10
+            O=14,0,12
+            P=15,0,10
+            Q=16,0,10
+            R=17,0,10
+            S=18,0,10
+            T=19,0,8
+            U=20,0,10
+            V=21,0,12
+            W=22,0,12
+            X=23,0,12
+            Y=24,0,12
+            Z=25,0,12
+            
+            a=0,1,12
+            b=1,1,10
+            c=2,1,8
+            d=3,1,12
+            e=4,1,10
+            f=5,1,10
+            g=6,1,10
+            h=7,1,10
+            i=8,1,7
+            j=9,1,9
+            k=10,1,8
+            l=11,1,9
+            m=12,1,12
+            n=13,1,10
+            o=14,1,10
+            p=15,1,10
+            q=16,1,10
+            r=17,1,9
+            s=18,1,10
+            t=19 [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.Furdomus_6x9_ch">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.Furdomus_6x9_df">
+             <summary>
+               Looks up a localized string similar to Size=6,9
+            NumHeight=7
+            
+            A=0,0,5
+            B=1,0,5
+            C=2,0,5
+            D=3,0,5
+            E=4,0,5
+            F=5,0,5
+            G=6,0,5
+            H=7,0,5
+            I=8,0,4
+            J=9,0,5
+            K=10,0,5
+            L=11,0,5
+            M=12,0,6
+            N=13,0,5
+            O=14,0,5
+            P=15,0,5
+            Q=16,0,5
+            R=17,0,5
+            S=18,0,5
+            T=19,0,4
+            U=20,0,5
+            V=21,0,6
+            W=22,0,6
+            X=23,0,6
+            Y=24,0,6
+            Z=25,0,6
+            
+            a=0,1,6
+            b=1,1,5
+            c=2,1,4
+            d=3,1,6
+            e=4,1,5
+            f=5,1,5
+            g=6,1,5
+            h=7,1,5
+            i=8,1,2
+            j=9,1,5
+            k=10,1,4
+            l=11,1,5
+            m=12,1,6
+            n=13,1,5
+            o=14,1,5
+            p=15,1,5
+            q=16,1,5
+            r=17,1,5
+            s=18,1,5
+            t=19,1,5
+            u=20,1,5
+            v=21,1,6
+            w=22,1,6
+            x=23,1,4
+            y=24, [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.Furdomus_8x12_ch">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Properties.Resources.Furdomus_8x12_df">
+             <summary>
+               Looks up a localized string similar to Size=8,12
+            NumHeight=9
+            Padding=2
+            
+            A=0,0,7
+            B=1,0,7
+            C=2,0,7
+            D=3,0,7
+            E=4,0,7
+            F=5,0,7
+            G=6,0,7
+            H=7,0,7
+            I=8,0,6
+            J=9,0,7
+            K=10,0,7
+            L=11,0,7
+            M=12,0,8
+            N=13,0,7
+            O=14,0,7
+            P=15,0,7
+            Q=16,0,8
+            R=17,0,7
+            S=18,0,7
+            T=19,0,6
+            U=20,0,7
+            V=21,0,8
+            W=22,0,8
+            X=23,0,8
+            Y=24,0,8
+            Z=25,0,8
+            
+            a=0,1,7
+            b=1,1,7
+            c=2,1,6
+            d=3,1,8
+            e=4,1,7
+            f=5,1,7
+            g=6,1,7
+            h=7,1,7
+            i=8,1,2
+            j=9,1,7
+            k=10,1,6
+            l=11,1,7
+            m=12,1,8
+            n=13,1,7
+            o=14,1,6
+            p=15,1,7
+            q=16,1,7
+            r=17,1,6
+            s=18,1,6
+            t=19,1,7
+            u=20,1,7
+            v=21,1,8
+            w=22,1,8
+            x=2 [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Strings.Alter">
+            <summary>
+            A class of methods for modifying strings.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Integer_AddSuffix(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Reverse(System.String)">
+            <summary>
+            Inverts the order of the characters in a string.
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Replace(System.String,System.Collections.Generic.IList{System.String},System.String)">
+            <summary>
+            Replaces an array of <paramref name="terms"/> with a single provided term <paramref name="with"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <param name="with"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Replace(System.String,System.Collections.Generic.IList{System.Char},System.String)">
+            <summary>
+            Replaces an array of <paramref name="terms"/> with a single provided term <paramref name="with"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <param name="with"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Replace(System.String,System.Collections.Generic.IList{System.Char},System.Char)">
+            <summary>
+            Replaces an array of <paramref name="terms"/> with a single provided term <paramref name="with"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <param name="with"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Insert(System.String,System.String,System.Int32)">
+            <summary>
+            Inserts a <paramref name="term"/> into the <paramref name="Input"/> string at the specified <paramref name="index"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="term"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Delete(System.String,System.Int32,System.Int32)">
+            <summary>
+            Deletes a number of characters starting at <paramref name="index"/>. If the end of the string is hit, the result is simply clipped before <paramref name="index"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.DeleteTo(System.String,System.Int32,System.Char)">
+            <summary>
+            Deletes a number of characters after <paramref name="startIndex"/> until the search <paramref name="term"/> is found.
+            </summary>
+            <param name="Input"></param>
+            <param name="startIndex"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.DeleteTo(System.String,System.Int32,System.String)">
+            <summary>
+            Deletes a number of characters after <paramref name="startIndex"/> until the search <paramref name="term"/> is found.
+            </summary>
+            <param name="Input"></param>
+            <param name="startIndex"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Backspace(System.String,System.Int32,System.Int32)">
+            <summary>
+            Deletes a number of characters before <paramref name="index"/> (non-inclusive). If the start of the string is hit, the result is simply clipped at <paramref name="index"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.BackspaceTo(System.String,System.Int32,System.Char)">
+            <summary>
+            Deletes a number of characters before <paramref name="index"/> until the search <paramref name="term"/> is hit.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.BackspaceTo(System.String,System.Int32,System.String)">
+            <summary>
+            Deletes a number of characters before <paramref name="index"/> until the search <paramref name="term"/> is hit.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveTerm(System.String,System.Char)">
+            <summary>
+            Removes the provided <paramref name="term"/> from the string.
+            </summary>
+            <param name="Input"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveTerm(System.String,System.String)">
+            <summary>
+            Removes the provided <paramref name="term"/> from the string.
+            </summary>
+            <param name="Input"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveTerms(System.String,System.Collections.Generic.IList{System.Char})">
+            <summary>
+            Removes all <paramref name="terms"/> from the string.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveTerms(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Removes all <paramref name="terms"/> from the string.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveLeading(System.String,System.String)">
+            <summary>
+            Removes leading characters or repeated stings of characters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveLeading(System.String,System.Char)">
+            <summary>
+            Removes leading characters or repeated stings of characters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveLeading(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Removes leading characters or repeated stings of characters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chrs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveTrailing(System.String,System.String)">
+            <summary>
+            Removes trailing characters or repeated strings of charachters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveTrailing(System.String,System.Char)">
+            <summary>
+            Removes trailing characters or repeated strings of charachters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveTrailing(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Removes trailing characters or repeated strings of charachters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chrs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveEnclosing(System.String,System.String)">
+            <summary>
+            Removes leading and trailing characters or strings of characters.
+            </summary>
+            <param name="Input"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.RemoveEnclosing(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Removes leading and trailing characters or strings of characters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chrs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.InsertBreaks(System.String,System.Int32)">
+            <summary>
+            Inserts line-breaks so that each line has no more than <paramref name="lineLimit"/> characters.
+            </summary>
+            <param name="Input"></param>
+            <param name="lineLimit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.InsertBreaks(System.String,System.Int32,System.Byte,System.Boolean,System.Boolean)">
+            <summary>
+            Returns a string, broken into multiple lines so that each line has no more than <paramref name="lineLimit"/> characters, 
+            and inserts indentations where applicable, to format the string into paragraphs at the start and where line breaks exist.
+            </summary>
+            <param name="Input">The string to be formatted.</param>
+            <param name="lineLimit">The maximum number of characters per line.</param>
+            <param name="indent">The number of spaces to places of indentation.</param>
+            <param name="hanging">Whether the non-first lines shoud be indented past the first line, or vice versa.</param>
+            <param name="startsLine">Whether the provided string is independent or is within a detached string or paragraph.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.InsertBreaks(System.String,System.Int32,System.Int32)">
+            <summary>
+            Breaks a string's lines into paragraphs by imposing a limit on the number of characters per line.
+            </summary>
+            <param name="Input"></param>
+            <param name="lineLimit"></param>
+            <param name="initLimit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.InsertBreaks(System.String,System.Int32,System.Int32,System.Byte,System.Boolean,System.Boolean)">
+            <summary>
+            Breaks a string's lines into indented paragraphs by imposing a limit on the number of characters per line.
+            </summary>
+            <param name="Input"></param>
+            <param name="lineLimit"></param>
+            <param name="initLimit"></param>
+            <param name="indent"></param>
+            <param name="hanging"></param>
+            <param name="startsLine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.Capitalize(System.String)">
+            <summary>
+            Capitalizes each word in the string.
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Alter.ReplaceNumeric(System.String,System.Char)">
+            <summary>
+            Replaces numbers zero through 9 in the string with the provided character.
+            </summary>
+            <param name="Input"></param>
+            <param name="Replacement"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Strings.Divide">
+            <summary>
+            A class of methods for picking apart strings.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.SplitCount(System.String,System.String)">
+            <summary>
+            Like [string].Split(char c).Count(), but accepts multi-character delimiters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.Split(System.String,System.String)">
+            <summary>
+            Like [string].Split(char c), but accepts multi-character delimiters.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.Break(System.String,System.Int32,System.String@,System.String@,System.Boolean)">
+            <summary>
+            Breaks one <paramref name="Input"/> string into two strings, on a specified <paramref name="index"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="head"></param>
+            <param name="tail"></param>
+            <param name="headIncludesIndex"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetBefore(System.String,System.Char)">
+            <summary>
+            Cuts off a string before a given character.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetBefore(System.String,System.String)">
+            <summary>
+            Cuts off a string before a given term.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetBefore_Nth(System.String,System.Char,System.Int32)">
+            <summary>
+            Cuts off a sting before the nth iteration of a given character.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <param name="occurrance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetBefore_Nth(System.String,System.String,System.Int32)">
+            <summary>
+            Cuts off a string before the nth iteration of a given term.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <param name="occurrance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetAfter(System.String,System.String)">
+            <summary>
+            Cuts a string after a provided term.
+            </summary>
+            <param name="Input"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetAfter(System.String,System.Char)">
+            <summary>
+            Cuts a string after a provided character.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetBetween(System.String,System.Char,System.Char)">
+            <summary>
+            Cuts a sring between the first instance of <paramref name="chrStart"/> and <paramref name="chrEnd"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="chrStart">The starting tag.</param>
+            <param name="chrEnd">The ending tag.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetBetween(System.String,System.String,System.String)">
+            <summary>
+            Cuts a sring between the first instance of <paramref name="chrStart"/> and <paramref name="chrEnd"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="chrStart">The starting tag.</param>
+            <param name="chrEnd">The ending tag.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetWords(System.String)">
+            <summary>
+            Returns a List of the words in a string.
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetWords(System.String,System.Byte,System.Boolean,System.Boolean)">
+            <summary>
+            Returns a list of words in a string and inserts indentations where applicable, to format the string into paragraphs at the start and where line breaks exist.
+            </summary>
+            <param name="Input">The string to be formatted.</param>
+            <param name="indent">The number of spaces to places of indentation.</param>
+            <param name="hanging">Whether the non-first lines shoud be indented past the first line, or vice versa.</param>
+            <param name="startsLine">Whether the provided string is independent or is within a detached string or paragraph.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.FromIndex(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Cuts a string at and past, or just past, the provided index.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="inclusive"></param>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.TowardIndex(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Cuts a string before and at, or just before, the provided index.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="inclusive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Divide.GetLines(System.String)">
+            <summary>
+            Splits the given string into an array of single lines, using '\n' or "\r\n" as delimiters.
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Strings.Query">
+            <summary>
+            A class of methods for analyzing data about strings.
+            </summary>
+        </member>
+        <member name="T:libSnippetsCoreCS.Strings.Query.StringQuery">
+            <summary>
+            A fluid object for performing searches and substrings on one <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.Source"/> string, without constantly creating new copies.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Strings.Query.StringQuery.Source">
+            <summary>
+            The source <see cref="T:System.String"/> to query on.
+            </summary>
+        </member>
+        <member name="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex">
+            <summary>
+            The effective start-index of the current query.
+            </summary>
+            <remarks>Default: 0</remarks>
+        </member>
+        <member name="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex">
+            <summary>
+            The effective end-index of the current query.
+            </summary>
+            <remarks>Default: <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.Source"/>'s <see cref="P:System.String.Length"/> - 1</remarks>
+        </member>
+        <member name="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartInclusive">
+            <summary>
+            Whether to include the search-term in the result of GetBefore queries.
+            </summary>
+            <remarks>Default: off</remarks>
+        </member>
+        <member name="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndInclusive">
+            <summary>
+            Whether to include the search-term in the result of GetAfter queries.
+            </summary>
+            <remarks>Default: off</remarks>
+        </member>
+        <member name="P:libSnippetsCoreCS.Strings.Query.StringQuery.Length">
+            <summary>
+            The effective length of the string, if this <see cref="T:libSnippetsCoreCS.Strings.Query.StringQuery"/> were to be executed.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.#ctor(System.String)">
+            <summary>
+            Creates a new <see cref="T:libSnippetsCoreCS.Strings.Query.StringQuery"/>, using the provided <see cref="T:System.String"/>.
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.Copy(System.Boolean,System.Boolean)">
+            <summary>
+            Returns a copy of the searcher, so that subsequent queries do not affect the current searcher.
+            </summary>
+            <param name="preserveData">Whether to preserve the original string and indexes.</param>
+            <param name="preserveInclusive">Whether to preserve the StartInclusive/EndInclusive settings.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.Clamp">
+            <summary>
+            Clamps the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.Source"/> to the current query and resets the Start-/End-Indexes.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.Reset(System.Boolean)">
+            <summary>
+            Resets the query.
+            </summary>
+            <param name="preserveInclusive">Whether to preserve the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartInclusive"/>/<see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndInclusive"/>settings.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.ToString">
+            <summary>
+            Executes the current query and returns the resulting string.
+            </summary>
+            <returns>The resulting string, using the current <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> and <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/>.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.AsStartInclusive">
+            <summary>
+            Switches the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartInclusive"/> setting on.
+            </summary>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.AsEndInclusive">
+            <summary>
+            Switches the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndInclusive"/> setting on.
+            </summary>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.AsStartDisclusive">
+            <summary>
+            Switches the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartInclusive"/> setting off.
+            </summary>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.AsEndDisclusive">
+            <summary>
+            Switches the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndInclusive"/> setting off.
+            </summary>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.AsInclusive">
+            <summary>
+            Switches the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartInclusive"/> and <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndInclusive"/> settings both on.
+            </summary>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.AsDisclusive">
+            <summary>
+            Switches the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartInclusive"/> and <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndInclusive"/> settings both off.
+            </summary>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.From(System.Int32)">
+            <summary>
+            Forces the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the non-relative <paramref name="index"/>.
+            </summary>
+            <remarks>
+            <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartInclusive"/> does not apply here; processes inclusively.
+            </remarks>
+            <param name="index">The new, non-relative index.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.Until(System.Int32)">
+            <summary>
+            Forces the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/> to the non-relative <paramref name="index"/>.
+            </summary>
+            <remarks>
+            <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndInclusive"/> does not apply here; processes inclusively.
+            </remarks>
+            <param name="index">The new, non-relative index.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.RelativeUntil(System.Int32)">
+            <summary>
+            Updates the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/> to be <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> + <paramref name="index"/>.
+            </summary>
+            <remarks>
+            <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndInclusive"/> does not apply here; processes inclusively.
+            </remarks>
+            <param name="index">The new, relative index.</param>
+            <returns></returns>
+            <exception cref="T:System.IndexOutOfRangeException"></exception>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.RelativeFrom(System.Int32)">
+            <summary>
+            Increases the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> by <paramref name="index"/>.
+            </summary>
+            <remarks>
+            <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartInclusive"/> does not apply here; processes inclusively.
+            </remarks>
+            <param name="index">The new, relative index.</param>
+            <returns></returns>
+            <exception cref="T:System.IndexOutOfRangeException"></exception>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.After(System.String)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the effective earliest instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.After(System.Char)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the effective earliest instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.After(System.String[])">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the effective earliest instance of, sequentially, each item in the list of <paramref name="terms"/>.
+            </summary>
+            <param name="terms">The sequential list of search-terms.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.After(System.Char[])">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the effective earliest instance of, sequentially, each item in the list of <paramref name="terms"/>.
+            </summary>
+            <param name="terms">The sequential list of search-terms.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.AfterLast(System.String)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the effective last instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.AfterLast(System.Char)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the effective last instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.Before(System.String)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/> to the effective earliest instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.Before(System.Char)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/> to the effective earliest instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.BeforeLast(System.String)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/> to the effective last instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.BeforeLast(System.Char)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/> to the effective last instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.EffectiveLast(System.String)">
+            <summary>
+            Returns the effective index of the last instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.EffectiveLast(System.Char)">
+            <summary>
+            Returns the effective index of the last instance of the <paramref name="term"/>.
+            </summary>
+            <param name="term">The search-term.</param>
+            <returns>The updated query.</returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.Between(System.String,System.String)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the effective earliest instance of <paramref name="start"/>, then the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/> to the then-effective earliest instance of <paramref name="end"/>.
+            </summary>
+            <param name="start">The starting search-term.</param>
+            <param name="end">The ending search-term.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StringQuery.Between(System.Char,System.Char)">
+            <summary>
+            Moves the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.StartIndex"/> to the effective earliest instance of <paramref name="start"/>, then the <see cref="P:libSnippetsCoreCS.Strings.Query.StringQuery.EndIndex"/> to the then-effective earliest instance of <paramref name="end"/>.
+            </summary>
+            <param name="start">The starting search-term.</param>
+            <param name="end">The ending search-term.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.AsQuery(System.String)">
+            <summary>
+            Begins a new <see cref="T:libSnippetsCoreCS.Strings.Query.StringQuery"/>, using this string.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Contains(System.Collections.Generic.IList{System.String},System.String,System.Boolean)">
+            <summary>
+            Returns whether any of the strings in the List contain the provided <paramref name="term"/>.
+            </summary>
+            <param name="Input">A List&lt;string&gt;</param>
+            <param name="term"></param>
+            <param name="caseSensitive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Contains(System.String,System.Collections.Generic.IList{System.Char})">
+            <summary>
+            Whether the string contains any of an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Contains(System.String,System.Char[])">
+            <summary>
+            Whether the string contains any of an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Contains(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Whether the string contains any of an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Contains(System.String,System.String[])">
+            <summary>
+            Whether the string contains any of an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Contains(System.String,System.Collections.Generic.IList{System.Char},System.Boolean)">
+            <summary>
+            Whether the string contains an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <param name="AND">Whether the string must contain all of the terms.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Contains(System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Whether the string contains an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <param name="AND">Whether the string must contain all of the terms.</param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StartsWith(System.String,System.Char)">
+            <summary>
+            Whether the string starts with the provided character.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StartsWith(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Whether the string starts with one of an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.EndsWith(System.String,System.Char)">
+            <summary>
+            Whether the string ends with the privided character.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.StartsWith(System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Whether the string starts with one of an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <param name="caseSensitive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.EndsWith(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Whether the string ends with one of an an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.EndsWith(System.String,System.Collections.Generic.IList{System.String},System.Boolean)">
+            <summary>
+            Whether the string ends with one of an an array of terms.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <param name="caseSensitive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.SeekNot(System.String,System.Int32,System.Char)">
+            <summary>
+            Returns the closest index of something other than <paramref name="term"/>, relative to <paramref name="index"/>. If both directions have equally close results, the lower index is chosen.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.SeekNot(System.String,System.Int32,System.String)">
+            <summary>
+            Returns the closest index of something other than <paramref name="term"/>, relative to <paramref name="index"/>. If both directions have equally close results, the lower index is chosen.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.SeekNot(System.String,System.Int32,System.Char,System.Boolean)">
+            <summary>
+            Returns the closest index of something other than <paramref name="term"/>, (starting at <paramref name="index"/>) if <paramref name="forward"/> or (before <paramref name="index"/>) if not.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <param name="forward"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.SeekNot(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            Returns the closest index of something other than <paramref name="term"/>, (starting at <paramref name="index"/>) if <paramref name="forward"/> or (before <paramref name="index"/>) if not.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <param name="forward"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Seek(System.String,System.Int32,System.Char,System.Boolean)">
+            <summary>
+            Returns the closest index of <paramref name="term"/>, after <paramref name="index"/> if <paramref name="forward"/> or before <paramref name="index"/> if not.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <param name="forward"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Seek(System.String,System.Int32,System.String,System.Boolean)">
+            <summary>
+            Returns the closest index of <paramref name="term"/>, after <paramref name="index"/> if <paramref name="forward"/> or before <paramref name="index"/> if not.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <param name="forward"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Seek(System.String,System.Int32,System.Char[],System.Boolean)">
+            <summary>
+            Returns the closest index of any <paramref name="chrs"/>, after <paramref name="index"/> if <paramref name="forward"/> or before <paramref name="index"/> if not.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="forward"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Seek(System.String,System.Int32,System.String[],System.Boolean)">
+            <summary>
+            Returns the closest index of any <paramref name="terms"/>, after <paramref name="index"/> if <paramref name="forward"/> or before <paramref name="index"/> if not.
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="terms"></param>
+            <param name="forward"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.Seek(System.String,System.Int32,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Returns the closest index of <paramref name="term"/>, after <paramref name="index"/> if <paramref name="forward"/>, or before <paramref name="index"/> if not. The retruned index is shifted after the term if ![startOfTerm].
+            </summary>
+            <param name="Input"></param>
+            <param name="index"></param>
+            <param name="term"></param>
+            <param name="forward"></param>
+            <param name="startOfTerm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.IndexOfAny(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Returns the first index at which any of the provided terms occurs.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.IndexOfAny(System.String,System.Collections.Generic.IList{System.String},System.Int32)">
+            <summary>
+            Returns the first index after <paramref name="startIndex"/> (inclusive) that any of the provided terms occurs.
+            </summary>
+            <param name="Input"></param>
+            <param name="terms"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.GetLastIndex(System.String)">
+            <summary>
+            Returns the last valid index of the string.
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.IndexOf_Nth(System.String,System.Char,System.Int32)">
+            <summary>
+            Returns the (0-based) Nth occurrance of <paramref name="chr"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <param name="occurrance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.IndexOf_Nth(System.String,System.String,System.Int32)">
+            <summary>
+            Returns the (0-based) Nth occurrance of <paramref name="chr"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <param name="occurrance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.NextIndexOf(System.String,System.String,System.Int32)">
+            <summary>
+            Returns the next (0-based) occurrance of <paramref name="chr"/>.
+            </summary>
+            <param name="Input"></param>
+            <param name="chr"></param>
+            <param name="startIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.IndexOfDivergence(System.String,System.String)">
+            <summary>
+            Returns the index at which two strings diverge. Returns -1 if one of the strings is empty.
+            </summary>
+            <param name="Input"></param>
+            <param name="compare"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.Query.IndexOfDivergence(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Returns the index at which any one of the strings differs from the rest. Ignores empty strings.
+            </summary>
+            <param name="inputs"></param>
+            <returns></returns>
+        </member>
+        <member name="T:libSnippetsCoreCS.Strings.StringsMisc">
+            <summary>
+            A class of miscelaneous methods for operating on strings.
+            </summary>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.StringsMisc.CopyToClipboard(System.String)">
+            <summary>
+            Copies the string to the system's Clipboard.
+            </summary>
+            <param name="Input"></param>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.StringsMisc.List_ToString(System.Collections.Generic.List{System.String})">
+            <summary>
+            Outputs a List&lt;string&gt; to a single String, with line-breaks for each item.
+            </summary>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:libSnippetsCoreCS.Strings.StringsMisc.List_ToString(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Outputs a List&lt;string&gt; to a single String, with line-breaks for each item.
+            </summary>
+            <param name="Input"></param>
+            <param name="useRet">Whether to use a carriage-return character in the line-break.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
