@@ -1,26 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\QuodLib.Drawing\QuodLib.Drawing.csproj" />
     <ProjectReference Include="..\QuodLib.Objects\QuodLib.Objects.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Drawing.Common">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\System.Drawing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Extensions">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\System.Windows.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\System.Windows.Forms.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,9 @@ using System.Drawing;
 
 namespace QuodLib {
     using Strings;
+    using System.IO;
+    using System.Net.Http;
+
     /// <summary>
     /// Contains functions for page requests and 'dissection, mostly.
     /// </summary>

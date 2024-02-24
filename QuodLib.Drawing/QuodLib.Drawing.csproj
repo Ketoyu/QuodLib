@@ -1,9 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWpf>true</UseWpf>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,18 +19,6 @@
     <ProjectReference Include="..\QuodLib.Math\QuodLib.Math.csproj" />
     <ProjectReference Include="..\QuodLib.ML\QuodLib.ML.csproj" />
     <ProjectReference Include="..\QuodLib.Strings\QuodLib.Strings.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationCore">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\PresentationCore.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing.Common">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\System.Drawing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="WindowsBase">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.13\ref\net6.0\WindowsBase.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
