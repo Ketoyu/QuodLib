@@ -4,18 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuodLib
+namespace QuodLib.WinForms.Objects
 {
-    namespace Objects
+	/// <summary>
+	/// An interface for Image-based controls which have hover actions.
+	/// </summary>
+    public interface ICHoverable
     {
-		/// <summary>
-		/// An interface for Image-based controls which have hover actions.
-		/// </summary>
-        public interface ICHoverable
-        {
-            void OnMouseOver();
-            void OnMouseDown();
-            void OnMouseUp();
-        }
+        void OnMouseOver();
+        void OnMouseDown();
+        void OnMouseUp();
     }
 }

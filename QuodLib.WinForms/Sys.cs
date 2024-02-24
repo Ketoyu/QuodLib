@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QuodLib {
+namespace QuodLib.WinForms {
     public static class Sys {
         public static NotifyIcon CreateNotif(Icon? icon = null, EventHandler? onClick = null, EventHandler? onTipClick = null, ContextMenuStrip? menu = null, EventHandler? onShow = null, EventHandler? onClosed = null) {
             NotifyIcon notif = new() {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuodLib.Objects;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinTimer = System.Windows.Forms.Timer;
 
-namespace QuodLib.Objects {
+namespace QuodLib.WinForms.Objects {
     public class CustomNotifTray<F> : PuppetMaster<CustomNotifTray<F>.Notif> where F : Form {
         public class Notif {
             public F Form { get; internal set; }

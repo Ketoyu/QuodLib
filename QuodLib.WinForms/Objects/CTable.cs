@@ -4,23 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuodLib
+namespace QuodLib.WinForms.Objects
 {
-    namespace Objects
+    /*public*/ class CTable : CObject, ICObject
     {
-        /*public*/ class CTable : CObject, ICObject
+        private Dictionary<string, ushort> Columns;
+        private List<List<object>> data;
+        public void OrderBy(string column, bool asc)
         {
-            private Dictionary<string, ushort> Columns;
-            private List<List<object>> data;
-            public void OrderBy(string column, bool asc)
-            {
-                /*Columns[column].Sort();
-                if (!asc) Columns[column].Reverse();*/
-            }
-            public void Redraw()
-            {
+            /*Columns[column].Sort();
+            if (!asc) Columns[column].Reverse();*/
+        }
+        public void Redraw()
+        {
 
-            }
         }
     }
 }

@@ -13,8 +13,7 @@ using DialogResult = System.Windows.Forms.DialogResult;
 //using StorageFile = Windows.Storage.StorageFile;
 //using Windows.Foundation;
 
-namespace QuodLib
-{
+namespace QuodLib.WinForms {
 	public static class Files
 	{
 		public static Image Image_FromFileSafely(string fl)

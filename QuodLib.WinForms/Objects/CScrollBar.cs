@@ -4,30 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuodLib
+namespace QuodLib.WinForms.Objects
 {
-    namespace Objects
+    class CScrollBar : CHoverable, ICObject, ICHoverable
     {
-        class CScrollBar : CHoverable, ICObject, ICHoverable
-        {
-            private bool horizontal;
-            private ushort index;
+        private bool horizontal;
+        private ushort index;
 
-            public bool Horizontal {
-                get { return horizontal; }
-                set {
-                    horizontal = value;
-                    Redraw();
-                }
+        public bool Horizontal {
+            get { return horizontal; }
+            set {
+                horizontal = value;
+                Redraw();
             }
-            public ushort Index {
-                get { return index; }
-                set {
-                    index = value;
-                    Redraw();
-                }
+        }
+        public ushort Index {
+            get { return index; }
+            set {
+                index = value;
+                Redraw();
             }
+        }
 
-        } // </class>
-    }
+    } // </class>
 }

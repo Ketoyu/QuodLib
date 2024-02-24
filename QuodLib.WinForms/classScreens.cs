@@ -10,8 +10,7 @@ using System.Diagnostics;
 
 using System.Drawing;
 
-namespace QuodLib
-{
+namespace QuodLib.WinForms {
 	/// <summary>
 	/// Contains functions for getting information about the positions of multiple displays.
 	/// </summary>

@@ -10,8 +10,7 @@ using System.Diagnostics;
 
 using System.Drawing;
 
-namespace QuodLib
-{
+namespace QuodLib.WinForms {
     class classProcesses
     {
         [DllImport("user32.dll")]

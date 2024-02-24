@@ -5,22 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuodLib
+namespace QuodLib.Objects
 {
-    namespace Objects
+    /*public*/ class Column<T> where T : IComparable
     {
-        /*public*/ class Column<T> where T : IComparable
-        {
-            public T data;
-            bool IsNumeric {
-                get {
-                    return Types.IsNumeric(typeof(T));
-                }
+        public T data;
+        bool IsNumeric {
+            get {
+                return Types.IsNumeric(typeof(T));
             }
-            bool IsString {
-                get {
-                    return typeof(T) == typeof(string);
-                }
+        }
+        bool IsString {
+            get {
+                return typeof(T) == typeof(string);
             }
         }
     }
