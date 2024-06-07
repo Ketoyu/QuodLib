@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.IO", "QuodLib.IO\Qu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.WinForms", "QuodLib.WinForms\QuodLib.WinForms.csproj", "{7A330FCA-D3F8-47E6-9B5F-5120DF13F7C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.Drawing", "QuodLib.Drawing\QuodLib.Drawing.csproj", "{CD07A400-1371-4F05-BF6A-70ABAA895A58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.WinForms.Drawing", "QuodLib.Drawing\QuodLib.WinForms.Drawing.csproj", "{CD07A400-1371-4F05-BF6A-70ABAA895A58}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.Math", "QuodLib.Math\QuodLib.Math.csproj", "{031C715D-AC31-4107-B654-46E7AFEA302D}"
 EndProject
@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.Proto", "QuodLib.Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.ILGPU", "QuodLib.ILGPU\QuodLib.ILGPU.csproj", "{145DDA7A-AE69-40F1-A90C-4E11DD2E107D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuodLib.DataModel", "QuodLib.DataModel\QuodLib.DataModel.csproj", "{9B4C546E-B892-4C04-AC1D-0189A774B9BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.DataModel", "QuodLib.DataModel\QuodLib.DataModel.csproj", "{9B4C546E-B892-4C04-AC1D-0189A774B9BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuodLib.Winforms.Screens", "QuodLib.Screens\QuodLib.Winforms.Screens.csproj", "{B897A35B-0F97-484E-A457-B215E2969532}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{9B4C546E-B892-4C04-AC1D-0189A774B9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B4C546E-B892-4C04-AC1D-0189A774B9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B4C546E-B892-4C04-AC1D-0189A774B9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B897A35B-0F97-484E-A457-B215E2969532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B897A35B-0F97-484E-A457-B215E2969532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B897A35B-0F97-484E-A457-B215E2969532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B897A35B-0F97-484E-A457-B215E2969532}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
