@@ -8,7 +8,7 @@ using System.Drawing;
 using classMath = QuodLib.Math.General;
 using sMath = System.Math;
 
-namespace QuodLib.Drawing
+namespace QuodLib.WinForms.Drawing
 {
 	/// <summary>
 	/// Contains many functions for working with colors, mostly, as well as pens, brushes, and images.

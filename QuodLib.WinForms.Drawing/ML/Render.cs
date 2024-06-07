@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static QuodLib.ML.Foundation.Network;
 
-namespace QuodLib.Drawing.ML {
+namespace QuodLib.WinForms.Drawing.ML {
     public static class Render {
         
 

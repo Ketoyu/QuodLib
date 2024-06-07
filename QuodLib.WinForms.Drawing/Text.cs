@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuodLib.WinForms {
-    public static class Drawing {
+namespace QuodLib.WinForms.Drawing {
+    public static class Text {
         public static void DrawStringRightAlign(this Graphics G, string s, Font font, Brush brush, Point point, int width) {
             G.DrawString(s, font, brush, new Point(point.X + width - GetTextPixelSize(font, s).Width, point.Y));
         }

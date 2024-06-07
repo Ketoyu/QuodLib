@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 using System.Drawing;
 using System.Windows.Forms;
-using GFont = QuodLib.Drawing.Objects.classFonts.GFont;
-using CString = QuodLib.Drawing.Objects.classFonts.CString;
+using GFont = QuodLib.WinForms.Drawing.Objects.classFonts.GFont;
+using CString = QuodLib.WinForms.Drawing.Objects.classFonts.CString;
 
 using Debug = System.Diagnostics.Debug;
 

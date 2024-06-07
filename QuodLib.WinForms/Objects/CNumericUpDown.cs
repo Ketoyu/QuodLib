@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 using System.Drawing;
 using System.Windows.Forms;
-using GFont = QuodLib.Drawing.Objects.classFonts.GFont;
-using CString = QuodLib.Drawing.Objects.classFonts.CString;
+using GFont = QuodLib.WinForms.Drawing.Objects.classFonts.GFont;
+using CString = QuodLib.WinForms.Drawing.Objects.classFonts.CString;
 
 using Debug = System.Diagnostics.Debug;
-using QuodLib.Drawing;
+using QuodLib.WinForms.Drawing;
 
 using SMath = System.Math;
-using QuodLib.Drawing.Objects;
+using QuodLib.WinForms.Drawing.Objects;
 
 namespace QuodLib.WinForms.Objects
 {

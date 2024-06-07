@@ -8,7 +8,7 @@ using System.Drawing;
 using Resources = QuodLib.WinForms.Drawing.Properties.Resources;
 using QuodLib.Strings;
 
-namespace QuodLib.Drawing.Objects
+namespace QuodLib.WinForms.Drawing.Objects
 {
 	/// <summary>
 	/// Contains definitions for GFont objects, mostly.

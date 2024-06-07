@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace QuodLib.Drawing {
+namespace QuodLib.WinForms.Drawing {
     public static class Extensions {
         public static void WriteBlock(this WriteableBitmap target, ref byte[] rgbData, Int32Rect expectedArea) {
             target.Lock();

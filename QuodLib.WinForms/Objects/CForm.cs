@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Drawing;
 using System.Windows.Forms;
-using QuodLib.Drawing;
+using QuodLib.WinForms.Drawing;
 using QuodLib.Objects;
 
 namespace QuodLib.WinForms.Objects

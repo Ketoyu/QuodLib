@@ -5,11 +5,11 @@
 //using System.Threading.Tasks;
 
 using System.Drawing;
+using QuodLib.WinForms.Drawing;
 //using System.Windows.Forms;
 
 namespace QuodLib.WinForms.Objects
 {
-    using QuodLib.Drawing;
     using Strings;
     public class CButton : CHoverable, ICObject//, ICHoverable
     {

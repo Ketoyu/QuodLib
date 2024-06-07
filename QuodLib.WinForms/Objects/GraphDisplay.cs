@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Drawing;
 using System.Windows.Forms;
-using cG = QuodLib.Drawing.classGraphics;
+using cG = QuodLib.WinForms.Drawing.classGraphics;
 using QuodLib.Objects;
 
 namespace QuodLib.WinForms.Objects
@@ -197,7 +197,7 @@ namespace QuodLib.WinForms.Objects
         {
             Data.Add(new GraphData());
             Controls = new CObject[12];
-            for (byte i = 0; i < 12; i++) Controls[i] = new CNumericUpDown(QuodLib.Drawing.Objects.classFonts.Fonts.FurDomus_12x18_bold);
+            for (byte i = 0; i < 12; i++) Controls[i] = new CNumericUpDown(QuodLib.WinForms.Drawing.Objects.classFonts.Fonts.FurDomus_12x18_bold);
             SpecsSplit[0][0].SetBounds(4, 99);
             for (byte i = 0; i < 2; i++)
             {
