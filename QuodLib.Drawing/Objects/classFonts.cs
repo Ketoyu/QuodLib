@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using Resources = QuodLib.Drawing.Properties.Resources;
+using Resources = QuodLib.WinForms.Drawing.Properties.Resources;
 using QuodLib.Strings;
 
 namespace QuodLib.Drawing.Objects
