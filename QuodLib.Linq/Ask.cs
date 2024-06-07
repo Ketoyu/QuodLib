@@ -52,6 +52,27 @@ namespace QuodLib.Linq {
         public static bool IsEmpty<T>(this Queue<T> que)
             => que.Count == 0;
 
+        /// <summary>
+        /// Checks whether <paramref name="source"/> contains MORE THAN <paramref name="count"/> items.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static bool CountExceeds<T>(this IEnumerable<T> source, int count) {
+            if (source is IList<T> list)
+                return list.Count > count;
+
+            int count_ = 0;
+            foreach (T item in source) {
+                count_++;
+                if (count_ > count)
+                    return true;
+            }
+
+            return false;
+        }
+
         #region ArrayContains
         public static bool Contains<T>(this T[] array, T item) {
             for (int i = 0; i < array.Length; i++)
