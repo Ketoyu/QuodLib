@@ -1,5 +1,4 @@
-﻿using QuodLib.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +36,11 @@ namespace QuodLib.Objects {
             Index = 0;
         }
         public void MoveLast() {
-            Index = GetList()?.LastIndex() ?? 0;
+            IList<T>? list = GetList();
+            if (list != null)
+                Index = list.Count - 1;
+            else
+                Index = 0;
         }
         public void Jump(int index) {
             Index = index;
