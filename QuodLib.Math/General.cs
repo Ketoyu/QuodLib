@@ -1422,8 +1422,11 @@ namespace QuodLib.Math {
 		{
 			return new Point(p.X - offset.X, p.Y - offset.Y);
 		}
-		#region IsInRect
-		public static bool IsInRect(Point pt, Rectangle rc)
+        public static Point Add(this Point p, Point offset) {
+            return new Point(p.X + offset.X, p.Y + offset.Y);
+        }
+        #region IsInRect
+        public static bool IsInRect(Point pt, Rectangle rc)
 		{
 			return IsInRect(pt.X, pt.Y, rc.X, rc.Y, rc.Width, rc.Height);
 		}
