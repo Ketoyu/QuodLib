@@ -211,7 +211,7 @@ namespace QuodLib.WinForms.Drawing.Objects
 						Image chrI = (Characters.ContainsKey(line[c]) ? Characters[line[c]] : ErrChar);
 						lock (chrI)
 						{
-							I.DrawImage(classGraphics.Image_Tint(chrI, color), linePos, l * (CharHeight + Padding), chrI.Width, CharHeight);
+							I.DrawImage(chrI.Tint(color), linePos, l * (CharHeight + Padding), chrI.Width, CharHeight);
 							linePos += chrI.Width;
 						}
 					}
@@ -242,7 +242,7 @@ namespace QuodLib.WinForms.Drawing.Objects
 						Image chrI = (Characters.ContainsKey(line[c]) ? Characters[line[c]] : ErrChar);
 						lock (chrI)
 						{
-							I.DrawImage(classGraphics.Image_Tint(chrI, lines[l].GetColor(c)), linePos, l * (CharHeight + Padding), chrI.Width, CharHeight);
+							I.DrawImage(chrI.Tint(lines[l].GetColor(c)), linePos, l * (CharHeight + Padding), chrI.Width, CharHeight);
 							linePos += chrI.Width;
 						}
 					}

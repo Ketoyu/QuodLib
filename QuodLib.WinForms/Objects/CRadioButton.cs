@@ -93,7 +93,7 @@ namespace QuodLib.WinForms.Objects
             {
                 foreach (CRadioButton rad in MyCompanions) rad.Checked = false;
                 Checked = true;
-                State = 0;
+                State = MouseState.Normal;
                 Redraw();
             }
         }

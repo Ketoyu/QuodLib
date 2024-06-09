@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.ILGPU", "QuodLib.IL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.DataModel", "QuodLib.DataModel\QuodLib.DataModel.csproj", "{9B4C546E-B892-4C04-AC1D-0189A774B9BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuodLib.Winforms.Screens", "QuodLib.WinForms.Screens\QuodLib.Winforms.Screens.csproj", "{B897A35B-0F97-484E-A457-B215E2969532}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.WinForms.Screens", "QuodLib.WinForms.Screens\QuodLib.WinForms.Screens.csproj", "{B897A35B-0F97-484E-A457-B215E2969532}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

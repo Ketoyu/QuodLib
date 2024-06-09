@@ -5,8 +5,8 @@ namespace QuodLib.WinForms.Screens {
     /// <summary>
     /// Used for managing multiple <see cref="Watcher"/>s feeding multiple <see cref="Target"/>s.
     /// </summary>
-    internal class Watchmaster {
-        protected Dictionary<string, Watcher> Watchers = new();
+    public class Watchmaster<TKey> where TKey : notnull {
+        protected Dictionary<TKey, Watcher> Watchers = new();
         protected Timer Timer;
         public Watchmaster(Timer timer) {
             Timer = timer;
@@ -36,14 +36,14 @@ namespace QuodLib.WinForms.Screens {
             set => _fps = 1 / (Timer.Interval = (int)(value * 1000D));
         }
 
-        public void Enlist(string key, Watcher watcher) {
+        public void Enlist(TKey key, Watcher watcher) {
             Watchers[key] = watcher;
         }
 
-        public bool TryGetValue(string key, out Watcher? watcher)
+        public bool TryGetValue(TKey key, out Watcher? watcher)
             => Watchers.TryGetValue(key, out watcher);
 
-        public Watcher? Discharge(string key) {
+        public Watcher? Discharge(TKey key) {
             if (Watchers.TryGetValue(key, out Watcher? watcher)) {
                 Watchers.Remove(key);
                 return watcher;
@@ -52,7 +52,7 @@ namespace QuodLib.WinForms.Screens {
             return null;
         }
 
-        public delegate void WatcherFrameHandler(string key, Image? frame);
+        public delegate void WatcherFrameHandler(TKey key, Image? frame);
         public event WatcherFrameHandler? WatcherFrame;
 
         public delegate void WatchmasterFinishedHandler();

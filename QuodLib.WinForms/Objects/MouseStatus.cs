@@ -32,7 +32,10 @@ namespace QuodLib.WinForms.Objects
 		/// Whether the mouse is currently within the [parent] Form.
 		/// </summary>
 		public bool IsInForm
-            => (RelativePosition.X >= 0 && RelativePosition.Y >= 0 && RelativePosition.X < Puppet.Width && RelativePosition.Y < Puppet.Height);
+            => (RelativePosition.X >= 0 &&
+                RelativePosition.Y >= 0 &&
+                RelativePosition.X < Puppet.Width &&
+                RelativePosition.Y < Puppet.Height);
 			
         /// <summary>
         /// Whether the mouse is currently held down.

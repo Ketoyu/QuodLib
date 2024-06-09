@@ -52,24 +52,22 @@ namespace QuodLib.WinForms.Drawing
 		{
 			return Color.FromArgb(a, c.R, c.G, c.B);
 		}
-			#endregion //Color
-			#region Brush
-		public static Brush MBrush(byte c)
-		{
-			return new SolidBrush(Color.FromArgb(c, c, c));
-		}
-		public static Brush CBrush(byte r, byte g, byte b)
-		{
-			return new SolidBrush(Color.FromArgb(r, g, b));
-		}
-		public static Brush CBrush(Color c)
-		{
-			return new SolidBrush(c);
-		}
-		public static Brush CBrush(byte a, byte r, byte g, byte b)
-		{
-			return new SolidBrush(Color.FromArgb(a, r, g, b));
-		}
+        #endregion //Color
+        #region Brush
+        public static Brush MBrush(byte c)
+			=> new SolidBrush(Color.FromArgb(c, c, c));
+
+        public static Brush CBrush(byte r, byte g, byte b)
+			=> new SolidBrush(Color.FromArgb(r, g, b));
+
+        public static Brush CBrush(Color c)
+			=> new SolidBrush(c);
+
+        public static Brush CBrush(byte a, byte r, byte g, byte b)
+			=> new SolidBrush(Color.FromArgb(a, r, g, b));
+
+        public static Brush ToBrush(this Color c)
+			=> CBrush(c);
 
 		/// <summary>
 		/// 
@@ -141,36 +139,33 @@ namespace QuodLib.WinForms.Drawing
 			#endregion //Brush
 			#region Pen
 		public static Pen MPen(byte c)
-		{
-			return new Pen(MBrush(c));
-		}
-		public static Pen CPen(Color c)
-		{
-			return new Pen(c);
-		}
-		public static Pen CPen(byte alpha, Color c)
-		{
-			return new Pen(Color.FromArgb(alpha, c.R, c.G, c.B));
-		}
-		public static Pen CPen(byte r, byte g, byte b)
-		{
-			return new Pen(Color.FromArgb(r, g, b));
-		}
-		public static Pen CPen(byte a, byte r, byte g, byte b)
-		{
-			return new Pen(Color.FromArgb(a, r, g, b));
-		}
+			=> new Pen(MBrush(c));
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="hue">0=white || 1=red, 2=green, 3=blue ||
-		///						 4=yellow, 5=cyan, 6=violet ||
-		///						 7=orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink</param>
-		/// <param name="level">Pale[2-14], Pure[1-13], Light[]</param>
-		/// <param name="colorDepth">0=pale, 1=pure, 2=light</param>
-		/// <returns></returns>
-		public static Pen GPen(byte hue, byte level, byte colorDepth)
+		public static Pen CPen(Color c)
+			=> new Pen(c);
+
+        public static Pen ToPen(Color c)
+			=> CPen(c);
+
+        public static Pen CPen(byte alpha, Color c)
+			=> new Pen(Color.FromArgb(alpha, c.R, c.G, c.B));
+
+        public static Pen CPen(byte r, byte g, byte b)
+			=> new Pen(Color.FromArgb(r, g, b));
+
+        public static Pen CPen(byte a, byte r, byte g, byte b)
+			=> new Pen(Color.FromArgb(a, r, g, b));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hue">0=white || 1=red, 2=green, 3=blue ||
+        ///						 4=yellow, 5=cyan, 6=violet ||
+        ///						 7=orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink</param>
+        /// <param name="level">Pale[2-14], Pure[1-13], Light[]</param>
+        /// <param name="colorDepth">0=pale, 1=pure, 2=light</param>
+        /// <returns></returns>
+        public static Pen GPen(byte hue, byte level, byte colorDepth)
 		{
 			if ((level > 15) || (hue > 12) || (colorDepth > 2))
 			{ //out of bounds
@@ -788,11 +783,11 @@ namespace QuodLib.WinForms.Drawing
 			return strFormat;
 		}
 		#endregion //StringFormats
-		public static Image Image_Tint(Image img, Color clr)
+		public static Image Tint(this Image source, Color c)
 		{
 			System.Drawing.Imaging.ImageAttributes imageAttributes = new System.Drawing.Imaging.ImageAttributes();
-			int width = img.Width;
-			int height = img.Height;
+			int width = source.Width;
+			int height = source.Height;
 
 			float rgb = (float)1.0 / (float)255.0;
 			float[][] colorMatrixElements = { 
@@ -800,7 +795,7 @@ namespace QuodLib.WinForms.Drawing
 			   new float[] {0, 0, 0, 0, 0}, // green *= 0
 			   new float[] {0, 0, 0, 0, 0}, // blue *= 0
 			   new float[] {0, 0, 0, 1, 0}, // alpha *= 1
-			   new float[] {rgb*clr.R, rgb*clr.G, rgb*clr.B, 0, 1} // {red,green,blue} *= ( (1/255)*{clr.R,clr.G,clr.B} )
+			   new float[] {rgb*c.R, rgb*c.G, rgb*c.B, 0, 1} // {red,green,blue} *= ( (1/255)*{clr.R,clr.G,clr.B} )
 			};
 
 			System.Drawing.Imaging.ColorMatrix colorMatrix = new System.Drawing.Imaging.ColorMatrix(colorMatrixElements);
@@ -811,11 +806,11 @@ namespace QuodLib.WinForms.Drawing
 			   System.Drawing.Imaging.ColorAdjustType.Bitmap);
 
 
-			Image rtn = new Bitmap(img.Width, img.Height);
-			Graphics e = Graphics.FromImage(rtn);
-			e.DrawImage(img, 0, 0);
+			Image rtn = new Bitmap(source.Width, source.Height);
+			using Graphics e = Graphics.FromImage(rtn);
+			//e.DrawImage(img, 0, 0);
 
-			e.DrawImage(img,
+			e.DrawImage(source,
 			   new Rectangle(0, 0, width, height),  // destination rectangle 
 			   0, 0,		// upper-left corner of source rectangle 
 			   width,	   // width of source rectangle

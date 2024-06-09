@@ -8,14 +8,21 @@ namespace QuodLib.WinForms.Objects
 {
 	public abstract class CHoverable : CObject, ICHoverable
 	{
+		public enum MouseState {
+			Normal,
+			Hovered,
+			Pressed
+		}
+
+		protected MouseState State;
+
+		public MouseState State_Previous { get; private set; }
+
 		/// <summary>
-		/// 0: Normal | 1: Hovered | 2: Pressed
+		/// Whether click/move should always redraw, regardless of <see cref="State"/>.
 		/// </summary>
-		protected byte State;
-		/// <summary>
-		/// 0: Normal | 1: Hovered | 2: Pressed
-		/// </summary>
-		public byte State_Previous {get; private set;}
+		protected virtual bool StatelessRedraw => false;
+
 		/// <summary>
 		/// Whether the State has changed since the last interaction (left, entered, pressed, unpressed).
 		/// </summary>
@@ -27,11 +34,11 @@ namespace QuodLib.WinForms.Objects
 		/// <summary>
 		/// The method(s) that activate(s) upon the user interacting with [this] object via mouse movement.
 		/// </summary>
-		public event DClick EOnEnter, EOnLeave, EOnMove, EOnDrag;
+		public event DClick? Enter, Leave, Move, Drag;
 		/// <summary>
 		/// The method(s) that activate(s) upon the user interacting with [this] object via mouse-click.
 		/// </summary>
-		public override event DClick EOnMouseDown, EOnMouseUp;
+		public override event DClick? MouseDown, MouseUp;
 		/// <summary>
 		/// The internal method that [this] object runs upon the user interacting with [this] object via mouse-click.
 		/// </summary>
@@ -45,17 +52,25 @@ namespace QuodLib.WinForms.Objects
 		/// </summary>
 		public virtual void OnMouseOver()
 		{
-			byte st = State;
-			State = (byte)(Enabled && IsHovered ? 1 : 0);
-			if (State != st)
+			MouseState old = State;
+			State = Enabled && IsHovered ? MouseState.Hovered : MouseState.Normal;
+			if (State != old)
 			{
-				State_Previous = st;
+				State_Previous = old;
 				Redraw();
-				if (st == 0 && State == 1 && EOnEnter != null) EOnEnter.Invoke();
-				if (State == 0 && EOnLeave != null) EOnLeave.Invoke();
+
+				if (old == MouseState.Normal && State == MouseState.Hovered)
+					Enter?.Invoke();
+				if (State == MouseState.Normal)
+					Leave?.Invoke();
 			} else {
-				if (State == 2 && EOnDrag != null) EOnDrag.Invoke();
-				if (State == 1 && EOnMove != null) EOnMove.Invoke();
+				if (StatelessRedraw)
+					Redraw();
+
+				if (State == MouseState.Pressed)
+					Drag?.Invoke();
+				if (State == MouseState.Hovered && Move != null)
+					Move?.Invoke();
 			}
 		}
 		/// <summary>
@@ -63,15 +78,17 @@ namespace QuodLib.WinForms.Objects
 		/// </summary>
 		public virtual void OnMouseDown()
 		{
-			byte st = State;
+			MouseState old = State;
 			if (Enabled && IsHovered)
 			{
-				State = 2;
-				if (st != State) {
-					State_Previous = st;
+				State = MouseState.Pressed;
+				if (old != State) {
+					State_Previous = old;
 					Redraw();
-				}
-				if (EOnMouseDown != null) EOnMouseDown.Invoke();
+				} else if (StatelessRedraw)
+                    Redraw();
+
+                MouseDown?.Invoke();
 			}
 		}
 		/// <summary>
@@ -79,15 +96,17 @@ namespace QuodLib.WinForms.Objects
 		/// </summary>
 		public virtual void OnMouseUp()
 		{
-			byte st = State;
+			MouseState old = State;
 			if (Enabled && IsHovered)
 			{
-				State = 1;
-				if (st != State) {
-					State_Previous = st;
+				State = MouseState.Hovered;
+				if (old != State) {
+					State_Previous = old;
 					Redraw();
-				}
-				if (EOnMouseUp != null) EOnMouseUp.Invoke();
+				} else if (StatelessRedraw)
+                    Redraw();
+
+                MouseUp?.Invoke();
 			}
 		}
 		/// <summary>
@@ -95,7 +114,7 @@ namespace QuodLib.WinForms.Objects
 		/// </summary>
 		public virtual void Redraw()
 		{
-			throw new Exception("Error: Derived CHoverable sub-class does not contain a Redraw() override.");
+			throw new NotImplementedException("Error: Derived CHoverable sub-class does not contain a Redraw() override.");
 		}
 	}
 }

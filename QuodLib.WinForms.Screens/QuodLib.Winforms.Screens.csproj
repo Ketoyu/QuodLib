@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<UseWindowsForms>true</UseWindowsForms>
@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QuodLib.Math\QuodLib.Math.csproj" />
+    <ProjectReference Include="..\QuodLib.Objects\QuodLib.Objects.csproj" />
   </ItemGroup>
 
 </Project>

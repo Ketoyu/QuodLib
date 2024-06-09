@@ -129,10 +129,10 @@ namespace QuodLib.WinForms.Objects
             sbyte mod = 0;
             switch (State)
             {
-                case 1: //Hovered
+                case MouseState.Hovered:
                     mod = 1;
                     break;
-                case 2: //Pressed
+                case MouseState.Pressed:
                     mod = -1;
                     break;
                 default: //Normal
@@ -160,7 +160,7 @@ namespace QuodLib.WinForms.Objects
 
             switch (State)
             {
-                case 0: case 1:
+                case MouseState.Normal: case MouseState.Hovered:
                     #region Normal+Hover
                     //<outer>
                     G.DrawLine(D1, new Point(0, 0), new Point(0, Height - 1));
@@ -179,7 +179,7 @@ namespace QuodLib.WinForms.Objects
                     //</outer>
                     #endregion //Normal
                     break;
-                case 2:
+                case MouseState.Pressed:
                     #region Pressed
                     //<outer>
                     G.DrawLine(L1, new Point(0, 0), new Point(0, Height - 1));

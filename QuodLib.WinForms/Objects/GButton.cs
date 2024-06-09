@@ -10,7 +10,9 @@ namespace QuodLib.WinForms.Objects
 {
 	public class GButton : CHoverable
 	{
-		private Image normal, hovered, pressed;
+		protected Image Normal { get; set;}
+		protected Image Hovered { get; set; }
+		protected Image Pressed { get; set; }
         public bool Calibrate = false;
 
 		private GButton(uint width, uint height)
@@ -20,9 +22,9 @@ namespace QuodLib.WinForms.Objects
 		}
 		public GButton(Image sheet, bool vertical, uint width, uint height) : this(width, height)
 		{
-			normal = new Bitmap((int)Width, (int)Height);
-			hovered = new Bitmap((int)Width, (int)Height);
-			pressed = new Bitmap((int)Width, (int)Height);
+			Normal = new Bitmap((int)Width, (int)Height);
+			Hovered = new Bitmap((int)Width, (int)Height);
+			Pressed = new Bitmap((int)Width, (int)Height);
 			Restyle(sheet, vertical);
 		}
 		public GButton(Image normal, Image hovered, Image pressed, uint width, uint height) : this(width, height)
@@ -31,7 +33,7 @@ namespace QuodLib.WinForms.Objects
 		}
 		public void Restyle(Image sheet, bool vertical)
 		{
-			Image[] phases = new[] {normal, hovered, pressed};
+			Image[] phases = new[] {Normal, Hovered, Pressed};
             int w = sheet.Width / (vertical ? 1 : 3),
 				h = sheet.Height / (vertical ? 3 : 1);
 
@@ -47,22 +49,22 @@ namespace QuodLib.WinForms.Objects
 		}
 		public void Restyle(Image normal, Image hovered, Image pressed)
 		{
-			this.normal = normal;
-			this.hovered = hovered;
-			this.pressed = pressed;
+			this.Normal = normal;
+			this.Hovered = hovered;
+			this.Pressed = pressed;
 			Redraw();
 		}
 		public override void Redraw()
 		{
 			switch (State) {
-				case 0:
-					Image = normal;
+				case MouseState.Normal:
+					Image = Normal;
 					break;
-				case 1:
-					Image = hovered;
+				case MouseState.Hovered:
+					Image = Hovered;
 					break;
-				case 3:
-					Image = pressed;
+				case MouseState.Pressed:
+					Image = Pressed;
 					break;
 			}
 		}
@@ -74,7 +76,15 @@ namespace QuodLib.WinForms.Objects
         public override void OnMouseUp()
         {
             base.OnMouseUp();
-            if (Calibrate) System.Diagnostics.Debug.WriteLine("Control-relative MouseClick registered at (" + MousePosition.X + ", " + MousePosition.Y + "). Is " + (IsHovered ? "" : " not") + " hovered.");
+            if (Calibrate) {
+				string name = Name.Length > 0
+					? name = $"for '{Name}'"
+					: string.Empty;
+
+                System.Diagnostics.Debug.WriteLine($"Control-relative MouseClick {name} registered at ({MousePosition.X}, {MousePosition.Y}). "
+					+ "\tIs " + (IsHovered ? "" : " not") + " hovered.");
+            }
+				
         }
 	} // </class>
 }
