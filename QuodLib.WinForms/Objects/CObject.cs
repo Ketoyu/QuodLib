@@ -110,12 +110,12 @@ namespace QuodLib.WinForms.Objects
 		/// <summary>
 		/// The void delegate definition for mouse-clicks.
 		/// </summary>
-        public delegate void DClick();
+        public delegate void EmptyHandler();
 
 		/// <summary>
 		/// The method(s) that activate(s) upon the user interacting with [this] object via mouse-click.
 		/// </summary>
-        public virtual event DClick MouseDown, MouseUp;
+        public virtual event EmptyHandler MouseDown, MouseUp;
 
 		/// <summary>
 		/// The internal method that [this] object runs upon the user interacting with [this] object via mouse-click.

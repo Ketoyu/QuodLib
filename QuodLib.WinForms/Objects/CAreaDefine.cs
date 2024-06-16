@@ -38,8 +38,6 @@ namespace QuodLib.WinForms.Objects {
         public Color HoverColor { get; init; } = classGraphics.MColor(255);
         public Color PressedColor { get; init; } = classGraphics.MColor(63);
 
-        protected override bool StatelessRedraw => true;
-
         /// <summary>
         /// The lcoation of this container, relative to its host container.
         /// </summary>
@@ -93,8 +91,6 @@ namespace QuodLib.WinForms.Objects {
             }
         }
 
-        public Image Image { get; protected set; }
-
         public Area Area { get; set; } = new();
 
         /// <summary>
@@ -111,6 +107,9 @@ namespace QuodLib.WinForms.Objects {
 
         public delegate void PointChangedHandler(object? sender, PointChangedEventArgs args);
         public event PointChangedHandler? Changed;
+
+        public override bool IsContainer => true;
+        public bool IsDirty => State == MouseState.Dirty;
 
         public CAreaDefine() {
             base.Width = 120;
@@ -142,8 +141,10 @@ namespace QuodLib.WinForms.Objects {
                     ContainerLocation = this.Location,
                     Name = $"btnOrigin-{d}"
                 };
+                btn.StateChange += dirty;
                 btn.MouseUp += () => {
                     FocusedPoint = PointType.Origin;
+                    State = MouseState.Dirty;
                     Shift(PointType.Origin, d);
                 };
 
@@ -151,8 +152,10 @@ namespace QuodLib.WinForms.Objects {
                     ContainerLocation = this.Location,
                     Name = $"btnExtent-{d}"
                 };
+                btn.StateChange += dirty;
                 btn.MouseUp += () => {
                     FocusedPoint = PointType.Extent;
+                    State = MouseState.Dirty;
                     Shift(PointType.Extent, d);
                 };
             }
@@ -169,16 +172,20 @@ namespace QuodLib.WinForms.Objects {
                     ContainerLocation = this.Location,
                     Name = $"btnOrigin-Dot"
                 };
+                btn.StateChange += dirty;
                 btn.MouseUp += () => {
                     FocusedPoint = PointType.Origin;
+                    State = MouseState.Dirty;
                 };
 
                 ButtonsDot[(int)PointType.Extent] = btn = new(normal, hover, pressed, 18, 18) {
                     ContainerLocation = this.Location,
                     Name = $"btnExtent-Dot"
                 };
+                btn.StateChange += dirty;
                 btn.MouseUp += () => {
                     FocusedPoint = PointType.Extent;
+                    State = MouseState.Dirty;
                 };
             }
 
@@ -197,6 +204,11 @@ namespace QuodLib.WinForms.Objects {
             ButtonsDot[1].Location = new Point(84, 84);
             
             Image = new Bitmap(120, 120);
+
+            void dirty() {
+                if (State != MouseState.Dirty)
+                   State = MouseState.Dirty;
+            }
         }
 
         public override void Redraw() {
@@ -221,13 +233,15 @@ namespace QuodLib.WinForms.Objects {
                 btn = ButtonsDot[typ];
                 g.DrawImage(btn.Image, btn.Location);
             }
+
+            State = MouseState.Clean;
         }
 
-        public override void OnMouseOver() {
+        public override void OnMouseMove() {
             foreach (var btn in Controls)
-                btn.OnMouseOver();
+                btn.OnMouseMove();
 
-            base.OnMouseOver();
+            base.OnMouseMove();
         }
 
         public override void OnMouseDown() {

@@ -11,7 +11,7 @@ namespace QuodLib.WinForms.Objects
 	/// </summary>
     public interface ICHoverable
     {
-        void OnMouseOver();
+        void OnMouseMove();
         void OnMouseDown();
         void OnMouseUp();
     }
