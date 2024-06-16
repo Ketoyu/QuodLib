@@ -205,6 +205,8 @@ namespace QuodLib.WinForms.Objects {
             
             Image = new Bitmap(120, 120);
 
+            State = MouseState.Dirty;
+
             void dirty() {
                 if (State != MouseState.Dirty)
                    State = MouseState.Dirty;
@@ -332,6 +334,12 @@ namespace QuodLib.WinForms.Objects {
 
                 case Keys.Left:
                     Shift(pointType, Direction.Left);
+                    break;
+
+                case Keys.Tab:
+                    FocusedPoint = pointType == PointType.Origin
+                        ? PointType.Extent
+                        : PointType.Origin;
                     break;
 
                 case Keys.Space: case Keys.Enter:
