@@ -208,8 +208,10 @@ namespace QuodLib.WinForms.Objects {
             State = MouseState.Dirty;
 
             void dirty() {
-                if (State != MouseState.Dirty)
-                   State = MouseState.Dirty;
+                if (State != MouseState.Dirty) {
+                    State = MouseState.Dirty;
+                    base.OnDirty();
+                }
             }
         }
 

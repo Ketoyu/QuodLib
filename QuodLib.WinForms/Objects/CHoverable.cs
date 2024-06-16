@@ -111,6 +111,15 @@ namespace QuodLib.WinForms.Objects
 			if (changed)
 				StateChange?.Invoke();
 		}
+
+		/// <summary>
+		/// Invokes <see cref="StateChange"/> if <see cref="State"/> is <see cref="MouseState.Dirty"/>.
+		/// </summary>
+		protected virtual void OnDirty() {
+			if (State == MouseState.Dirty)
+				StateChange?.Invoke();
+		}
+
 		/// <summary>
 		/// The internal method that [this] object runs upon the user interacting with [this] object via mouse-down.
 		/// </summary>
