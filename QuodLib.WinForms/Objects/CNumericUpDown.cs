@@ -448,6 +448,7 @@ namespace QuodLib.WinForms.Objects
 					}
 				#endregion //Text
 			}
+			Image?.Dispose();
 			Image = img;
 		}
 
