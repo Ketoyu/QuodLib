@@ -37,7 +37,7 @@ namespace QuodLib.WinForms.Objects
 		/// <summary>
 		/// Part of [this] object's dimensions.
 		/// </summary>
-        public uint Width, Height;
+        public int Width, Height;
 
 		/// <summary>
 		/// Whether user-interaction with [this] object is recognized.

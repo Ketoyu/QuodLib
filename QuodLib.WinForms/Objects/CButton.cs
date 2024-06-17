@@ -17,7 +17,7 @@ namespace QuodLib.WinForms.Objects
         public bool Calibrate = false;
         private byte textBrightness = 12;
         public Font font = SystemFonts.DefaultFont;
-        public uint fSize { get; private set; }
+        public int fSize { get; private set; }
         public byte Brightness = 11;
         public byte Hue = 0;
         private string b_text = "Button";
@@ -26,22 +26,6 @@ namespace QuodLib.WinForms.Objects
 
         #region Properties
         public static Type Type { get { return typeof(CButton); } }
-        public new int Height {
-            get {
-                return (int)base.Height;
-            }
-            private set {
-                base.Height = (uint)value;
-            }
-        }
-        public new int Width {
-            get {
-                return (int)base.Width;
-            }
-            private set {
-                base.Width = (uint)value;
-            }
-        }
         public string Text {
             get {
                 return b_text;
@@ -71,20 +55,20 @@ namespace QuodLib.WinForms.Objects
         /// <param name="hue">0=white || 1=red, 2=green, 3=blue ||
         ///                         4=yellow, 5=cyan, 6=violet ||
         ///                         7=orange, 8=lime, 9=sea, 10=teal, 11=purple, 12=pink</param>
-        public CButton(uint width, uint height, byte brightness, byte hue)
+        public CButton(int width, int height, byte brightness, byte hue)
         {
             fSize = 12;
             Resize(width, height);
             Recolor(brightness, hue);
         }
-        public CButton(uint width, uint height, byte brightness, byte hue, string text)
+        public CButton(int width, int height, byte brightness, byte hue, string text)
         {
             fSize = 12;
             b_text = text;
             Resize(width, height);
             Recolor(brightness, hue);
         }
-        public CButton(uint width, uint height, byte brightness, byte hue, string text, Font font_)
+        public CButton(int width, int height, byte brightness, byte hue, string text, Font font_)
         {
             fSize = 12;
             font = font_;
@@ -92,7 +76,7 @@ namespace QuodLib.WinForms.Objects
             Resize(width, height);
             Recolor(brightness, hue);
         }
-        public CButton(uint width, uint height, byte brightness, byte hue, string text, FontFamily fontFam)
+        public CButton(int width, int height, byte brightness, byte hue, string text, FontFamily fontFam)
         {
             fSize = 12;
             font = new Font(fontFam, 12);
@@ -100,19 +84,19 @@ namespace QuodLib.WinForms.Objects
             Resize(width, height);
             Recolor(brightness, hue);
         }
-        public CButton(uint width, uint height)
+        public CButton(int width, int height)
         {
             fSize = 12;
             Resize(width, height);
         }
-        public CButton(uint width, uint height, string text, Font font_)
+        public CButton(int width, int height, string text, Font font_)
         {
             fSize = 12;
             b_text = text;
             font = font_;
             Resize(width, height, text);
         }
-        public CButton(uint width, uint height, string text, FontFamily fontFam)
+        public CButton(int width, int height, string text, FontFamily fontFam)
         {
             fSize = 12;
             b_text = text;
@@ -229,14 +213,14 @@ namespace QuodLib.WinForms.Objects
                 throw new Exception("Text brightness must be between 0 and 11!"); //+1 for light edging, then +1 for hover-state
             }
 		}
-        public void Resize(uint width, uint height)
+        public void Resize(int width, int height)
         {
             Width = (int)width;
             Height = (int)height;
             if (!(Text == "")) {
                 ////Handle multi-line text
                 if (Text.Contains("\n")) {
-                    uint length = 0;
+                    int length = 0;
                     string spl;
                     if (Text.Contains("\r\n")) {
                         spl = "\r\n";
@@ -244,24 +228,24 @@ namespace QuodLib.WinForms.Objects
                         spl = "\n";
                     }
                     int lines = Text.SplitCount(spl);
-                    for (uint i = 0; i <= lines; i++) {
+                    for (int i = 0; i <= lines; i++) {
                         string splT = Text.Split(spl)[i];
                         if (splT.Length > length)
-                            length = (uint)splT.Length;
+                            length = splT.Length;
                     }
-                    fSize = (uint)((width / length));
+                    fSize = (width / length);
                     if ((fSize) > (Height / 2))
-                        fSize = (uint)((height * (3 / 4f)) / Math.General.CInt((double)lines));
+                        fSize = (int)((height * (3 / 4f)) / Math.General.CInt((double)lines));
                 } else {
-                    fSize = (uint)(width / (Text.Length));
+                    fSize = width / (Text.Length);
                     if ((fSize) > (Height / 2))
-                        fSize = (uint)(height * (3 / 4f));
+                        fSize = (int)(height * (3 / 4f));
                 }
-                font = new Font(font.FontFamily, (float)fSize);
+                font = new Font(font.FontFamily, fSize);
             }
             Redraw();
         }
-        public void Resize(uint width, uint height, string text)
+        public void Resize(int width, int height, string text)
         {
             b_text = text;
             Resize(width, height);

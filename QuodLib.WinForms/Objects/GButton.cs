@@ -19,19 +19,19 @@ namespace QuodLib.WinForms.Objects
 		protected Image Pressed { get; set; }
         public bool Calibrate = false;
 
-		private GButton(uint width, uint height)
+		private GButton(int width, int height)
 		{
 			Width = width;
 			Height = height;
 		}
-		public GButton(Image sheet, bool vertical, uint width, uint height) : this(width, height)
+		public GButton(Image sheet, bool vertical, int width, int height) : this(width, height)
 		{
-			Normal = new Bitmap((int)Width, (int)Height);
-			Hovered = new Bitmap((int)Width, (int)Height);
-			Pressed = new Bitmap((int)Width, (int)Height);
+			Normal = new Bitmap(Width, Height);
+			Hovered = new Bitmap(Width, Height);
+			Pressed = new Bitmap(Width, Height);
 			Restyle(sheet, vertical);
 		}
-		public GButton(Image normal, Image hovered, Image pressed, uint width, uint height) : this(width, height)
+		public GButton(Image normal, Image hovered, Image pressed, int width, int height) : this(width, height)
 		{
 			Restyle(normal, hovered, pressed);
 		}
@@ -42,7 +42,7 @@ namespace QuodLib.WinForms.Objects
             int w = sheet.Width / (vertical ? 1 : 3),
 				h = sheet.Height / (vertical ? 3 : 1);
 
-	        Rectangle dest = new Rectangle(0, 0, (int)Width, (int)Height);
+	        Rectangle dest = new Rectangle(0, 0, Width, Height);
                         
             for (byte i = 0; i < 3; i++)
             {
@@ -73,7 +73,7 @@ namespace QuodLib.WinForms.Objects
 					break;
 			}
 		}
-		public void Resize(uint width, uint height)
+		public void Resize(int width, int height)
 		{
 			Width = width;
 			Height = height;

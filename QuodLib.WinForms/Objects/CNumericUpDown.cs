@@ -323,8 +323,8 @@ namespace QuodLib.WinForms.Objects
 		public void Redraw()
 		{
 			Image img = new Bitmap((int)Width, (int)Height);
-			base.Width = (uint)img.Width;
-			base.Height = (uint)img.Height;
+			base.Width = img.Width;
+			base.Height = img.Height;
 			/*Size = img.Size;
 			MaximumSize = img.Size;
 			MinimumSize = img.Size;*/

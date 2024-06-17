@@ -284,8 +284,8 @@ namespace QuodLib.WinForms.Objects
         {
             //Draw casing/controls here.
             Image img = new Bitmap((int)Width, GraphHeight + CASING_BOTTOMHEIGHT + (editing ? 0 : CONFIG_HEIGHT));
-            base.Width = (uint)img.Width;
-            base.Height = (uint)img.Height;
+            base.Width = img.Width;
+            base.Height = img.Height;
             Graphics G = Graphics.FromImage(img);
 
 
