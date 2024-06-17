@@ -783,7 +783,14 @@ namespace QuodLib.WinForms.Drawing
 			return strFormat;
 		}
 		#endregion //StringFormats
-		public static Image Tint(this Image source, Color c)
+
+		/// <summary>
+		/// Clones <paramref name="source"/> to a new <see cref="Image"/>, tinted as <paramref name="color"/>.
+		/// </summary>
+		/// <param name="source"></param>
+		/// <param name="color"></param>
+		/// <returns>A new, cloned <see cref="Image"/>.</returns>
+		public static Image Tint(this Image source, Color color)
 		{
 			System.Drawing.Imaging.ImageAttributes imageAttributes = new System.Drawing.Imaging.ImageAttributes();
 			int width = source.Width;
@@ -795,7 +802,7 @@ namespace QuodLib.WinForms.Drawing
 			   new float[] {0, 0, 0, 0, 0}, // green *= 0
 			   new float[] {0, 0, 0, 0, 0}, // blue *= 0
 			   new float[] {0, 0, 0, 1, 0}, // alpha *= 1
-			   new float[] {rgb*c.R, rgb*c.G, rgb*c.B, 0, 1} // {red,green,blue} *= ( (1/255)*{clr.R,clr.G,clr.B} )
+			   new float[] {rgb*color.R, rgb*color.G, rgb*color.B, 0, 1} // {red,green,blue} *= ( (1/255)*{clr.R,clr.G,clr.B} )
 			};
 
 			System.Drawing.Imaging.ColorMatrix colorMatrix = new System.Drawing.Imaging.ColorMatrix(colorMatrixElements);
