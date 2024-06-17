@@ -2,6 +2,7 @@
 using QuodLib.Math;
 using QuodLib.Objects;
 using QuodLib.WinForms.Drawing;
+using QuodLib.WinForms.Objects.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +14,11 @@ using PointType = QuodLib.Objects.Area.PointType;
 
 using Resources = QuodLib.WinForms.Properties.Resources;
 
-namespace QuodLib.WinForms.Objects {
+namespace QuodLib.WinForms.Objects
+{
     public class CAreaDefine : CHoverable {
 
-        protected enum Direction {
-            Up, Right, Down, Left
-        }
-
-        readonly IReadOnlyDictionary<Direction, RotateFlipType> DrawRotate =
-            new Dictionary<Direction, RotateFlipType> {
-                { Direction.Up, RotateFlipType.RotateNoneFlipNone },
-                { Direction.Right, RotateFlipType.Rotate90FlipNone },
-                { Direction.Down, RotateFlipType.RotateNoneFlipY },
-                { Direction.Left, RotateFlipType.Rotate90FlipX }
-            };
+        
 
         public class PointChangedEventArgs : EventArgs {
             public PointType PointType { get; init; }
@@ -115,32 +107,17 @@ namespace QuodLib.WinForms.Objects {
             base.Width = 120;
             base.Height = 100;
 
-            Brush f = Forecolor.ToBrush();
-            Brush h = HoverColor.ToBrush();
-            Brush p = PressedColor.ToBrush();
-
-            using Image arrowUp = Resources.ArrowUp_x18;
-
             ButtonsArrow = new GButton[2, 4];
 
+            var standard = GButton.Standard.Arrow.Orthogonal(Forecolor, HoverColor, PressedColor);
+
+            GButton btn;
             for (int i = 0; i < 4; i++) {
                 Direction d = (Direction)i;
 
-                Image normal = arrowUp.Tint(Forecolor);
-                Image hover = arrowUp.Tint(HoverColor);
-                Image pressed = arrowUp.Tint(PressedColor);
-
-                if (i > 0) {
-                    normal.RotateFlip(DrawRotate[d]);
-                    hover.RotateFlip(DrawRotate[d]);
-                    pressed.RotateFlip(DrawRotate[d]);
-                }
-
-                GButton btn;
-                ButtonsArrow[(int)PointType.Origin, i] = btn = new(normal, hover, pressed, 18, 18) {
-                    ContainerLocation = this.Location,
-                    Name = $"btnOrigin-{d}"
-                };
+                ButtonsArrow[(int)PointType.Origin, i] = btn = standard[d];
+                btn.ContainerLocation = this.Location;
+                btn.Name = $"btnOrigin-{d}";
                 btn.StateChange += dirty;
                 btn.MouseUp += () => {
                     FocusedPoint = PointType.Origin;
@@ -148,10 +125,9 @@ namespace QuodLib.WinForms.Objects {
                     Shift(PointType.Origin, d);
                 };
 
-                ButtonsArrow[(int)PointType.Extent, i] = btn = new(normal, hover, pressed, 18, 18) {
-                    ContainerLocation = this.Location,
-                    Name = $"btnExtent-{d}"
-                };
+                ButtonsArrow[(int)PointType.Extent, i] = btn = btn.CloneByImage();
+                btn.ContainerLocation = this.Location;
+                btn.Name = $"btnExtent-{d}";
                 btn.StateChange += dirty;
                 btn.MouseUp += () => {
                     FocusedPoint = PointType.Extent;
@@ -160,34 +136,25 @@ namespace QuodLib.WinForms.Objects {
                 };
             }
 
-            using (Image dot = Resources.Dot_x18) {
-                Image normal = dot.Tint(Forecolor);
-                Image hover = dot.Tint(HoverColor);
-                Image pressed = dot.Tint(PressedColor);
+            ButtonsDot = new GButton[2];
 
-                ButtonsDot = new GButton[2];
+            ButtonsDot[(int)PointType.Origin] = btn = GButton.Standard.Dot(Forecolor, HoverColor, PressedColor);
+            btn.ContainerLocation = this.Location;
+            btn.Name = $"btnOrigin-Dot";
+            btn.StateChange += dirty;
+            btn.MouseUp += () => {
+                FocusedPoint = PointType.Origin;
+                State = MouseState.Dirty;
+            };
 
-                GButton btn;
-                ButtonsDot[(int)PointType.Origin] = btn = new(normal, hover, pressed, 18, 18) {
-                    ContainerLocation = this.Location,
-                    Name = $"btnOrigin-Dot"
-                };
-                btn.StateChange += dirty;
-                btn.MouseUp += () => {
-                    FocusedPoint = PointType.Origin;
-                    State = MouseState.Dirty;
-                };
-
-                ButtonsDot[(int)PointType.Extent] = btn = new(normal, hover, pressed, 18, 18) {
-                    ContainerLocation = this.Location,
-                    Name = $"btnExtent-Dot"
-                };
-                btn.StateChange += dirty;
-                btn.MouseUp += () => {
-                    FocusedPoint = PointType.Extent;
-                    State = MouseState.Dirty;
-                };
-            }
+            ButtonsDot[(int)PointType.Extent] = btn = btn.CloneByImage();
+            btn.ContainerLocation = this.Location;
+            btn.Name = $"btnExtent-Dot";
+            btn.StateChange += dirty;
+            btn.MouseUp += () => {
+                FocusedPoint = PointType.Extent;
+                State = MouseState.Dirty;
+            };
 
             //origin [up, right, down, left, dot]
             ButtonsArrow[0, 0].Location = new Point(18, 0);

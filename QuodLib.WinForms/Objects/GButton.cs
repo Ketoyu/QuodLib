@@ -4,11 +4,15 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
+using QuodLib.WinForms.Drawing;
+using QuodLib.WinForms.Objects.Enums;
 using System.Drawing;
+using System.Windows.Media;
+using static QuodLib.Objects.Area;
 
 namespace QuodLib.WinForms.Objects
 {
-	public class GButton : CHoverable
+	public partial class GButton : CHoverable
 	{
 		protected Image Normal { get; set;}
 		protected Image Hovered { get; set; }
@@ -31,6 +35,7 @@ namespace QuodLib.WinForms.Objects
 		{
 			Restyle(normal, hovered, pressed);
 		}
+
 		public void Restyle(Image sheet, bool vertical)
 		{
 			Image[] phases = new[] {Normal, Hovered, Pressed};
@@ -86,5 +91,12 @@ namespace QuodLib.WinForms.Objects
             }
 				
         }
-	} // </class>
+
+		/// <summary>
+		/// Returns a new <see cref="GButton"/> with just the same images and size.
+		/// </summary>
+		/// <returns></returns>
+        public GButton CloneByImage()
+			=> new(Normal, Hovered, Pressed, this.Width, this.Height);
+    } // </class>
 }
