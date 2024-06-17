@@ -215,9 +215,9 @@ namespace QuodLib.WinForms.Objects
 		}
         public void Resize(int width, int height)
         {
-            Width = (int)width;
-            Height = (int)height;
-            if (!(Text == "")) {
+            Width = width;
+            Height = height;
+            if (Text != string.Empty) {
                 ////Handle multi-line text
                 if (Text.Contains("\n")) {
                     int length = 0;
