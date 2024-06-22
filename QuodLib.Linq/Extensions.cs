@@ -82,8 +82,8 @@ namespace QuodLib.Linq
         /// <typeparam name="T"></typeparam>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static IEnumerable<T> Real<T>(this IEnumerable<T> input)
-            => input.Where(i => i != null);
+        public static IEnumerable<T> Real<T>(this IEnumerable<T?> input)
+            => input.Cast<T>();
 
         /// <summary>
         /// Filters out null values.
@@ -91,8 +91,8 @@ namespace QuodLib.Linq
         /// <typeparam name="T"></typeparam>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static ParallelQuery<T> Real<T>(this ParallelQuery<T> input)
-            => input.Where(i => i != null);
+        public static ParallelQuery<T> Real<T>(this ParallelQuery<T?> input)
+            => input.Cast<T>();
 
         /// <summary>
         /// Adds an item to the list, unless that item is null.
