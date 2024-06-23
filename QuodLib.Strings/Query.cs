@@ -286,12 +286,29 @@ namespace QuodLib.Strings
 				return this;
 			}
 
-			/// <summary>
-			/// Moves the <see cref="StartIndex"/> to the effective last instance of the <paramref name="term"/>.
-			/// </summary>
-			/// <param name="term">The search-term.</param>
-			/// <returns>The updated query.</returns>
-			public StringQuery AfterLast(string term) {
+            /// <summary>
+            /// Moves the <see cref="StartIndex"/> until <paramref name="until"/> or the end of the <see cref="Source"/>.
+            /// </summary>
+            /// <param name="until">The criteria when looping through the <see cref="char"/>s of <see cref="Source"/>.</param>
+			/// <param name="found"></param>
+            /// <returns>The updated query.</returns>
+            public StringQuery Seek(Func<char, bool> until, out bool found) {
+                char c;
+                while (!(found = until(c = Source[StartIndex])) && StartIndex < Source.Length)
+                    StartIndex++;
+
+                if (StartIndex > Source.Length)
+                    StartIndex = Source.Length - 1;
+
+                return this;
+            }
+
+            /// <summary>
+            /// Moves the <see cref="StartIndex"/> to the effective last instance of the <paramref name="term"/>.
+            /// </summary>
+            /// <param name="term">The search-term.</param>
+            /// <returns>The updated query.</returns>
+            public StringQuery AfterLast(string term) {
 				int index_i = EffectiveLast(term);
 					
 				if (!StartInclusive)
