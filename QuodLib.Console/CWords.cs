@@ -1,7 +1,7 @@
 ﻿using QuodLib.Strings;
 namespace QuodLib.Console {
 	using Console = System.Console;
-    internal struct CWords
+    public struct CWords
 	{
 		List<string[]> Phrases; //<text, color>: don't reset BG before each color! (<setBG>phrase<setFG>phrase2	<-- <setBG> must be kept!)
 

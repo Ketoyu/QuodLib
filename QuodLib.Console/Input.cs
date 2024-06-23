@@ -2,7 +2,7 @@
 
 namespace QuodLib.Console {
     using Console = System.Console;
-    internal static class Input {
+    public static class Input {
         public static T Get<T>(Func<string, (bool Success, T Value)> parse, string consoleColor = "<>") {
             (bool Success, T Value) rtn = (false, default(T));
             while (!rtn.Success) {

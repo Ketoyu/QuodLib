@@ -7,7 +7,7 @@ namespace QuodLib.Console {
     /// Color tag format: &lt;f=__&gt;&lt;b=__&gt;,&lt;f=__,b=__&gt;,&lt;f,b=_,_&gt; | __=(d){b,g,c,r,m,y,w,G,B} | 
     /// &lt;&gt; for reset, &lt;p&gt; for pause.
     /// </summary>
-    public partial class Output
+    public class Output
 	{
         public static void EraseLines(int goUp) {
             for (int i = 0; i < goUp && Console.CursorTop > 0; i++) {
