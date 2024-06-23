@@ -6,7 +6,7 @@ namespace QuodLib.Console {
         public static string Get() {
             string BG = GetBG();
             string FG = GetFG();
-            List<string> clr = new List<string> { BG.GetBetween("=", ">"), FG.GetBetween("=", ">") };
+            List<string> clr = new() { BG.GetBetween("=", ">"), FG.GetBetween("=", ">") };
             return "<b,f=" + clr[0] + "," + clr[1] + ">"; //<b,f=cc,cc>
         }
         public static string GetBG() {

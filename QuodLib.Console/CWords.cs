@@ -11,8 +11,8 @@ namespace QuodLib.Console {
 			List<string[]> myPhr = new List<string[]>();
 			string[] texts = new string[2];
 			//texts[0] and texts[1] are dumped at the end of every color declaraion.
-			for (uint i = 0; i < line.Length; i++) {
-				char chr = line[(int)i];
+			for (int i = 0; i < line.Length; i++) {
+				char chr = line[i];
 				switch (chr)
 				{
 					case '\n':
@@ -97,13 +97,13 @@ namespace QuodLib.Console {
 						//Just... have the constructor split new phrases at "\n" the same way it does at colors.
 
 						#region discarded
-						//for (uint i = 0; i < text.SplitCount("\n"); i++)
+						//for (int i = 0; i < text.SplitCount("\n"); i++)
 						//{
 						//	string phrs = text.SplitString("\n", (int)i);
 						//	if (line.Length + phrs.Length > cnsW)
 						//	{
 						//		string text_ = (line + phrs).InsertBreaks(cnsW);
-						//		text_ = text_.FromIndex((uint)line.Length);
+						//		text_ = text_.FromIndex(line.Length);
 						//		Console.Write(line);
 						//		Console.Write(text_);
 						//		line = text_.SplitString("\n", -1);
@@ -136,7 +136,7 @@ namespace QuodLib.Console {
 							}
 							Console.WriteLine(text_.Split("\n", 0));
 							if (breaks >= 1) {
-								for (uint i = 1; i < breaks; i++)
+								for (int i = 1; i < breaks; i++)
 									Console.WriteLine(text_.Split('\n')[i]);
 								string temp = text_.Split('\n')[breaks]; //    <----   DEBUGGING LINE
 								Console.Write(text_.Split('\n')[breaks]);

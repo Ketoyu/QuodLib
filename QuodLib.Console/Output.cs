@@ -9,8 +9,8 @@ namespace QuodLib.Console {
     /// </summary>
     public partial class Output
 	{
-        public static void EraseLines(uint goUp) {
-            for (uint i = 0; i < goUp && Console.CursorTop > 0; i++) {
+        public static void EraseLines(int goUp) {
+            for (int i = 0; i < goUp && Console.CursorTop > 0; i++) {
                 Console.CursorLeft = 0;
                 for (byte j = 0; j < Console.BufferWidth - 1; j++)
                     Console.Write(" ");
@@ -20,31 +20,31 @@ namespace QuodLib.Console {
             Console.Write("\b");
         }
 
-        private static uint CLine_GetRealLength(string line)
+        private static int CLine_GetRealLength(string line)
 		{
-			return (uint)CLine_GetRealText(line)[0].Length;
+			return CLine_GetRealText(line)[0].Length;
 		}
-		private static uint CLine_GetColorLength(string line)
+		private static int CLine_GetColorLength(string line)
 		{
-			return (uint)CLine_GetRealText(line)[1].Length;
+			return CLine_GetRealText(line)[1].Length;
 		}
-		private static uint[] CLine_GetLengths_FromIndex(string line, uint index)
+		private static int[] CLine_GetLengths_FromIndex(string line, int index)
 		{
-			uint[] length = new uint[2];
+			int[] length = new int[2];
 			string line_ = "";
-			for (uint i = index; i < line.Length; i++)
-				line_ += line[(int)i];
+			for (int i = index; i < line.Length; i++)
+				line_ += line[i];
 			string[] texts = CLine_GetRealText(line_);
-			length[1] = (uint)texts[1].Length;
-			length[0] = (uint)texts[0].Length;
+			length[1] = texts[1].Length;
+			length[0] = texts[0].Length;
 			return length;
 		}
 		private static string[] CLine_GetRealText(string line)
 		{
 			string[] rtn = new string[2];
 			bool coloring = false;
-			for (uint i = 0; i < line.Length; i++) {
-				char chr = line[(int)i];
+			for (int i = 0; i < line.Length; i++) {
+				char chr = line[i];
 				switch (chr)
 				{
 					case '<':
