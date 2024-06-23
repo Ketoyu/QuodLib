@@ -31,13 +31,13 @@ namespace QuodLib.Strings {
             /// Whether to include the search-term in the result of GetBefore queries.
             /// </summary>
             /// <remarks>Default: off</remarks>
-            public bool StartInclusive { get; protected set; } = false;
+            public bool StartInclusive { get; protected set; }
 
             /// <summary>
             /// Whether to include the search-term in the result of GetAfter queries.
             /// </summary>
             /// <remarks>Default: off</remarks>
-            public bool EndInclusive { get; protected set; } = false;
+            public bool EndInclusive { get; protected set; }
 
             /// <summary>
             /// The effective length of the string, if this <see cref="StringQuery"/> were to be executed.
