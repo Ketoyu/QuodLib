@@ -161,6 +161,7 @@ namespace QuodLib.Strings {
         public static int SeekNot(this string Input, int index, char term) {
             Exception exH = new Exception("head_nullException"), exT = new Exception("tail_nullException");
             int head = index, tail = index;
+
             try {
                 head = Input.SeekNot(index, term, false);
             } catch (Exception ex) {
@@ -173,10 +174,16 @@ namespace QuodLib.Strings {
                 exT = ex;
                 tail = -1;
             }
-            if (head == -1 && tail == -1) throw new Exception("Failed both directions: head { " + exH.ToString() + " } & tail {" + exT.ToString() + " }.");
-            if (head == -1) return tail;
-            if (tail == -1) return head;
-            if (tail - index > index - head) return tail;
+            if (head == -1 && tail == -1)
+                throw new Exception("Failed both directions: head { " + exH.ToString() + " } & tail {" + exT.ToString() + " }.");
+
+            if (head == -1)
+                return tail;
+            if (tail == -1)
+                return head;
+            if (tail - index > index - head)
+                return tail;
+
             return head;
         }
         /// <summary>
@@ -201,10 +208,16 @@ namespace QuodLib.Strings {
                 exT = ex;
                 tail = -1;
             }
-            if (head == -1 && tail == -1) throw new Exception("Failed both directions: head { " + exH.ToString() + " } & tail {" + exT.ToString() + " }.");
-            if (head == -1) return tail;
-            if (tail == -1) return head;
-            if (tail - index > index - head) return tail;
+            if (head == -1 && tail == -1)
+                throw new Exception("Failed both directions: head { " + exH.ToString() + " } & tail {" + exT.ToString() + " }.");
+
+            if (head == -1)
+                return tail;
+            if (tail == -1)
+                return head;
+            if (tail - index > index - head)
+                return tail;
+
             return head;
         }
         /// <summary>
@@ -216,11 +229,13 @@ namespace QuodLib.Strings {
         /// <param name="forward"></param>
         /// <returns></returns>
         public static int SeekNot(this string Input, int index, char term, bool forward) {
-            if (forward) {
-                while (Input[index] == term && index < Input.GetLastIndex()) index++;
-            } else {
-                while (Input[index] == term && index > 0) index--;
-            }
+            if (forward)
+                while (Input[index] == term && index < Input.GetLastIndex())
+                    index++;
+            else
+                while (Input[index] == term && index > 0)
+                    index--;
+            
             return index;
         }
         /// <summary>
@@ -232,11 +247,13 @@ namespace QuodLib.Strings {
         /// <param name="forward"></param>
         /// <returns></returns>
         public static int SeekNot(this string Input, int index, string term, bool forward) {
-            if (forward) {
-                while (Input.Substring(index - term.Length, term.Length) == term && index >= term.Length) index -= term.Length;
-            } else {
-                while (Input.Substring(index, term.Length) == term && index < Input.GetLastIndex()) index += term.Length;
-            }
+            if (forward)
+                while (Input.Substring(index - term.Length, term.Length) == term && index >= term.Length)
+                    index -= term.Length;
+            else
+                while (Input.Substring(index, term.Length) == term && index < Input.GetLastIndex())
+                    index += term.Length;
+            
             return index;
         }
         /// <summary>
@@ -248,7 +265,9 @@ namespace QuodLib.Strings {
         /// <param name="forward"></param>
         /// <returns></returns>
         public static int Seek(this string Input, int index, char term, bool forward) {
-            if (forward) return Input.FromIndex(index, false).IndexOf(term) + index;
+            if (forward)
+                return Input.FromIndex(index, false).IndexOf(term) + index;
+
             return Input.TowardIndex(index, false).LastIndexOf(term);
         }
         /// <summary>
@@ -260,7 +279,9 @@ namespace QuodLib.Strings {
         /// <param name="forward"></param>
         /// <returns></returns>
         public static int Seek(this string Input, int index, string term, bool forward) {
-            if (forward) return Input.FromIndex(index, false).IndexOf(term) + index;
+            if (forward)
+                return Input.FromIndex(index, false).IndexOf(term) + index;
+
             return Input.TowardIndex(index, false).LastIndexOf(term);
         }
         /// <summary>
@@ -274,7 +295,8 @@ namespace QuodLib.Strings {
             int rtn = index;
             foreach (char chr in chrs) {
                 int idx = Input.Seek(index, chr, forward);
-                if (forward ? idx < rtn : idx < rtn) rtn = idx;
+                if (forward ? idx < rtn : idx < rtn)
+                    rtn = idx;
             }
 
             return (rtn == index ? -1 : rtn);
@@ -291,7 +313,8 @@ namespace QuodLib.Strings {
             int rtn = index;
             foreach (string term in terms) {
                 int idx = Input.Seek(index, term, forward);
-                if (forward ? idx < rtn : idx < rtn) rtn = idx;
+                if (forward ? idx < rtn : idx < rtn)
+                    rtn = idx;
             }
 
             return (rtn == index ? -1 : rtn);
@@ -323,9 +346,12 @@ namespace QuodLib.Strings {
             foreach (string str in terms) {
                 if (!Input.Contains(str))
                     continue;
+
                 int idx = Input.IndexOf(str);
-                if (rtn == -1 || idx < rtn) rtn = idx;
+                if (rtn == -1 || idx < rtn)
+                    rtn = idx;
             }
+
             return rtn;
         }
         /// <summary>
@@ -339,11 +365,17 @@ namespace QuodLib.Strings {
             int rtn = -1;
             string temp = Input.FromIndex(startIndex, true);
             foreach (string str in terms) {
-                if (!temp.Contains(str)) continue;
+                if (!temp.Contains(str))
+                    continue;
+
                 int idx = temp.IndexOf(str);
-                if (rtn == -1 || idx < rtn) rtn = idx; //if (rtn hasn't been changed yet || idx is earlier than rtn) idx -> rtn
+                if (rtn == -1 || idx < rtn)
+                    rtn = idx; //if (rtn hasn't been changed yet || idx is earlier than rtn) idx -> rtn
             }
-            if (rtn == -1) return -1;
+
+            if (rtn == -1)
+                return -1;
+
             return startIndex + rtn;
         }
         /// <summary>
@@ -351,9 +383,9 @@ namespace QuodLib.Strings {
         /// </summary>
         /// <param name="Input"></param>
         /// <returns></returns>
-        public static int GetLastIndex(this string Input) {
-            return Input.Length - 1;
-        }
+        public static int GetLastIndex(this string Input)
+            => Input.Length - 1;
+
         /// <summary>
         /// Returns the (0-based) Nth occurrance of <paramref name="chr"/>.
         /// </summary>
@@ -361,9 +393,9 @@ namespace QuodLib.Strings {
         /// <param name="chr"></param>
         /// <param name="occurrance"></param>
         /// <returns></returns>
-        public static int IndexOf_Nth(this string Input, char chr, int occurrance) {
-            return Input.IndexOf_Nth("" + chr, occurrance);
-        }
+        public static int IndexOf_Nth(this string Input, char chr, int occurrance)
+            => Input.IndexOf_Nth("" + chr, occurrance);
+
         /// <summary>
         /// Returns the (0-based) Nth occurrance of <paramref name="chr"/>.
         /// </summary>
@@ -372,30 +404,39 @@ namespace QuodLib.Strings {
         /// <param name="occurrance"></param>
         /// <returns></returns>
         public static int IndexOf_Nth(this string Input, string chr, int occurrance) {
-            if (!Input.Contains(chr)) throw new Exception("Term \"" + chr + "\" not contained within [Input] string.");
+            if (!Input.Contains(chr))
+                throw new Exception("Term \"" + chr + "\" not contained within [Input] string.");
 
-            if (occurrance == 0) return Input.IndexOf(chr);
-            if (occurrance == -1) return Input.LastIndexOf(chr);
+            if (occurrance == 0)
+                return Input.IndexOf(chr);
+            if (occurrance == -1)
+                return Input.LastIndexOf(chr);
 
             string temp = Input;
             int idx = 0;
             if (occurrance > 0) {
                 for (int i = 0; i < occurrance + 1; i++) {
-                    if (!temp.Contains(chr)) throw new Exception("Erorr: Only found " + i + " occurrances of \"" + chr + "\".");
+                    if (!temp.Contains(chr))
+                        throw new Exception("Erorr: Only found " + i + " occurrances of \"" + chr + "\".");
+
                     idx += temp.IndexOf(chr) + chr.Length;
 
                     temp = Input.FromIndex(idx, true);
                 }
+
                 return idx - chr.Length;
             }
 
             //if (occurrance < 0)
             idx = Input.GetLastIndex();
             for (int i = 0; i < (0 - occurrance); i++) {
-                if (!temp.Contains(chr)) throw new Exception("Error: Only found " + i + " occurrances of \"" + chr + "\".");
+                if (!temp.Contains(chr))
+                    throw new Exception("Error: Only found " + i + " occurrances of \"" + chr + "\".");
+
                 idx = temp.LastIndexOf(chr);
                 temp = Input.TowardIndex(idx, false);
             }
+
             return idx;
         }
         /// <summary>
@@ -406,10 +447,13 @@ namespace QuodLib.Strings {
         /// <param name="startIndex"></param>
         /// <returns></returns>
         public static int NextIndexOf(this string Input, string chr, int startIndex) {
-            if (startIndex >= Input.Length) throw new Exception("Index \"" + startIndex + "\" out of bounds of [Input] string.");
+            if (startIndex >= Input.Length)
+                throw new Exception("Index \"" + startIndex + "\" out of bounds of [Input] string.");
+
             string temp = Input.FromIndex(startIndex, true);
 
-            if (Input.IndexOf(chr) == 0) temp = Input.FromIndex(chr.Length, true);
+            if (Input.IndexOf(chr) == 0)
+                temp = Input.FromIndex(chr.Length, true);
 
             return temp.IndexOf(chr);
         }
@@ -420,7 +464,9 @@ namespace QuodLib.Strings {
         /// <param name="compare"></param>
         /// <returns></returns>
         public static int IndexOfDivergence(this string Input, string compare) {
-            if (Input == "" || compare == "") return -1;
+            if (Input == "" || compare == "")
+                return -1;
+
             int rtn = 0;
             while (Input[rtn] == compare[rtn])
                 rtn++;
@@ -435,9 +481,12 @@ namespace QuodLib.Strings {
         public static int IndexOfDivergence(IList<string> inputs) {
             int rtn = int.MaxValue;
             for (int i = 0; i < inputs.Count - 1; i++) {
-                if (inputs[i] == "" || inputs[i + 1] == "") continue;
+                if (inputs[i] == "" || inputs[i + 1] == "")
+                    continue;
+
                 rtn = SMath.Min(rtn, inputs[i].IndexOfDivergence(inputs[i + 1]));
             }
+
             return rtn;
         }
 
