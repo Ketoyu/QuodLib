@@ -25,12 +25,8 @@ namespace QuodLib.Strings {
         /// <param name="term"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
-        public static bool Contains(this IList<string> Input, string term, bool caseSensitive) {
-            foreach (string str in Input)
-                if ((caseSensitive ? str : str.ToLower()) == (caseSensitive ? term : term.ToLower())) return true;
-
-            return false;
-        }
+        public static bool Contains(this IList<string> Input, string term, bool caseSensitive)
+            => Input.Any(s => s.Equals(term, caseSensitive ? StringComparison.CurrentCulture : StringComparison.CurrentCultureIgnoreCase));
 
         /// <summary>
         /// Whether the string contains any of an array of terms.
@@ -38,12 +34,8 @@ namespace QuodLib.Strings {
         /// <param name="Input"></param>
         /// <param name="terms"></param>
         /// <returns></returns>
-        public static bool Contains(this string Input, IList<char> terms) {
-            foreach (char term in terms)
-                if (Input.Contains(term)) return true;
-
-            return false;
-        }
+        public static bool Contains(this string Input, IList<char> terms)
+            => terms.Any(c => Input.Contains(c));
 
         /// <summary>
         /// Whether the string contains any of an array of terms.
@@ -51,12 +43,8 @@ namespace QuodLib.Strings {
         /// <param name="Input"></param>
         /// <param name="terms"></param>
         /// <returns></returns>
-        public static bool Contains(this string Input, params char[] terms) {
-            foreach (char term in terms)
-                if (Input.Contains(term)) return true;
-
-            return false;
-        }
+        public static bool Contains(this string Input, params char[] terms)
+            => Input.Contains(terms);
 
         /// <summary>
         /// Whether the string contains any of an array of terms.
@@ -83,6 +71,7 @@ namespace QuodLib.Strings {
 
             return false;
         }
+
         /// <summary>
         /// Whether the string contains an array of terms.
         /// </summary>
@@ -91,14 +80,12 @@ namespace QuodLib.Strings {
         /// <param name="AND">Whether the string must contain all of the terms.</param>
         /// <returns></returns>
         public static bool Contains(this string Input, IList<char> terms, bool AND) {
-            if (!AND) return Input.Contains(terms);
+            if (!AND)
+                return Input.Contains(terms);
 
-            bool rtn = true;
-            foreach (char term in terms)
-                rtn &= Input.Contains(term);
-
-            return rtn;
+            return terms.All(t => Input.Contains(t));
         }
+
         /// <summary>
         /// Whether the string contains an array of terms.
         /// </summary>
@@ -122,7 +109,8 @@ namespace QuodLib.Strings {
         /// <param name="chr"></param>
         /// <returns></returns>
         public static bool StartsWith(this string Input, char chr) {
-            if (Input == "") return chr == null;
+            if (Input == string.Empty)
+                return false;
 
             return Input[0] == chr;
         }
@@ -132,21 +120,18 @@ namespace QuodLib.Strings {
         /// <param name="Input"></param>
         /// <param name="terms"></param>
         /// <returns></returns>
-        public static bool StartsWith(this string Input, IList<string> terms) {
-            foreach (string term in terms)
-                if (Input.StartsWith(term)) return true;
+        public static bool StartsWith(this string Input, IList<string> terms)
+            => terms.Any(t => Input.StartsWith(t));
 
-            return false;
-        }
         /// <summary>
         /// Whether the string ends with the privided character.
         /// </summary>
         /// <param name="Input"></param>
         /// <param name="terms"></param>
         /// <returns></returns>
-        public static bool EndsWith(this string Input, char chr) {
-            return Input[Input.Length - 1] == chr;
-        }
+        public static bool EndsWith(this string Input, char chr)
+            => Input.Last() == chr;
+
         /// <summary>
         /// Whether the string starts with one of an array of terms.
         /// </summary>
@@ -154,24 +139,18 @@ namespace QuodLib.Strings {
         /// <param name="terms"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
-        public static bool StartsWith(this string Input, IList<string> terms, bool caseSensitive) {
-            foreach (string term in terms)
-                if ((caseSensitive ? Input : Input.ToLower()).StartsWith(caseSensitive ? term : term.ToLower())) return true;
+        public static bool StartsWith(this string Input, IList<string> terms, bool caseSensitive)
+            => terms.Any(t => Input.StartsWith(t, caseSensitive ? StringComparison.CurrentCulture : StringComparison.CurrentCultureIgnoreCase));
 
-            return false;
-        }
         /// <summary>
         /// Whether the string ends with one of an an array of terms.
         /// </summary>
         /// <param name="Input"></param>
         /// <param name="terms"></param>
         /// <returns></returns>
-        public static bool EndsWith(this string Input, IList<string> terms) {
-            foreach (string term in terms)
-                if (Input.EndsWith(term)) return true;
+        public static bool EndsWith(this string Input, IList<string> terms)
+            => terms.Any(t => Input.EndsWith(t));
 
-            return false;
-        }
         /// <summary>
         /// Whether the string ends with one of an an array of terms.
         /// </summary>
@@ -179,12 +158,8 @@ namespace QuodLib.Strings {
         /// <param name="terms"></param>
         /// <param name="caseSensitive"></param>
         /// <returns></returns>
-        public static bool EndsWith(this string Input, IList<string> terms, bool caseSensitive) {
-            foreach (string term in terms)
-                if ((caseSensitive ? Input : Input.ToLower()).EndsWith(caseSensitive ? term : term.ToLower())) return true;
-
-            return false;
-        }
+        public static bool EndsWith(this string Input, IList<string> terms, bool caseSensitive)
+            => terms.Any(t => Input.EndsWith(t, caseSensitive ? StringComparison.CurrentCulture : StringComparison.CurrentCultureIgnoreCase));
 
         /// <summary>
         /// Returns the closest index of something other than <paramref name="term"/>, relative to <paramref name="index"/>. If both directions have equally close results, the lower index is chosen.
@@ -341,7 +316,9 @@ namespace QuodLib.Strings {
         /// <param name="startOfTerm"></param>
         /// <returns></returns>
         public static int Seek(this string Input, int index, string term, bool forward, bool startOfTerm) {
-            if (forward) return Input.FromIndex(index, false).IndexOf(term) + index + (startOfTerm ? term.Length : 0);
+            if (forward)
+                return Input.FromIndex(index, false).IndexOf(term) + index + (startOfTerm ? term.Length : 0);
+
             return Input.TowardIndex(index, false).LastIndexOf(term) + (startOfTerm ? term.Length : 0);
         }
 
@@ -354,7 +331,8 @@ namespace QuodLib.Strings {
         public static int IndexOfAny(this string Input, IList<string> terms) {
             int rtn = -1;
             foreach (string str in terms) {
-                if (!Input.Contains(str)) continue;
+                if (!Input.Contains(str))
+                    continue;
                 int idx = Input.IndexOf(str);
                 if (rtn == -1 || idx < rtn) rtn = idx;
             }
