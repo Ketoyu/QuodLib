@@ -44,7 +44,7 @@ namespace QuodLib.Strings {
         /// <param name="terms"></param>
         /// <returns></returns>
         public static bool Contains(this string Input, params char[] terms)
-            => Input.Contains(terms);
+            => Input.Contains((IList<char>)terms);
 
         /// <summary>
         /// Whether the string contains any of an array of terms.
@@ -52,12 +52,8 @@ namespace QuodLib.Strings {
         /// <param name="Input"></param>
         /// <param name="terms"></param>
         /// <returns></returns>
-        public static bool Contains(this string Input, IList<string> terms) {
-            foreach (string term in terms)
-                if (Input.Contains(term)) return true;
-
-            return false;
-        }
+        public static bool Contains(this string Input, IList<string> terms)
+            => terms.Any(t => Input.Contains(t));
 
         /// <summary>
         /// Whether the string contains any of an array of terms.
@@ -65,12 +61,8 @@ namespace QuodLib.Strings {
         /// <param name="Input"></param>
         /// <param name="terms"></param>
         /// <returns></returns>
-        public static bool Contains(this string Input, params string[] terms) {
-            foreach (string term in terms)
-                if (Input.Contains(term)) return true;
-
-            return false;
-        }
+        public static bool Contains(this string Input, params string[] terms)
+            => Input.Contains((IList<string>)terms);
 
         /// <summary>
         /// Whether the string contains an array of terms.
