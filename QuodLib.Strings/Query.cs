@@ -86,14 +86,12 @@ namespace QuodLib.Strings {
         /// <param name="AND">Whether the string must contain all of the terms.</param>
         /// <returns></returns>
         public static bool Contains(this string Input, IList<string> terms, bool AND) {
-            if (!AND) return Input.Contains(terms);
+            if (!AND)
+                return Input.Contains(terms);
 
-            bool rtn = true;
-            foreach (string term in terms)
-                rtn &= Input.Contains(term);
-
-            return rtn;
+            return terms.All(t => Input.Contains(t));
         }
+
         /// <summary>
         /// Whether the string starts with the provided character.
         /// </summary>
