@@ -463,12 +463,11 @@ namespace QuodLib.Strings {
         public static int IndexOfDivergence(this string Input, string compare) {
             if (Input == "" || compare == "")
                 return -1;
+            
+            int i;
+            for (i = 0; Input[i] == compare[i]; i++);
 
-            int rtn = 0;
-            while (Input[rtn] == compare[rtn])
-                rtn++;
-
-            return rtn;
+            return i;
         }
         /// <summary>
         /// Returns the index at which any one of the strings differs from the rest. Ignores empty strings.
