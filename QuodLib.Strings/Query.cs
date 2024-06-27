@@ -98,12 +98,9 @@ namespace QuodLib.Strings {
         /// <param name="Input"></param>
         /// <param name="chr"></param>
         /// <returns></returns>
-        public static bool StartsWith(this string Input, char chr) {
-            if (Input == string.Empty)
-                return false;
+        public static bool StartsWith(this string Input, char chr)
+            => Input != string.Empty && Input[0] == chr;
 
-            return Input[0] == chr;
-        }
         /// <summary>
         /// Whether the string starts with one of an array of terms.
         /// </summary>
