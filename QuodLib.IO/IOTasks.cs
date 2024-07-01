@@ -18,8 +18,8 @@ namespace QuodLib.IO {
         public static Task<bool> Dir_ExistsAsync(string path)
             => RunWithRethrow(() => Directory.Exists(path));
 
-        public static Task<bool> Dir_IsSymbolicAsync(string path)
-            => RunWithRethrow(() => Files.Dir_IsSymbolic(path));
+        public static Task<bool> Path_IsSymbolicAsync(string path)
+            => RunWithRethrow(() => Symbolic.IsSymbolic(path));
 
         public static Task<string[]> GetDirectoriesAsync(string path)
             => RunWithRethrow(() => Directory.GetDirectories(path));
