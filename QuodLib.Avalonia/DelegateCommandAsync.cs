@@ -5,6 +5,7 @@ namespace QuodLib.Avalonia {
         private Func<object?, bool>? _canExecute;
         private Func<object?, Task> _execute;
         private bool _isExecuting;
+        public Action<Exception>? OnException { get; init; }
 
         public bool IsExecuting {
             get => _isExecuting;
@@ -29,7 +30,11 @@ namespace QuodLib.Avalonia {
 
         public async void Execute(object? parameter) {
             IsExecuting = true;
-            await _execute.Invoke(parameter);
+            try {
+                await _execute.Invoke(parameter);
+            } catch (Exception ex) {
+                OnException?.Invoke(ex);
+            }
             IsExecuting = false;
         }
 
