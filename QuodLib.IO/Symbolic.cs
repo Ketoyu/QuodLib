@@ -146,9 +146,23 @@ namespace QuodLib.IO {
                 => Directory.Exists(Destination);
         }
 
+        /// <summary>
+        /// Specifies a type of symbolic link.
+        /// </summary>
         public enum SymbolicType {
+            /// <summary>
+            /// Is not a symbolic link.
+            /// </summary>
             None,
+
+            /// <summary>
+            /// Points to a directory.
+            /// </summary>
             File,
+
+            /// <summary>
+            /// Points to a directory.
+            /// </summary>
             Directory
         }
     }
