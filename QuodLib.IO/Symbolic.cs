@@ -44,7 +44,7 @@ namespace QuodLib.IO {
         /// <param name="path"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        public static SymbolicType Get(string path, out SymbolicLink? link)
+        public static SymbolicLinkType Get(string path, out SymbolicLink? link)
             => Get(path, out link, out _);
 
         /// <summary>
@@ -54,22 +54,22 @@ namespace QuodLib.IO {
         /// <param name="link"></param>
         /// <param name="attributes"></param>
         /// <returns></returns>
-        public static SymbolicType Get(string path, out SymbolicLink? link, out FileAttributes attributes) {
+        public static SymbolicLinkType Get(string path, out SymbolicLink? link, out FileAttributes attributes) {
             attributes = File.GetAttributes(path);
             link = null;
 
             bool symbolic = attributes.HasFlag(FileAttributes.ReparsePoint);
             if (!symbolic)
-                return SymbolicType.None;
+                return SymbolicLinkType.None;
 
             bool isDir = attributes.HasFlag(FileAttributes.Directory);
             if (isDir) {
                 link = new SymbolicDirectoryLink(path);
-                return SymbolicType.Directory;
+                return SymbolicLinkType.Directory;
             }
 
             link = new SymbolicFileLink(path);
-            return SymbolicType.File;
+            return SymbolicLinkType.File;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace QuodLib.IO {
             /// <summary>
             /// Defines whether the symbolic link is to a file or to a directory.
             /// </summary>
-            public SymbolicType Type { get; protected init; } //** SymbolicType.None should not never occur here.
+            public SymbolicLinkType Type { get; protected init; } //** SymbolicType.None should not never occur here.
 
             /// <summary>
             /// Checks whether the <see cref="Destination"/> exists.
@@ -149,7 +149,7 @@ namespace QuodLib.IO {
         /// <summary>
         /// Specifies a type of symbolic link.
         /// </summary>
-        public enum SymbolicType {
+        public enum SymbolicLinkType {
             /// <summary>
             /// Is not a symbolic link.
             /// </summary>
