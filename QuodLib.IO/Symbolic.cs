@@ -44,7 +44,7 @@ namespace QuodLib.IO {
         /// <param name="path"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        public static SymbolicLinkType Get(string path, out SymbolicLink? link)
+        public static SymbolicLinkType TryGet(string path, out SymbolicLink? link)
             => Get(path, out link, out _);
 
         /// <summary>
