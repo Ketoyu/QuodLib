@@ -83,16 +83,6 @@ namespace QuodLib.IO
 
 			//else: the date is the same, don't waste the write-times.
 		}
-		public static bool File_IsSymbolic(string filename)
-			=> (new FileInfo(filename)).IsSymbolic();
-		public static bool IsSymbolic(this FileInfo fileInfo)
-			=> fileInfo.Attributes.HasFlag(FileAttributes.ReparsePoint);
-
-		public static bool Dir_IsSymbolic(string dir)
-			=> (new DirectoryInfo(dir)).Attributes.HasFlag(FileAttributes.ReparsePoint);
-		public static bool IsSymbolic(this DirectoryInfo dirInfo)
-			=> dirInfo.Attributes.HasFlag(FileAttributes.ReparsePoint);
-
 		public static string DirName_WithoutPath(string path)
 			=> path.Substring(path.LastIndexOf('\\') + 1);
 
