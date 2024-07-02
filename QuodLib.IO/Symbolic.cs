@@ -45,7 +45,7 @@ namespace QuodLib.IO {
         /// <param name="link"></param>
         /// <returns></returns>
         public static SymbolicLinkType TryGet(string path, out SymbolicLink? link)
-            => Get(path, out link, out _);
+            => TryGet(path, out link, out _);
 
         /// <summary>
         /// Checks whether the <paramref name="path"/> is a symbolic link. If so, returns a non-null <paramref name="link"/>.
@@ -54,7 +54,7 @@ namespace QuodLib.IO {
         /// <param name="link"></param>
         /// <param name="attributes"></param>
         /// <returns></returns>
-        public static SymbolicLinkType Get(string path, out SymbolicLink? link, out FileAttributes attributes) {
+        public static SymbolicLinkType TryGet(string path, out SymbolicLink? link, out FileAttributes attributes) {
             attributes = File.GetAttributes(path);
             link = null;
 
