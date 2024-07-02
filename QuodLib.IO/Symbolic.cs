@@ -113,6 +113,7 @@ namespace QuodLib.IO {
             public FileInfo Info => (FileInfo)_info;
             internal SymbolicFileLink(string path) {
                 _info = new FileInfo(path);
+                Destination = Info.LinkTarget!;
             }
 
             /// <summary>
