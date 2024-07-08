@@ -31,7 +31,7 @@ namespace QuodLib.IO
         /// <param name="cancel"></param>
         /// <returns></returns>
         public static Task TraverseFilesAsync(string root, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
-            => TraverseFilesAsync(new string[] { root }, null, symbolicLink, file, finalDirectory, error, cancel);
+            => TraverseFilesAsync(new string[] { root }, (Func<string, bool>?)null, symbolicLink, file, finalDirectory, error, cancel);
 
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
@@ -46,6 +46,20 @@ namespace QuodLib.IO
         /// <returns></returns>
         public static Task TraverseFilesAsync(string root, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
             => TraverseFilesAsync(new string[] { root }, subdir => skipSources.Contains(subdir), symbolicLink, file, finalDirectory, error, cancel);
+
+        /// <summary>
+        /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
+        /// </summary>
+        /// <param name="sources">List of directories to scan</param>
+        /// <param name="skipSources">List of (sub-)directories to ignore</param>
+        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
+        /// <param name="file">Reports a <see cref="FileInfo"/></param>
+        /// <param name="finalDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
+        /// <param name="cancel"></param>
+        /// <returns></returns>
+        public static Task TraverseFilesAsync(IList<string> sources, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+            => TraverseFilesAsync(sources, subdir => skipSources.Contains(subdir), symbolicLink, file, finalDirectory, error, cancel);
 
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
