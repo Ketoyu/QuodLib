@@ -459,29 +459,44 @@ namespace QuodLib.Strings {
         /// </summary>
         /// <param name="Input"></param>
         /// <param name="compare"></param>
-        /// <returns></returns>
+        /// <returns><list type="bullet">
+        ///     <item><c>-1</c> if the either string is empty</item>
+        ///     <item>else, the farthest index toward which both strings are equal</itemm>
+        /// </list>
+        /// </returns>
         public static int IndexOfDivergence(this string Input, string compare) {
-            if (Input == "" || compare == "")
+            if (Input == string.Empty || compare == string.Empty)
                 return -1;
             
             int i;
-            for (i = 0; Input[i] == compare[i]; i++);
+            for (i = 0; i < Input.Length && i < compare.Length && Input[i] == compare[i]; i++);
 
             return i;
         }
+
         /// <summary>
         /// Returns the index at which any one of the strings differs from the rest. Ignores empty strings.
         /// </summary>
         /// <param name="inputs"></param>
-        /// <returns></returns>
-        public static int IndexOfDivergence(IList<string> inputs) {
+        /// <returns><list type="bullet">
+        ///     <item><c>-1</c> if the any string is empty</item>
+        ///     <item><see cref="null"/> if <paramref name="inputs"/> is single or empty</item>
+        ///     <item>else, the farthest index toward which <paramref name="inputs"/> are equal</itemm>
+        /// </list></returns>
+        public static int? IndexOfDivergence(IList<string> inputs) {
+            if (inputs.Count < 2)
+                return null;
+
             int rtn = int.MaxValue;
             for (int i = 0; i < inputs.Count - 1; i++) {
-                if (inputs[i] == "" || inputs[i + 1] == "")
-                    continue;
+                if (inputs[i] == string.Empty || inputs[i + 1] == string.Empty)
+                    return -1;
 
                 rtn = SMath.Min(rtn, inputs[i].IndexOfDivergence(inputs[i + 1]));
             }
+
+            if (rtn == int.MaxValue)
+                throw new Exception("Unexpected execution path");
 
             return rtn;
         }

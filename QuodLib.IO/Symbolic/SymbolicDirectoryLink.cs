@@ -9,9 +9,11 @@
         /// </summary>
         public DirectoryInfo Info => (DirectoryInfo)_info;
 
-        internal SymbolicDirectoryLink(string path)
-        {
-            _info = new DirectoryInfo(path);
+        internal SymbolicDirectoryLink(string path) : this(new DirectoryInfo(path))
+        { }
+
+        internal SymbolicDirectoryLink(DirectoryInfo info) {
+            _info = info;
             Destination = Info.LinkTarget!;
         }
 
