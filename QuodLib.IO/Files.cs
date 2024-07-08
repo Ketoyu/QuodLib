@@ -65,9 +65,6 @@ namespace QuodLib.IO
 			//else: the date is the same, don't waste the write-times.
 		}
 
-		public static string DirName_WithoutPath(string path)
-			=> path.Substring(path.LastIndexOf('\\') + 1);
-
 		/// <summary>
 		/// Gets all immediate and nested subdirectories within <paramref name="rootDir"/>.
 		/// </summary>
