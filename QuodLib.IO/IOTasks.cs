@@ -26,7 +26,7 @@ namespace QuodLib.IO
         /// <param name="root">The directory to perform a nested scan on.</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace QuodLib.IO
         /// <param name="skipSources">List of (sub-)directories to ignore</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace QuodLib.IO
         /// <param name="skipSources">List of (sub-)directories to ignore</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace QuodLib.IO
         /// <param name="skipSubdirectory">Criteria for (sub-)directories to ignore</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
