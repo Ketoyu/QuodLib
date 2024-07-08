@@ -42,26 +42,6 @@ namespace QuodLib.IO
 				}
 			}
 		}*/
-		public static readonly char[] ILLEGAL_CHARS = {'/', ':', '*', '?', '\"', '<', '>', '|'};
-		public static string Filename_GetPath(string filename)
-			=> filename.Substring(0, filename.LastIndexOf('\\'));
-
-		public static string Filename_WithoutPath(string filename)
-			=> filename.Substring(filename.LastIndexOf('\\') + 1);
-
-		public static string Filename_GetExtension(string filename)
-		{
-			string temp = Filename_WithoutPath(filename);
-			if (!temp.Contains('.'))
-				return string.Empty;
-
-			return temp.Substring(temp.LastIndexOf('.') + 1);
-		}
-		public static string Filename_WithoutExtension(string filename)
-			=> filename.Substring(0, filename.LastIndexOf('.'));
-
-		public static string Filename_WithoutPathOrExtension(string filename)
-			=> Filename_WithoutExtension(Filename_WithoutPath(filename));
 
 		public static void File_CopyIfNewer(string source, string destination)
 		{
