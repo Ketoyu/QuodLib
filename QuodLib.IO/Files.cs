@@ -123,23 +123,7 @@ namespace QuodLib.IO
 			}
 			return rtn;
 		}
-		/// <summary>
-		/// Creates <paramref name="dir"/> if that directory does not exist; does nothing otherwise.
-		/// </summary>
-		/// <param name="dir"></param>
-		/// <returns>False if the directory tried and failed to be created, True otherwise.</returns>
-		public static bool Dir_MakeIfNotExist(string dir)
-		{
-			if (Directory.Exists(dir))
-				return true;
 
-			try {
-				Directory.CreateDirectory(dir);
-				return true;
-			} catch (Exception) {
-				return false;
-			}
-		}
 		public static FileStream FileStream_FromFile(string fl)
 			=> new FileStream(fl, FileMode.Open);
 
