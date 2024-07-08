@@ -44,33 +44,34 @@ namespace QuodLib.IO
 		}*/
 		public static readonly char[] ILLEGAL_CHARS = {'/', ':', '*', '?', '\"', '<', '>', '|'};
 		public static string Filename_GetPath(string filename)
-		{
-			return filename.Substring(0, filename.LastIndexOf('\\'));
-		}
+			=> filename.Substring(0, filename.LastIndexOf('\\'));
+
 		public static string Filename_WithoutPath(string filename)
-		{
-			return filename.Substring(filename.LastIndexOf('\\') + 1);
-		}
+			=> filename.Substring(filename.LastIndexOf('\\') + 1);
+
 		public static string Filename_GetExtension(string filename)
 		{
 			string temp = Filename_WithoutPath(filename);
-			if (!temp.Contains('.')) return "";
+			if (!temp.Contains('.'))
+				return string.Empty;
+
 			return temp.Substring(temp.LastIndexOf('.') + 1);
 		}
 		public static string Filename_WithoutExtension(string filename)
-		{
-			return filename.Substring(0, filename.LastIndexOf('.'));
-		}
+			=> filename.Substring(0, filename.LastIndexOf('.'));
+
 		public static string Filename_WithoutPathOrExtension(string filename)
-		{
-			return Filename_WithoutExtension(Filename_WithoutPath(filename));
-		}
+			=> Filename_WithoutExtension(Filename_WithoutPath(filename));
+
 		public static void File_CopyIfNewer(string source, string destination)
 		{
 			DateTime src = File.GetLastWriteTime(source),
 				dest = File.GetLastWriteTime(destination);
-			if (src > dest) File.Copy(source, destination, true);
+
+			if (src > dest)
+				File.Copy(source, destination, true);
 		}
+
 		public static void File_ForceNewer(string source1, string source2)
 		{
 			DateTime src1 = File.GetLastWriteTime(source1),
@@ -83,6 +84,7 @@ namespace QuodLib.IO
 
 			//else: the date is the same, don't waste the write-times.
 		}
+
 		public static string DirName_WithoutPath(string path)
 			=> path.Substring(path.LastIndexOf('\\') + 1);
 
