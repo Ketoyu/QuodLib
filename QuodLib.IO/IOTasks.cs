@@ -23,12 +23,39 @@ namespace QuodLib.IO
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
         /// </summary>
+        /// <param name="root">The directory to perform a nested scan on.</param>
+        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
+        /// <param name="file">Reports a <see cref="FileInfo"/></param>
+        /// <param name="finalDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
+        /// <param name="cancel"></param>
+        /// <returns></returns>
+        public static Task TraverseFilesAsync(string root, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<string> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+            => TraverseFilesAsync(root, Array.Empty<string>(), symbolicLink, file, finalDirectory, error, cancel);
+
+        /// <summary>
+        /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
+        /// </summary>
+        /// <param name="root">The directory to perform a nested scan on.</param>
+        /// <param name="skipSources">List of (sub-)directories to ignore</param>
+        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
+        /// <param name="file">Reports a <see cref="FileInfo"/></param>
+        /// <param name="finalDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
+        /// <param name="cancel"></param>
+        /// <returns></returns>
+        public static Task TraverseFilesAsync(string root, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<string> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+            => TraverseFilesAsync(new string[] { root }, skipSources, symbolicLink, file, finalDirectory, error, cancel);
+
+        /// <summary>
+        /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
+        /// </summary>
         /// <param name="sources">List of directories to scan</param>
         /// <param name="skipSources">List of (sub-)directories to ignore</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
         /// <param name="finalDirectory">Returns a directory that may have files, but has no sub-directories</param>
-        /// <param name="error">Reports an <see cref="ErrorModel"/></param>
+        /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
         public async static Task TraverseFilesAsync(IList<string> sources, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<string> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel) {
