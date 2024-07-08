@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.WinForms.Screens", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuodLib.Console", "QuodLib.Console\QuodLib.Console.csproj", "{3524E388-334A-4429-A665-76CA46B7E2BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuodLib.Avalonia", "QuodLib.Avalonia\QuodLib.Avalonia.csproj", "{6A7BF30F-B3A7-4D73-9360-B859CC9A7D2E}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuodLib.WinForms.Linq", "QuodLib.WinForms.Linq\QuodLib.WinForms.Linq.csproj", "{AC0B4E5E-9F65-4BE4-88CD-178DCBE2A03F}"
 EndProject
 Global
@@ -131,6 +133,10 @@ Global
 		{3524E388-334A-4429-A665-76CA46B7E2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3524E388-334A-4429-A665-76CA46B7E2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3524E388-334A-4429-A665-76CA46B7E2BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A7BF30F-B3A7-4D73-9360-B859CC9A7D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7BF30F-B3A7-4D73-9360-B859CC9A7D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7BF30F-B3A7-4D73-9360-B859CC9A7D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7BF30F-B3A7-4D73-9360-B859CC9A7D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC0B4E5E-9F65-4BE4-88CD-178DCBE2A03F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC0B4E5E-9F65-4BE4-88CD-178DCBE2A03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC0B4E5E-9F65-4BE4-88CD-178DCBE2A03F}.Release|Any CPU.ActiveCfg = Release|Any CPU
