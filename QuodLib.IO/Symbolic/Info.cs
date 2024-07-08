@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,38 @@ namespace QuodLib.IO.Symbolic {
         /// <returns></returns>
         public static SymbolicLinkType TryGet(string path, out SymbolicLink? link)
             => TryGet(path, out link, out _);
+
+        /// <summary>
+        /// Checks whether the <paramref name="info"/> defines a symbolic link. If so, returns a non-null <paramref name="link"/>.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="link"></param>
+        /// <returns></returns>
+        public static bool TryGet(FileInfo info, out SymbolicLink? link) {
+            if (!info.IsSymbolic()) {
+                link = null;
+                return false;
+            }
+
+            link = new SymbolicFileLink(info);
+            return true;
+        }
+
+        /// <summary>
+        /// Checks whether the <paramref name="info"/> defines a symbolic link. If so, returns a non-null <paramref name="link"/>.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="link"></param>
+        /// <returns></returns>
+        public static bool TryGet(DirectoryInfo info, out SymbolicLink? link) {
+            if (!info.IsSymbolic()) {
+                link = null;
+                return false;
+            }
+
+            link = new SymbolicDirectoryLink(info);
+            return true;
+        }
 
         /// <summary>
         /// Checks whether the <paramref name="path"/> is a symbolic link. If so, returns a non-null <paramref name="link"/>.
