@@ -81,26 +81,26 @@ namespace QuodLib.IO
 		/// <returns></returns>
 		public static List<string> GetAllSubdirectories(string rootDir, bool outputFullPath)
 		{
-			List<string> rtn = DirScanRecursive(rootDir);
+			List<string> rtn = new();
+			DirScanRecursive(rootDir, rtn);
 			if (!outputFullPath)
-				for (byte i = 0; i < rtn.Count(); i++)
-					rtn[i] = rtn[i].Replace(rootDir + "\\", "");
+				for (byte i = 0; i < rtn.Count; i++)
+					rtn[i] = rtn[i].Replace(rootDir + "\\", string.Empty);
 
 			return rtn;
 		}
+
 		/// <summary>
 		/// Recursively scan a directory for subdirectories.
 		/// </summary>
 		/// <param name="dir"></param>
 		/// <returns></returns>
-		private static List<string> DirScanRecursive(string dir)
+		private static void DirScanRecursive(string dir, List<string> output)
 		{
-			List<string> rtn = new List<string>();
 			foreach (string subdir in Directory.GetDirectories(dir)) {
-				rtn.Add(subdir);
-				rtn.AddRange(DirScanRecursive(subdir));
+				output.Add(subdir);
+				DirScanRecursive(subdir, output);
 			}
-			return rtn;
 		}
 
 		public static FileStream FileStream_FromFile(string fl)
