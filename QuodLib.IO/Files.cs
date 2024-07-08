@@ -110,7 +110,7 @@ namespace QuodLib.IO
 			return rtn;
 		}
 		/// <summary>
-		/// Recursively scan a directory for dubdirectories.
+		/// Recursively scan a directory for subdirectories.
 		/// </summary>
 		/// <param name="dir"></param>
 		/// <returns></returns>
