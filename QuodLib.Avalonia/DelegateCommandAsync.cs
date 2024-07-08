@@ -8,8 +8,15 @@ namespace QuodLib.Avalonia {
         private Func<object?, bool>? _canExecute;
         private Func<object?, Task> _execute;
         private bool _isExecuting;
+
+        /// <summary>
+        /// Occurs when the async command encounters an <see cref="Exception"/>.
+        /// </summary>
         public Action<Exception>? OnException { get; init; }
 
+        /// <summary>
+        /// Whether the async command is currently in the process of executing.
+        /// </summary>
         public bool IsExecuting {
             get => _isExecuting;
             set {
@@ -56,6 +63,13 @@ namespace QuodLib.Avalonia {
             IsExecuting = false;
         }
 
+        /// <summary>
+        /// Fires <see cref="CanExecuteChanged"/>, unless the command is already in the process of executing.
+        /// </summary>
+        /// <remarks>
+        /// See also <seealso cref="IsExecuting"/>.
+        /// </remarks>
+        /// 
         public void OnCanExecuteChanged() {
             if (IsExecuting)
                 return;
