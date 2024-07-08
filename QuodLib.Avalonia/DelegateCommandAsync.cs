@@ -5,8 +5,8 @@ namespace QuodLib.Avalonia {
     /// Accepts an async delegate and uses that for the command.
     /// </summary>
     public class DelegateCommandAsync : ICommand {
-        private Func<object?, bool>? _canExecute;
-        private Func<object?, Task> _execute;
+        private readonly Func<object?, bool>? _canExecute;
+        private readonly Func<object?, Task> _execute;
         private bool _isExecuting;
 
         /// <summary>
