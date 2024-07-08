@@ -134,6 +134,8 @@ namespace QuodLib.IO
 			public static string Music { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyMusic); } }
 			public static string Pics { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyPictures); } }
 			public static string Vids { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyVideos); } }
+
+			//Win-XP uses "Documents and Settings", Windows 7+ uses "AppData".
 			private static bool AppIsData { get { return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Contains("AppData"); } }
 			public static string AppData {
 				get {
