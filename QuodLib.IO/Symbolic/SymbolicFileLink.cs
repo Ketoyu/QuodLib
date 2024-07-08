@@ -8,9 +8,11 @@
         /// Info about the symbolic link.
         /// </summary>
         public FileInfo Info => (FileInfo)_info;
-        internal SymbolicFileLink(string path)
-        {
-            _info = new FileInfo(path);
+        internal SymbolicFileLink(string path) : this(new FileInfo(path))
+        { }
+
+        internal SymbolicFileLink(FileInfo info) {
+            _info = info;
             Destination = Info.LinkTarget!;
         }
 

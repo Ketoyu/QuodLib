@@ -154,6 +154,35 @@ namespace QuodLib.Linq
             return source[key];
         }
 
+        public static void Sort<TItem, TProperty>(this List<TItem> source, Func<TItem, TProperty> property)
+            where TProperty : IComparable<TProperty>
+                => source.Sort((item1, item2) => property(item1).CompareTo(property(item2)));
+
+        public static void SortDescending<TItem, TProperty>(this List<TItem> source, Func<TItem, TProperty> property)
+            where TProperty : IComparable<TProperty>
+                => source.Sort((item1, item2) => property(item1).CompareTo(property(item2)) * -1);
+
+        /// <summary>
+        /// Creates a <see cref="List{T}"/> from an <see cref="IEnumerable{T}"/>, after initializing a <see cref="List{T}.Capacity"/> to the specified <paramref name="capacity"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of source.</typeparam>
+        /// <param name="source">The System.Collections.Generic.IEnumerable`1 to create a <see cref="List{T}"/> from.</param>
+        /// <param name="capacity">The expected number of items, for initializing the <see cref="List{T}.Capacity"/>.</param>
+        /// <returns>A <see cref="List{T}"/> that contains elements from the input sequence.</returns>
+        /// <remarks><list type="bullet">
+        ///     <item>If the actual count is above the expected <paramref name="capacity"/>, then the <see cref="List{T}"/> will perform resize operations as normal.</item>
+        ///     <item>If the actual count is below the expected <paramref name="capacity"/>, then the <see cref="List{T}"/> will have a higher allocation than necessary.</item>
+        /// </list></remarks>
+        public static List<T> ToKnownList<T>(this IEnumerable<T> source, int capacity) {
+            List<T> items = new() {
+                Capacity = capacity
+            };
+            foreach (T item in source)
+                items.Add(item);
+
+            return items;
+        }
+
         public static IEnumerable<FieldInfo> Except<T>(this IEnumerable<FieldInfo> fields)
             => fields.Except(typeof(T).GetFields(), new EquatableSelectComparer<FieldInfo, string>(fi => fi.Name));
 
