@@ -26,12 +26,12 @@ namespace QuodLib.IO
         /// <param name="root">The directory to perform a nested scan on.</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="finalDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="leafDirectory">Returns a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
-        public static Task TraverseFilesAsync(string root, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
-            => TraverseFilesAsync(new string[] { root }, (Func<string, bool>?)null, symbolicLink, file, finalDirectory, error, cancel);
+        public static Task TraverseFilesAsync(string root, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+            => TraverseFilesAsync(new string[] { root }, (Func<string, bool>?)null, symbolicLink, file, leafDirectory, error, cancel);
 
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
@@ -40,12 +40,12 @@ namespace QuodLib.IO
         /// <param name="skipSources">List of (sub-)directories to ignore</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="finalDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="leafDirectory">Returns a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
-        public static Task TraverseFilesAsync(string root, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
-            => TraverseFilesAsync(new string[] { root }, subdir => skipSources.Contains(subdir), symbolicLink, file, finalDirectory, error, cancel);
+        public static Task TraverseFilesAsync(string root, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+            => TraverseFilesAsync(new string[] { root }, subdir => skipSources.Contains(subdir), symbolicLink, file, leafDirectory, error, cancel);
 
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
@@ -54,12 +54,12 @@ namespace QuodLib.IO
         /// <param name="skipSources">List of (sub-)directories to ignore</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="finalDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="leafDirectory">Returns a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
-        public static Task TraverseFilesAsync(IList<string> sources, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
-            => TraverseFilesAsync(sources, subdir => skipSources.Contains(subdir), symbolicLink, file, finalDirectory, error, cancel);
+        public static Task TraverseFilesAsync(IList<string> sources, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+            => TraverseFilesAsync(sources, subdir => skipSources.Contains(subdir), symbolicLink, file, leafDirectory, error, cancel);
 
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
@@ -68,11 +68,11 @@ namespace QuodLib.IO
         /// <param name="skipSubdirectory">Criteria for (sub-)directories to ignore</param>
         /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="finalDirectory">Returns a directory that may have files, but has no sub-directories</param>
+        /// <param name="leafDirectory">Returns a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
-        public async static Task TraverseFilesAsync(IList<string> sources, Func<string, bool>? skipSubdirectory, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel) {
+        public async static Task TraverseFilesAsync(IList<string> sources, Func<string, bool>? skipSubdirectory, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel) {
             Stack<string> stkDirs_init = new();
             IProgress<string> pinit = new Progress<string>().OnChange((_, dir) => stkDirs_init.Push(dir));
 
@@ -176,7 +176,7 @@ namespace QuodLib.IO
                     }
 
                     if (!hasSubdirs)
-                        finalDirectory.Report(rootInfo!);
+                        leafDirectory.Report(rootInfo!);
                 }
             }
         }
