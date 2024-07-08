@@ -30,7 +30,7 @@ namespace QuodLib.IO
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
-        public static Task TraverseFilesAsync(string root, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<string> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+        public static Task TraverseFilesAsync(string root, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
             => TraverseFilesAsync(root, Array.Empty<string>(), symbolicLink, file, finalDirectory, error, cancel);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace QuodLib.IO
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
-        public static Task TraverseFilesAsync(string root, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<string> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+        public static Task TraverseFilesAsync(string root, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
             => TraverseFilesAsync(new string[] { root }, skipSources, symbolicLink, file, finalDirectory, error, cancel);
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace QuodLib.IO
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
         /// <returns></returns>
-        public async static Task TraverseFilesAsync(IList<string> sources, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<string> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel) {
+        public async static Task TraverseFilesAsync(IList<string> sources, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> finalDirectory, IProgress<IOErrorModel> error, CancellationToken cancel) {
             Stack<string> stkDirs_init = new();
             IProgress<string> pinit = new Progress<string>().OnChange((_, dir) => stkDirs_init.Push(dir));
 
@@ -94,13 +94,16 @@ namespace QuodLib.IO
 
                     bool hasSubdirs = false;
                     string root = stkDir_root.Pop();
+                    DirectoryInfo? rootInfo = null;
 
                     //ignore
                     try {
                         if (skipSources.Contains(root))
                             continue;
 
-                        if (Info.TryGet(root, out SymbolicLink? link) != SymbolicLinkType.None) {
+                        rootInfo = new DirectoryInfo(root);
+
+                        if (Info.TryGet(rootInfo, out SymbolicLink? link)) {
                             symbolicLink?.Report(link!);
                             continue;
                         }
@@ -159,7 +162,7 @@ namespace QuodLib.IO
                     }
 
                     if (!hasSubdirs)
-                        finalDirectory.Report(root);
+                        finalDirectory.Report(rootInfo!);
                 }
             }
         }
