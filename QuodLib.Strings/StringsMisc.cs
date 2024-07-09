@@ -1,4 +1,6 @@
 
+using System;
+
 namespace QuodLib.Strings
 {
 	/// <summary>
@@ -9,75 +11,96 @@ namespace QuodLib.Strings
 		public static readonly string[] SizeNames_Bytes = new string[] {"  B", "KB", "MB", "GB", "TB"};
 		public static readonly string[] SizeNames_Common = new string[] {"", "K", "M", "B", "T", "Qd", "Qi", "S", "H", "O", "N"};
 
-		public static string Dbl_ToString(double num)
-		{
-			string sDbl = "" + num;
-			if (!sDbl.Contains("."))
-				sDbl += ".0";
-
-			return sDbl;
-		}
 		#region AddCommas_functions
-		public static string Num_AddCommas(int num)
-		{
-			return num.ToString("N1").Split('.')[0];
-		}
-		public static string Num_AddCommas(uint num)
-		{
-			return num.ToString("N1").Split('.')[0];
-		}
-		public static string Num_AddCommas(long num)
-		{
-			return num.ToString("N1").Split('.')[0];
-		}
-		public static string Num_AddCommas(ulong num)
-		{
-			return num.ToString("N1").Split('.')[0];
-		}
-		public static string Num_AddCommas(float num, byte decimals = 0)
-		{
-			if (decimals == 0) return num.ToString("N1").Split('.')[0];
+		public static string ToCommaString(this int num)
+			=> num.ToString("N1").Split('.')[0];
 
-			string rtn = Num_AddCommas(num);
-			string dec = "" + num;
-			if (dec.Contains("."))
-			{
-				dec = dec.Split('.')[1];
-				if (dec.Length > decimals) dec = dec.Substring(0, decimals);
-				rtn += "." + dec;
-			}
-			return rtn;
-		}
-		public static string Num_AddCommas(double num, byte decimals = 0)
-		{
-			if (decimals == 0) return num.ToString("N1").Split('.')[0];
+        public static string ToCommaString(this uint num)
+			=> num.ToString("N1").Split('.')[0];
 
-			string rtn = Num_AddCommas(num);
-			string dec = "" + num;
-			if (dec.Contains("."))
-			{
-				dec = dec.Split('.')[1];
-				if (dec.Length > decimals) dec = dec.Substring(0, decimals);
-				rtn += "." + dec;
-			}
-			return rtn;
-		}
-		public static string Num_AddCommas(decimal num, byte decimals = 0)
-		{
-			if (decimals == 0) return num.ToString("N1").Split('.')[0];
+        public static string ToCommaString(this long num)
+			=> num.ToString("N1").Split('.')[0];
 
-			string rtn = Num_AddCommas(num);
-			string dec = "" + num;
-			if (dec.Contains("."))
-			{
-				dec = dec.Split('.')[1];
-				if (dec.Length > decimals) dec = dec.Substring(0, decimals);
-				rtn += "." + dec;
-			}
-			return rtn;
-		}
-		#endregion //AddCommas_functions
-		public static string Size_Compress(long sze, short bs, byte len, string[] names, bool space) //todo: len[]
+        public static string ToCommaString(this ulong num)
+			=> num.ToString("N1").Split('.')[0];
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="decimals">The number of decimal-places to use (null for auto)</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static string ToCommaString(this float num, int? decimals = null)
+		{
+			if (decimals != null && decimals < 0)
+				throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be >= 0 ");
+
+            return ToCommaString(num.ToString("N1"), (int)decimals!);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="decimals">The number of decimal-places to use (null for auto)</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static string ToCommaString(this double num, byte? decimals = null)
+		{
+            if (decimals != null && decimals < 0)
+                throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be >= 0 ");
+
+            return ToCommaString(num.ToString("N1"), (int)decimals!);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="decimals">The number of decimal-places to use (null for auto)</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static string ToCommaString(this decimal num, byte? decimals = 0)
+		{
+            if (decimals != null && decimals < 0)
+                throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be >= 0 ");
+
+            return ToCommaString(num.ToString("N1"), (int)decimals!);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="formatted">(numerictype)<c>.ToString("N1")</c></param>
+        /// <param name="decimals">The number of decimal-places to use (null for auto)</param>
+        /// <returns></returns>
+        private static string ToCommaString(string formatted, int? decimals) {
+			if (!formatted.Contains('.'))
+				throw new ArgumentException(nameof(formatted), "String has not been numerically formatted; expected to contain '.'");
+
+            if (decimals == null) {
+                string rtn = formatted.RemoveTrailing('0');
+                if (rtn[^1] == '.')
+                    return rtn.Substring(0, rtn.Length - 1);
+            }
+
+            string[] sides = formatted.Split('.');
+
+            if (decimals == 0)
+                return sides[0];
+
+            if (sides[1].Length == decimals)
+                return $"{sides[0]}.{sides[1]}";
+
+            if (sides[1].Length > decimals)
+                return $"{sides[0]}.{sides[1].Substring(0, (int)decimals!)}";
+
+            return $"{sides[0]}.{sides[1].PadRight((int)decimals!, '0')}";
+        }
+
+        #endregion //AddCommas_functions
+        public static string Size_Compress(long sze, short bs, byte len, string[] names, bool space) //todo: len[]
 		{
 			if (sze == 0) return "0" + (space ? " " : "") + names[0];
 			if (len < 2) len = 2;
