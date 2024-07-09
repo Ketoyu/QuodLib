@@ -77,7 +77,7 @@ namespace QuodLib.Strings
         /// <returns></returns>
         private static string ToCommaString(string formatted, int? decimals) {
 			if (!formatted.Contains('.'))
-				throw new ArgumentException(nameof(formatted), "String has not been numerically formatted; expected to contain '.'");
+				throw new ArgumentException("String has not been numerically formatted; expected to contain '.'", nameof(formatted));
 
             if (decimals == null) {
                 string rtn = formatted.RemoveTrailing('0');
