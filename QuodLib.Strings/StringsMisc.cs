@@ -11,8 +11,14 @@ namespace QuodLib.Strings
 		public static readonly string[] SizeNames_Bytes = new string[] {"  B", "KB", "MB", "GB", "TB"};
 		public static readonly string[] SizeNames_Common = new string[] {"", "K", "M", "B", "T", "Qd", "Qi", "S", "H", "O", "N"};
 
-		#region AddCommas_functions
-		public static string ToCommaString(this int num)
+        #region AddCommas_functions
+        public static string ToCommaString(this short num)
+            => num.ToString("N1").Split('.')[0];
+
+        public static string ToCommaString(this ushort num)
+            => num.ToString("N1").Split('.')[0];
+
+        public static string ToCommaString(this int num)
 			=> num.ToString("N1").Split('.')[0];
 
         public static string ToCommaString(this uint num)
