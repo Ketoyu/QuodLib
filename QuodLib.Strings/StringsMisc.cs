@@ -34,7 +34,7 @@ namespace QuodLib.Strings
         public static string ToCommaString(this float num, int? decimals = null)
 		{
 			if (decimals != null && decimals < 0)
-				throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be >= 0 ");
+				throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be null or >= 0 ");
 
             return ToCommaString(num.ToString("N1"), (int)decimals!);
         }
@@ -49,7 +49,7 @@ namespace QuodLib.Strings
         public static string ToCommaString(this double num, byte? decimals = null)
 		{
             if (decimals != null && decimals < 0)
-                throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be >= 0 ");
+                throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be null or >= 0 ");
 
             return ToCommaString(num.ToString("N1"), (int)decimals!);
         }
@@ -64,7 +64,7 @@ namespace QuodLib.Strings
         public static string ToCommaString(this decimal num, byte? decimals = 0)
 		{
             if (decimals != null && decimals < 0)
-                throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be >= 0 ");
+                throw new ArgumentOutOfRangeException(nameof(decimals), $"{nameof(decimals)} must be null or >= 0 ");
 
             return ToCommaString(num.ToString("N1"), (int)decimals!);
         }
