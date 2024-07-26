@@ -100,7 +100,7 @@ namespace QuodLib.Linq
         /// <typeparam name="T"></typeparam>
         /// <param name="input"></param>
         /// <param name="value"></param>
-        public static void AddIfReal<T>(this List<T> input, T value) {
+        public static void AddIfReal<T>(this List<T> input, T? value) {
             if (value != null)
                 input.Add(value);
         }
