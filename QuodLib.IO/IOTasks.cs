@@ -1,5 +1,6 @@
 ﻿using IOCL;
 using QuodLib.IO.Symbolic;
+using System;
 
 namespace QuodLib.IO
 {
@@ -83,6 +84,21 @@ namespace QuodLib.IO
             /// </summary>
             public Func<FileNest, bool>? SkipNest { get; init; }
         }
+
+        /// <summary>
+        /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
+        /// </summary>
+        /// <param name="root">The directory to perform a nested scan on.</param>
+        /// <param name="skipOptions">Options for (sub-)directories to ignore or to not nest into</param>
+        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
+        /// <param name="file">Reports a <see cref="FileInfo"/></param>
+        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
+        /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
+        /// <param name="cancel"></param>
+        /// <returns></returns>
+        /// <remarks>Does not nest into <see cref="SymbolicLink"/>s.</remarks>
+        public static Task TraverseFilesAsync(string root, TraverseFilesAsyncSkipOptions? skipOptions, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
+            => TraverseFilesAsync(new string[] { root }, skipOptions, symbolicLink, file, leafDirectory, error, cancel);
 
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
