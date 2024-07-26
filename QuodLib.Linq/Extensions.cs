@@ -183,6 +183,40 @@ namespace QuodLib.Linq
             return items;
         }
 
+        /// <summary>
+        /// Creates a <see cref="Array"/> from an <see cref="IEnumerable{T}"/>, of size <paramref name="capacity"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of source.</typeparam>
+        /// <param name="source">The System.Collections.Generic.IEnumerable`1 to create a <see cref="Array"/> from.</param>
+        /// <param name="capacity">The expected number of items, for initializing the <see cref="Array"/>.</param>
+        /// <returns>An <see cref="Array"/> that contains elements from the input sequence.</returns>
+        /// <remarks>
+        /// Throws an <see cref="ArgumentException"/> if the number of items in <paramref name="source"/> does not match the provided <paramref name="capacity"/>.
+        /// </remarks>
+        /// <exception cref="ArgumentException" />
+        public static T[] ToKnownArray<T>(this IEnumerable<T> source, int capacity) {
+            if (source is T[] array)
+                return array;
+
+            if (source is List<T> list)
+                return list.ToArray();
+
+            T[] items = new T[capacity];
+            int i = 0;
+            foreach (T item in source) {
+                if (i > capacity - 1)
+                    throw new ArgumentException($"{nameof(source)} contained more items than {nameof(capacity)}", nameof(source));
+
+                items[i] = item;
+                i++;
+            }
+
+            if (i < capacity)
+                throw new ArgumentException($"{nameof(source)} contained fewer items than {nameof(capacity)}", nameof(source));
+
+            return items;
+        }
+
         public static IEnumerable<FieldInfo> Except<T>(this IEnumerable<FieldInfo> fields)
             => fields.Except(typeof(T).GetFields(), new EquatableSelectComparer<FieldInfo, string>(fi => fi.Name));
 
