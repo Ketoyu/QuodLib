@@ -12,12 +12,26 @@ namespace QuodLib.Console {
         public static void EraseLines(int goUp) {
             for (int i = 0; i < goUp && Console.CursorTop > 0; i++) {
                 Console.CursorLeft = 0;
-                for (byte j = 0; j < Console.BufferWidth - 1; j++)
-                    Console.Write(" ");
+                Console.Write(string.Empty.PadRight(Console.BufferWidth, ' '));
                 Console.CursorTop--;
             }
             Console.CursorLeft = 0;
             Console.Write("\b");
+        }
+
+        public static void COverwriteLine(int goUp, string ctext) {
+			if (goUp > Console.CursorTop)
+				goUp = Console.CursorTop;
+
+            Console.CursorTop -= goUp;
+            Console.CursorLeft = 0;
+            CWrite(ctext);
+			int length = CLine_GetRealLength(ctext);
+            Console.Write(string.Empty.PadRight(Console.BufferWidth - length, ' '));
+            Console.CursorLeft = length + 1;
+            Console.Write("\b");
+
+            Console.CursorTop += goUp;
         }
 
         private static int CLine_GetRealLength(string line)
@@ -39,6 +53,13 @@ namespace QuodLib.Console {
 			length[0] = texts[0].Length;
 			return length;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="line"></param>
+		/// <returns>string[] { realChars, coloringChars }</returns>
+		/// <exception cref="Exception"></exception>
 		private static string[] CLine_GetRealText(string line)
 		{
 			string[] rtn = new string[2];
