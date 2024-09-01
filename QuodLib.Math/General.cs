@@ -92,69 +92,87 @@ namespace QuodLib.Math {
 			=> (System.Math.Abs(target - value) / System.Math.Abs(target)) * 100;
 
 		/// <summary>
-		/// Returns a Boolean value 'True' if the Double 'num' is an Integer value and 'False' if 'num' contains a decimal.
+		/// Whether <paramref name="num"/> is a whole number.
 		/// </summary>
 		/// <param name="num"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
-		public static bool IntIs(double num)
-		{
-			return (System.Math.Floor(num) == num);
-		}
+		public static bool IsWhole(this double num)
+			=> System.Math.Floor(num) == num;
 
-		/// <summary>
-		/// Returns a rounded Integer value of the Double 'num'.
-		/// </summary>
-		/// <param name="num"></param>
-		/// <returns></returns>
-		/// <remarks></remarks>
-		public static int RInt(double num)
-		{
-			if ((num - System.Math.Floor(num)) >= 0.5)
-				return (int)System.Math.Floor(num);
-			else
-				return (int)System.Math.Ceiling(num);
-		}
+        /// <summary>
+		/// Whether <paramref name="num"/> is a whole number.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public static bool IsWhole(this float num)
+            => System.Math.Floor(num) == num;
 
-		/// <summary>
-		/// Returns a Integer value, rounded up from the Double 'num'.
-		/// </summary>
-		/// <param name="num"></param>
-		/// <returns></returns>
-		public static int CInt(double num)
-		{
-			return (int)System.Math.Ceiling(num);
-		}
+        /// <summary>
+		/// Whether <paramref name="num"/> is a whole number.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public static bool IsWhole(this decimal num)
+			=> System.Math.Floor(num) == num;
 
-		/// <summary>
-		/// Returns a Integer value, rounded down from the Double 'num'.
-		/// </summary>
-		/// <param name="num"></param>
-		/// <returns></returns>
-		public static int FInt(double num)
-		{
-			return (int)System.Math.Floor(num);
-		}
+        /// <summary>Returns a random integer that is within a specified <see cref="Range"/>.</summary>
+        /// <param name="range">The bounds of the random number returned.</param>
+		/// <param name="endInclusive">Whether to include the <see cref="Range.End"/> <i>(default <see cref="false"/>)</i>.</param>
+        /// <returns>
+        /// A 32-bit signed integer within the provided <paramref name="range"/>. If the <see cref="Range.Start"/> euqals the <see cref="Range.End"/> are equal, returns the <see cref="Range.Start"/>.
+        /// </returns>
+		public static int Next(this Random rand, Range range, bool endInclusive = false)
+			=> range.Start.Value != range.End.Value
+				? rand.Next(range.Start.Value, range.End.Value + (endInclusive ? 1 : 0))
+				: range.Start.Value;
 
-		/// <summary>
-		/// Returns a Long value, rounded down from the Decimal 'num'.
-		/// </summary>
-		/// <param name="num"></param>
-		/// <returns></returns>
-		public static long FLng(decimal num)
-		{
-			return (long)System.Math.Floor(num);
-		}
+        /// <summary>
+        /// Returns a rounded Integer value of the Double 'num'.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public static int RInt(double num)
+			=> (num - System.Math.Floor(num)) >= 0.5
+				? (int)System.Math.Floor(num)
+				: (int)System.Math.Ceiling(num);
 
-		// ~~~~~~~~ TODO: remove all Divis methods in favor of # % div. ~~~~~~~~
+        /// <summary>
+        /// Returns a Integer value, rounded up from the Double 'num'.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static int CInt(double num)
+			=> (int)System.Math.Ceiling(num);
 
-		/// <summary>
-		/// Returns a Boolean value of whether the Long 'num' is evenly divisible by the Long 'qt'.
-		/// </summary>
-		/// <param name="num"></param>
-		/// <param name="qt"></param>
-		/// <returns></returns>
-		public static bool Divis(long num, long qt)
+        /// <summary>
+        /// Returns a Integer value, rounded down from the Double 'num'.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static int FInt(double num)
+			=> (int)System.Math.Floor(num);
+
+        /// <summary>
+        /// Returns a Long value, rounded down from the Decimal 'num'.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static long FLng(decimal num)
+			=> (long)System.Math.Floor(num);
+
+        //TODO: remove all Divis methods in favor of # % div. ~~~~~~~~
+
+        /// <summary>
+        /// Returns a Boolean value of whether the Long 'num' is evenly divisible by the Long 'qt'.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="qt"></param>
+        /// <returns></returns>
+        public static bool Divis(long num, long qt)
 		{
 			//return (num % qt != qt);
 			return (num % qt == 0);
