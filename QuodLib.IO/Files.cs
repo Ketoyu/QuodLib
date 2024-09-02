@@ -51,8 +51,14 @@ namespace QuodLib.IO
 			if (src > dest)
 				File.Copy(source, destination, true);
 		}
+        public static void File_MoveIfNewer(string source, string destination) {
+            DateTime src = File.GetLastWriteTime(source),
+                dest = File.GetLastWriteTime(destination);
 
-		public static void File_ForceNewer(string source1, string source2)
+            if (src > dest)
+                File.Move(source, destination, true);
+        }
+        public static void File_ForceNewer(string source1, string source2)
 		{
 			DateTime src1 = File.GetLastWriteTime(source1),
 				src2 = File.GetLastWriteTime(source2);
