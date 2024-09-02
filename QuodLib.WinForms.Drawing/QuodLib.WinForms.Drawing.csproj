@@ -7,6 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWpf>true</UseWpf>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
