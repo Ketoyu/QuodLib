@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Drawing;
-using classMath = QuodLib.Math.General;
+using QuodLib.Math;
 using sMath = System.Math;
 
 namespace QuodLib.WinForms.Drawing
@@ -402,7 +402,7 @@ namespace QuodLib.WinForms.Drawing
 			if (allowFloats)
 			{
 				float dec = level - Math.General.FInt(level);
-				if (!(Math.General.IntIs(dec / 0.125)))
+				if (!(dec / 0.125).IsWhole())
 				{
 					throw new Exception("level must be a multiple of one eigth (0.125)!");
 				}
