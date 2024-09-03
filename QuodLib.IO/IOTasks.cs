@@ -31,7 +31,7 @@ namespace QuodLib.IO
             public IProgress<SymbolicLink>? SymbolicLink { get; init; }
 
             /// <summary>
-            /// Reports a directory that may have files, but has no sub-directoriesReports a directory that may have files, but has no sub-directories.
+            /// Reports a directory that may have files, but has no sub-directories.
             /// </summary>
             public IProgress<DirectoryInfo>? LeafDirectory { get; init; }
 
@@ -49,6 +49,9 @@ namespace QuodLib.IO
             /// </summary>
             public Func<FileNest, bool>? SkipNest { get; init; }
 
+            /// <summary>
+            /// Don't nest into these subdirectories.
+            /// </summary>
             private List<string>? SkipSources { get; set; }
 
             /// <summary>
