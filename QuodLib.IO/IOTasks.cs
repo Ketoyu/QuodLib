@@ -34,6 +34,7 @@ namespace QuodLib.IO
             /// Reports a directory that may have files, but has no sub-directoriesReports a directory that may have files, but has no sub-directories.
             /// </summary>
             public IProgress<DirectoryInfo>? LeafDirectory { get; init; }
+
             private Func<string, bool>? _skipSubdirectory;
             /// <summary>
             /// Don't nest into this subdirectory.
