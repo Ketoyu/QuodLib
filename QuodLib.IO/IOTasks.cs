@@ -60,7 +60,7 @@ namespace QuodLib.IO
                     SkipSources = new List<string>(sources);
                     _skipSubdirectory = _skipSubdirectory == null
                         ? subdir => SkipSources.Contains(subdir)
-                        : subdir => _skipSubdirectory(subdir) || sources.Contains(subdir);
+                        : subdir => _skipSubdirectory(subdir) || SkipSources.Contains(subdir);
                 } else
                     SkipSources.AddRange(sources);
 
