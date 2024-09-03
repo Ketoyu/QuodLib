@@ -22,104 +22,82 @@ namespace QuodLib.IO
         }
 
         /// <summary>
-        /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
+        /// Options for controlling the way that <see cref="TraverseFilesAsync(IList{string}, IProgress{FileInfo}, IProgress{IOErrorModel}, CancellationToken, TraverseFilesAsyncOptions?)"/> traverses through directories and reports information.
         /// </summary>
-        /// <param name="root">The directory to perform a nested scan on.</param>
-        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
-        /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
-        /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
-        /// <param name="cancel"></param>
-        /// <returns></returns>
-        /// <remarks>Does not nest into <see cref="SymbolicLink"/>s.</remarks>
-        public static Task TraverseFilesAsync(string root, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
-            => TraverseFilesAsync(new string[] { root }, (TraverseFilesAsyncSkipOptions?)null, symbolicLink, file, leafDirectory, error, cancel);
+        public class TraverseFilesAsyncOptions {
+            /// <summary>
+            /// Reports a <see cref="Symbolic.SymbolicLink"/>.
+            /// </summary>
+            public IProgress<SymbolicLink>? SymbolicLink { get; init; }
 
-        /// <summary>
-        /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
-        /// </summary>
-        /// <param name="root">The directory to perform a nested scan on.</param>
-        /// <param name="skipSources">List of (sub-)directories to ignore</param>
-        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
-        /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
-        /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
-        /// <param name="cancel"></param>
-        /// <returns></returns>
-        /// <remarks>Does not nest into <see cref="SymbolicLink"/>s.</remarks>
-        public static Task TraverseFilesAsync(string root, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
-            => TraverseFilesAsync(
-                new string[] { root }, 
-                new TraverseFilesAsyncSkipOptions { SkipSubdirectory = subdir => skipSources.Contains(subdir) }, 
-                symbolicLink, file, leafDirectory, error, cancel);
-
-        /// <summary>
-        /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
-        /// </summary>
-        /// <param name="sources">List of directories to scan</param>
-        /// <param name="skipSources">List of (sub-)directories to ignore</param>
-        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
-        /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
-        /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
-        /// <param name="cancel"></param>
-        /// <returns></returns>
-        /// <remarks>Does not nest into <see cref="SymbolicLink"/>s.</remarks>
-        public static Task TraverseFilesAsync(IList<string> sources, IList<string> skipSources, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
-            => TraverseFilesAsync(sources, 
-                new TraverseFilesAsyncSkipOptions { SkipSubdirectory = subdir => skipSources.Contains(subdir) }, 
-                symbolicLink, file, leafDirectory, error, cancel);
-
-        /// <summary>
-        /// Options for controlling the way that <see cref="TraverseFilesAsync(IList{string}, TraverseFilesAsyncSkipOptions?, IProgress{SymbolicLink}?, IProgress{FileInfo}, IProgress{DirectoryInfo}, IProgress{IOErrorModel}, CancellationToken)"/> traverses through directories.
-        /// </summary>
-        public class TraverseFilesAsyncSkipOptions {
+            /// <summary>
+            /// Reports a directory that may have files, but has no sub-directoriesReports a directory that may have files, but has no sub-directories.
+            /// </summary>
+            public IProgress<DirectoryInfo>? LeafDirectory { get; init; }
+            private Func<string, bool>? _skipSubdirectory;
             /// <summary>
             /// Don't nest into this subdirectory.
             /// </summary>
-            public Func<string, bool>? SkipSubdirectory { get; init; }
+            public Func<string, bool>? SkipSubdirectory {
+                get => _skipSubdirectory;
+                init => _skipSubdirectory = value;
+            }
 
             /// <summary>
             /// Given the files and subdirectories of the <b><i>current</i></b> directory, don't scan this level or nest further.
             /// </summary>
             public Func<FileNest, bool>? SkipNest { get; init; }
+
+            private List<string>? SkipSources { get; set; }
+
+            /// <summary>
+            /// Sets or augments <see cref="SkipSubdirectory"/> to check <paramref name="sources"/>.
+            /// </summary>
+            /// <param name="sources"></param>
+            public TraverseFilesAsyncOptions SkipSubdirectories(IList<string> sources) {
+                if (SkipSources == null) {
+                    SkipSources = new List<string>(sources);
+                    _skipSubdirectory = _skipSubdirectory == null
+                        ? subdir => SkipSources.Contains(subdir)
+                        : subdir => _skipSubdirectory(subdir) || sources.Contains(subdir);
+                } else
+                    SkipSources.AddRange(sources);
+
+                return this;
+            }
         }
 
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
         /// </summary>
         /// <param name="root">The directory to perform a nested scan on.</param>
-        /// <param name="skipOptions">Options for (sub-)directories to ignore or to not nest into</param>
-        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
         /// <remarks>Does not nest into <see cref="SymbolicLink"/>s.</remarks>
-        public static Task TraverseFilesAsync(string root, TraverseFilesAsyncSkipOptions? skipOptions, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel)
-            => TraverseFilesAsync(new string[] { root }, skipOptions, symbolicLink, file, leafDirectory, error, cancel);
+        public static Task TraverseFilesAsync(string root, IProgress<FileInfo> file, IProgress<IOErrorModel> error, CancellationToken cancel, TraverseFilesAsyncOptions? options = null)
+            => TraverseFilesAsync(new string[] { root }, file, error, cancel, options);
 
         /// <summary>
         /// Scans directories and sub-directories, reporting <see cref="FileInfo"/>s and directories that need copied.
         /// </summary>
         /// <param name="sources">List of directories to scan</param>
-        /// <param name="skipOptions">Options for (sub-)directories to ignore or to not nest into</param>
-        /// <param name="symbolicLink">Reports a <see cref="SymbolicLink"/></param>
         /// <param name="file">Reports a <see cref="FileInfo"/></param>
-        /// <param name="leafDirectory">Reports a directory that may have files, but has no sub-directories</param>
         /// <param name="error">Reports an <see cref="IOErrorModel"/></param>
         /// <param name="cancel"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
         /// <remarks>Does not nest into <see cref="SymbolicLink"/>s.</remarks>
-        public async static Task TraverseFilesAsync(IList<string> sources, TraverseFilesAsyncSkipOptions? skipOptions, IProgress<SymbolicLink>? symbolicLink, IProgress<FileInfo> file, IProgress<DirectoryInfo> leafDirectory, IProgress<IOErrorModel> error, CancellationToken cancel) {
+        public async static Task TraverseFilesAsync(IList<string> sources, IProgress<FileInfo> file, IProgress<IOErrorModel> error, CancellationToken cancel, TraverseFilesAsyncOptions? options = null) {
             Stack<string> stkDirs_init = new();
             IProgress<string> pinit = new Progress<string>().OnChange((_, dir) => stkDirs_init.Push(dir));
 
             await Parallel.ForEachAsync(sources, cancel, (dir, _) => {
                 try {
                     if (Info.TryGet(dir, out SymbolicLink? link) != SymbolicLinkType.None) {
-                        symbolicLink?.Report(link!);
+                        options?.SymbolicLink?.Report(link!);
                         return ValueTask.CompletedTask;
                     }
                 } catch (Exception ex) {
@@ -155,13 +133,13 @@ namespace QuodLib.IO
 
                     //ignore
                     try {
-                        if (skipOptions?.SkipSubdirectory?.Invoke(root) ?? false)
+                        if (options?.SkipSubdirectory?.Invoke(root) ?? false)
                             continue;
 
                         rootInfo = new DirectoryInfo(root);
 
                         if (Info.TryGet(rootInfo, out SymbolicLink? link)) {
-                            symbolicLink?.Report(link!);
+                            options?.SymbolicLink?.Report(link!);
                             continue;
                         }
 
@@ -173,7 +151,7 @@ namespace QuodLib.IO
                         continue;
                     }
 
-                    if (!skipOptions?.SkipNest?.Invoke(new FileNest {
+                    if (!options?.SkipNest?.Invoke(new FileNest {
                         Directory = rootInfo!,
                         Filepaths = files,
                         Subdirectories = subdirs
@@ -185,7 +163,7 @@ namespace QuodLib.IO
                                     FileInfo fI = new(fl);
 
                                     if (Info.TryGet(fI, out SymbolicLink? link))
-                                        symbolicLink?.Report(link!);
+                                        options?.SymbolicLink?.Report(link!);
                                     else
                                         file.Report(fI);
                                 } catch (Exception ex) {
@@ -205,11 +183,11 @@ namespace QuodLib.IO
                             await Parallel.ForEachAsync(subdirs, cancel, (subdir, _) => {
                                 //Ignore symbolic
                                 try {
-                                    if (skipOptions?.SkipSubdirectory?.Invoke(subdir) ?? false)
+                                    if (options?.SkipSubdirectory?.Invoke(subdir) ?? false)
                                         return ValueTask.CompletedTask;
 
                                     if (Info.TryGet(subdir, out SymbolicLink? link) != SymbolicLinkType.None) {
-                                        symbolicLink?.Report(link!);
+                                        options?.SymbolicLink?.Report(link!);
                                         return ValueTask.CompletedTask;
                                     } else {
                                         proot.Report(subdir);
@@ -227,7 +205,7 @@ namespace QuodLib.IO
                     }
 
                     if (!hasSubdirs)
-                        leafDirectory.Report(rootInfo!);
+                        options?.LeafDirectory?.Report(rootInfo!);
                 }
             }
         }
