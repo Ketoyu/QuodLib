@@ -146,50 +146,7 @@ namespace QuodLib.IO
 			public static string Sys { get { return Environment.GetFolderPath(Environment.SpecialFolder.System); } }
 			public static string Sys86 { get { return Environment.GetFolderPath(Environment.SpecialFolder.SystemX86); } }
 		}
-		public static class Serialization
-		{
-			/// <summary>
-			/// Convert the object to a serialized data string.
-			/// </summary>
-			/// <param name="obj"></param>
-			/// <returns></returns>
-			public static string Do(object obj)
-			{
-				MemoryStream stream = new MemoryStream();
-				BinaryFormatter format = new BinaryFormatter();
-
-				format.Serialize(stream, obj);
-				string serial = Convert.ToBase64String(stream.ToArray());
-
-				stream.Close();
-				return serial;
-			}
-			public static object Undo(string serial)
-			{
-				MemoryStream stream = new MemoryStream(Convert.FromBase64String(serial));
-				BinaryFormatter format = new BinaryFormatter();
-
-				object rtn = format.Deserialize(stream);
-
-				stream.Close();
-				return rtn;
-			}
-			public static object Undo(string serial, object example)
-			{
-				MemoryStream stream = new MemoryStream(Convert.FromBase64String(serial));
-				BinaryFormatter format = new BinaryFormatter();
-
-				object rtn = format.Deserialize(stream);
-				if (rtn.GetType() != example.GetType()) throw new Exception("Deserialized object of type \"" + rtn.GetType() + "\" not of type \"" + example.GetType() + "\".");
-				
-				stream.Close();
-				return rtn;
-			}
-		}
-
-		//public static string Dir_GetName(string dir) {
-		//	return dir.Split("\\")(dir.Split("\\"));
-		//}
+		
 
 		#region openFile
 		public static string TextFile_GetAllText(string filename)
