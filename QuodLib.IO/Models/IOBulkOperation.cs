@@ -55,12 +55,19 @@
 
                     pProg.Report(true);
                 } catch (Exception ex) {
-                    if (itm is DirectoryMapOperation opDir)
-                        error.Report(new(PathType.Folder, opDir.SourcePath, ex));
-                    else if (itm is FileOperation opFile)
-                        error.Report(new(PathType.File, opFile.SourcePath, ex));
-                    else
-                        throw new NotSupportedException(itm.GetType().Name);
+                    switch (itm) {
+                        case DirectoryMapOperation opDirMap:
+                            error.Report(new(PathType.Folder, opDirMap.SourcePath, ex));
+                            break;
+                        case FileOperation opFile:
+                            error.Report(new(PathType.File, opFile.SourcePath, ex));
+                            break;
+                        case DirectoryCreateOperation opDirCreate:
+                            error.Report(new(PathType.Folder, opDirCreate.TargetPath, ex));
+                            break;
+                        default:
+                            throw new NotSupportedException(itm.GetType().Name);
+                    }
 
                     pProg.Report(false);
                 }
