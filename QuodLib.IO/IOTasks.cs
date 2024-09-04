@@ -24,7 +24,7 @@ namespace QuodLib.IO
         /// <summary>
         /// Options for controlling the way that <see cref="TraverseFilesAsync(IList{string}, IProgress{FileInfo}, IProgress{IOErrorModel}, CancellationToken, TraverseFilesAsyncOptions?)"/> traverses through directories and reports information.
         /// </summary>
-        public class TraverseFilesAsyncOptions {
+        public sealed class TraverseFilesAsyncOptions {
             /// <summary>
             /// Reports a <see cref="Symbolic.SymbolicLink"/>.
             /// </summary>
