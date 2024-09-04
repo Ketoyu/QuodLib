@@ -44,16 +44,16 @@ namespace QuodLib.IO
 		}*/
 
         /// <summary>
-        /// Resolves the <paramref name="sourcePath"/> filepath minus the root drive or <paramref name="ignoreCommonDirectory"/>, into the <paramref name="targetDirectory"/>.
+        /// Resolves the <paramref name="sourcePath"/> filepath minus the root drive or <paramref name="relativeTo"/>, into the <paramref name="targetDirectory"/>.
         /// </summary>
         /// <param name="targetDirectory">The target directory</param>
         /// <param name="sourcePath">The source filepath</param>
-        /// <param name="ignoreCommonDirectory">The path to trim from the <paramref name="sourcePath"/></param>
+        /// <param name="relativeTo">The path to trim from the <paramref name="sourcePath"/></param>
         /// <returns>The updated destination</returns>
-        public static string ResolvePath(string targetDirectory, string sourcePath, string? ignoreCommonDirectory) {
+        public static string ResolvePath(string targetDirectory, string sourcePath, string? relativeTo) {
             string partialSource = Path.GetRelativePath(
-                    !string.IsNullOrEmpty(ignoreCommonDirectory) && sourcePath.StartsWith(ignoreCommonDirectory)
-                        ? ignoreCommonDirectory
+                    !string.IsNullOrEmpty(relativeTo) && sourcePath.StartsWith(relativeTo)
+                        ? relativeTo
                         : Path.GetPathRoot(sourcePath)!,
                     sourcePath);
 
