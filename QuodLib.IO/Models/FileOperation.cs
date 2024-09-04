@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace QuodLib.IO.Models {
+﻿namespace QuodLib.IO.Models {
     /// <summary>
     /// Pending instruction to copy or move a file.
     /// </summary>
