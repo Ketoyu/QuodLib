@@ -35,7 +35,7 @@ namespace QuodLib.WinForms.Objects.Puppeteers {
             }
         }
 
-        public PictureBoxButton(PictureBox puppet, Image normal, Image hover, Image pressed, Image? disabled) : base(puppet) {
+        public PictureBoxButton(PictureBox puppet, Image normal, Image hover, Image pressed, Image? disabled = null) : base(puppet) {
             Images = new() {
                 { ButtonState.Normal, normal },
                 { ButtonState.Hovered, hover },
