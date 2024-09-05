@@ -26,7 +26,7 @@ namespace QuodLib.WinForms.Objects.Puppeteers {
         }
 
         /// <summary>
-        /// Prevent recursion conflicts between this.Enabled.set and Puppet_EnabledChanged.
+        /// Prevent recursion conflicts between this.Enabled.set{} and Puppet_EnabledChanged().
         /// </summary>
         private bool Enabled_Locked = false;
 
