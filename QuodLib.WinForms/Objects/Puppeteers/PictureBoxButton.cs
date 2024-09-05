@@ -17,9 +17,18 @@ namespace QuodLib.WinForms.Objects.Puppeteers {
 
                 _enabled = value;
                 ButtonState = value ? ButtonState.Normal : ButtonState.Disabled;
-                Puppet.Enabled = value;
+                if (!Enabled_Locked) {
+                    Enabled_Locked = true;
+                    Puppet.Enabled = value;
+                    Enabled_Locked = false;
+                }
             } 
         }
+
+        /// <summary>
+        /// Prevent recursion conflicts between this.Enabled.set and Puppet_EnabledChanged.
+        /// </summary>
+        private bool Enabled_Locked = false;
 
         protected Dictionary<ButtonState, Image> Images { get; init; }
         private ButtonState _buttonState;
@@ -55,6 +64,16 @@ namespace QuodLib.WinForms.Objects.Puppeteers {
             puppet.MouseEnter += Puppet_MouseEnter;
             puppet.MouseLeave += Puppet_MouseLeave;
             puppet.MouseUp += Puppet_MouseUp;
+            puppet.EnabledChanged += Puppet_EnabledChanged;
+        }
+
+        private void Puppet_EnabledChanged(object? sender, EventArgs e) {
+            if (Enabled_Locked)
+                return;
+            
+            Enabled_Locked = true;
+            Enabled = Puppet.Enabled;
+            Enabled_Locked = false;
         }
 
         private void Puppet_MouseUp(object? sender, MouseEventArgs e) {
