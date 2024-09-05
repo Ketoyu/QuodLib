@@ -14,21 +14,26 @@ namespace QuodLib.WinForms.Objects
 {
 	public partial class GButton : CHoverable
 	{
-		protected Image Normal { get; set;}
-		protected Image Hovered { get; set; }
-		protected Image Pressed { get; set; }
+		protected Dictionary<ButtonState, Image> Images { get; init; }
+        private ButtonState _buttonState;
+        public ButtonState ButtonState { get => _buttonState; protected set => _buttonState = value; }
+        public override Image Image
+			=> Images[ButtonState];
+
         public bool Calibrate = false;
 
-		private GButton(int width, int height)
+        private GButton(int width, int height)
 		{
 			Width = width;
 			Height = height;
 		}
 		public GButton(Image sheet, bool vertical, int width, int height) : this(width, height)
 		{
-			Normal = new Bitmap(Width, Height);
-			Hovered = new Bitmap(Width, Height);
-			Pressed = new Bitmap(Width, Height);
+			Images = new() {
+				{ ButtonState.Normal, new Bitmap(Width, Height) },
+				{ ButtonState.Hovered, new Bitmap(Width, Height) },
+				{ ButtonState.Pressed, new Bitmap(Width, Height) }
+			};
 			Restyle(sheet, vertical);
 		}
 		public GButton(Image normal, Image hovered, Image pressed, int width, int height) : this(width, height)
@@ -38,7 +43,7 @@ namespace QuodLib.WinForms.Objects
 
 		public void Restyle(Image sheet, bool vertical)
 		{
-			Image[] phases = new[] {Normal, Hovered, Pressed};
+			ButtonState[] states = new[] { ButtonState.Normal, ButtonState.Hovered, ButtonState.Pressed };
             int w = sheet.Width / (vertical ? 1 : 3),
 				h = sheet.Height / (vertical ? 3 : 1);
 
@@ -46,7 +51,7 @@ namespace QuodLib.WinForms.Objects
                         
             for (byte i = 0; i < 3; i++)
             {
-                Graphics G = Graphics.FromImage(phases[i]);
+                Graphics G = Graphics.FromImage(Images[states[i]]);
                 G.DrawImage(sheet, dest, new Rectangle ( (vertical ? 0 : w*i), (vertical ? h*i : 0), w, h), GraphicsUnit.Pixel);
 				G.Dispose();
             }
@@ -54,24 +59,19 @@ namespace QuodLib.WinForms.Objects
 		}
 		public void Restyle(Image normal, Image hovered, Image pressed)
 		{
-			this.Normal = normal;
-			this.Hovered = hovered;
-			this.Pressed = pressed;
+			Images[ButtonState.Normal] = normal;
+			Images[ButtonState.Hovered] = hovered;
+			Images[ButtonState.Pressed] = pressed;
 			Redraw();
 		}
 		public override void Redraw()
 		{
-			switch (State) {
-				case MouseState.Normal:
-					Image = Normal;
-					break;
-				case MouseState.Hovered:
-					Image = Hovered;
-					break;
-				case MouseState.Pressed:
-					Image = Pressed;
-					break;
-			}
+			ButtonState = State switch {
+				MouseState.Normal => ButtonState.Normal,
+				MouseState.Hovered => ButtonState.Hovered,
+				MouseState.Pressed => ButtonState.Pressed,
+				_ => _buttonState
+			};
 		}
 		public void Resize(int width, int height)
 		{
@@ -97,6 +97,6 @@ namespace QuodLib.WinForms.Objects
 		/// </summary>
 		/// <returns></returns>
         public GButton CloneByImage()
-			=> new(Normal, Hovered, Pressed, this.Width, this.Height);
+			=> new(Images[ButtonState.Normal], Images[ButtonState.Hovered], Images[ButtonState.Pressed], this.Width, this.Height);
     } // </class>
 }

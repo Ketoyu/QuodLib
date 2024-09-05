@@ -8,7 +8,7 @@ using Point = System.Drawing.Point;
 using Form = System.Windows.Forms.Form;
 using QuodLib.Objects;
 
-namespace QuodLib.WinForms.Objects
+namespace QuodLib.WinForms.Objects.Puppeteers
 {
     /// <summary>
     /// An instanced object for tracking how the mouse interacts with a Windows Form. Includes functions and flags that handle such things as mouse-dragging and relative position.
@@ -19,64 +19,64 @@ namespace QuodLib.WinForms.Objects
         /// The Windows Form that the MouseStatus is most concerned with.
         /// </summary>
         //public Form Puppet {get; private set;}
-            
+
         private Point MousePosition
-            => System.Windows.Forms.Control.MousePosition;
+            => Control.MousePosition;
 
         #region Booleans
-		/// <summary>
-		/// Whether [this] object is allowed to change the parent Form's position.
-		/// </summary>
-		public bool AllowDragging = true;
-		/// <summary>
-		/// Whether the mouse is currently within the [parent] Form.
-		/// </summary>
-		public bool IsInForm
-            => (RelativePosition.X >= 0 &&
+        /// <summary>
+        /// Whether [this] object is allowed to change the parent Form's position.
+        /// </summary>
+        public bool AllowDragging = true;
+        /// <summary>
+        /// Whether the mouse is currently within the [parent] Form.
+        /// </summary>
+        public bool IsInForm
+            => RelativePosition.X >= 0 &&
                 RelativePosition.Y >= 0 &&
                 RelativePosition.X < Puppet.Width &&
-                RelativePosition.Y < Puppet.Height);
-			
+                RelativePosition.Y < Puppet.Height;
+
         /// <summary>
         /// Whether the mouse is currently held down.
         /// </summary>
-        public bool IsDown {get; private set;}
+        public bool IsDown { get; private set; }
         /// <summary>
         /// Whether the dragging process {is ready / has initiated}.
         /// </summary>
-        public bool IsDragging {get; private set;}
+        public bool IsDragging { get; private set; }
         /// <summary>
         /// Whether the mouse has dragged since the most recent MouseDown() event. Lingers after the MouseUp() event.
         /// </summary>
-        public bool HasDragged {get; private set;}
+        public bool HasDragged { get; private set; }
         /// <summary>
         /// Whether the relative mouse position has changed.
         /// </summary>
         public bool Relative_HasChanged
-            => !( RelativePosition.X == RelativeOrigin.X || RelativePosition.Y == RelativeOrigin.Y );
-            
+            => !(RelativePosition.X == RelativeOrigin.X || RelativePosition.Y == RelativeOrigin.Y);
+
         /// <summary>
         /// Set true by the MouseUp event if "Dragging" was true during its call.
         /// Set false by the MouseDown event regardless during its call.
         /// </summary>
-        public bool Form_HasMoved {get; private set;}
+        public bool Form_HasMoved { get; private set; }
         #endregion //Booleans
 
         #region Positions
         /// <summary>
         /// The literal origin of the mouse at the start of dragging.
         /// </summary>
-        public Point MouseOrigin {get; private set;}
+        public Point MouseOrigin { get; private set; }
         /// <summary>
         /// The origin of the Form at the start of dragging.
         /// </summary>
-        public Point FormOrigin {get; private set;}
+        public Point FormOrigin { get; private set; }
         /// <summary>
         /// The relative origin of the mouse at the start of dragging.
         /// </summary>
         public Point RelativeOrigin
             => new Point(MouseOrigin.X - FormOrigin.X, MouseOrigin.Y - FormOrigin.Y);
-            
+
         /// <summary>
         /// The position of the mouse, relative to the Form.
         /// </summary>
@@ -109,7 +109,7 @@ namespace QuodLib.WinForms.Objects
         {
             IsDown = false;
             IsDragging = false;
-            Form_HasMoved = (Puppet.Location != FormOrigin);
+            Form_HasMoved = Puppet.Location != FormOrigin;
             Puppet.Refresh();
         }
         /// <summary>
@@ -120,16 +120,20 @@ namespace QuodLib.WinForms.Objects
         {
             if (!IsDown) return;
 
-            if (IsDragging) {
-                if (Relative_HasChanged) {
+            if (IsDragging)
+            {
+                if (Relative_HasChanged)
+                {
                     HasDragged = true;
                     Puppet.Location = new Point(MousePosition.X - RelativeOrigin.X, MousePosition.Y - RelativeOrigin.Y);
                 }
-            } else if (AllowDragging) {
-				IsDragging = true;
-				FormOrigin = Puppet.Location;
-				MouseOrigin = MousePosition;
-			}
+            }
+            else if (AllowDragging)
+            {
+                IsDragging = true;
+                FormOrigin = Puppet.Location;
+                MouseOrigin = MousePosition;
+            }
         }
     } // </MouseStatus>
 }

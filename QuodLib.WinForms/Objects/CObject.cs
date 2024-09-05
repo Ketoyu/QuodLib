@@ -32,7 +32,7 @@ namespace QuodLib.WinForms.Objects
         /// <summary>
         /// The Image depicting [this] object.
         /// </summary>
-        public Image Image { get; protected set; }
+        public virtual Image Image { get; protected set; }
 
 		/// <summary>
 		/// Part of [this] object's dimensions.
