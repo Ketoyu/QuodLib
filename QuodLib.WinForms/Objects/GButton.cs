@@ -16,7 +16,10 @@ namespace QuodLib.WinForms.Objects
 	{
 		protected Dictionary<ButtonState, Image> Images { get; init; }
         private ButtonState _buttonState;
-        public ButtonState ButtonState { get => _buttonState; protected set => _buttonState = value; }
+        public ButtonState ButtonState {
+			get => _buttonState;
+			protected set => _buttonState = value;
+		}
         public override Image Image
 			=> Images[ButtonState];
 
@@ -72,6 +75,7 @@ namespace QuodLib.WinForms.Objects
 				MouseState.Pressed => ButtonState.Pressed,
 				_ => _buttonState
 			};
+			Image = Images[ButtonState];
 		}
 		public void Resize(int width, int height)
 		{
