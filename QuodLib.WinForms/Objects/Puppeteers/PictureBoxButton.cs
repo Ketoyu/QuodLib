@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 
 namespace QuodLib.WinForms.Objects.Puppeteers {
+    /// <summary>
+    /// <see cref="Puppeteer{P}"/> for styling a <see cref="PictureBox"/> as an interactive button.
+    /// </summary>
     public class PictureBoxButton : Puppeteer<PictureBox> {
         private bool _enabled;
         public bool Enabled {
