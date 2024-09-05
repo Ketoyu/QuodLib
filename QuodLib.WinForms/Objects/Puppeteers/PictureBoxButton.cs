@@ -60,6 +60,11 @@ namespace QuodLib.WinForms.Objects.Puppeteers {
             Enabled = puppet.Enabled;
         }
 
+        protected PictureBoxButton(PictureBox puppet, Dictionary<ButtonState, Image> images) : base(puppet) {
+            Images = images;
+            Enabled = puppet.Enabled;
+        }
+
         protected override void AttachPuppet(PictureBox puppet) {
             base.AttachPuppet(puppet);
 
@@ -105,6 +110,14 @@ namespace QuodLib.WinForms.Objects.Puppeteers {
                 return;
 
             ButtonState = ButtonState.Pressed;
+        }
+
+        public PictureBoxButton CloneStyle(PictureBox newPuppet, bool styleByReference = true) {
+            if (styleByReference)
+                return new PictureBoxButton(newPuppet, Images);
+
+            _ = Images.TryGetValue(ButtonState.Disabled, out Image? disabled);
+            return new PictureBoxButton(newPuppet, Images[ButtonState.Normal], Images[ButtonState.Hovered], Images[ButtonState.Pressed], disabled);
         }
     }
 }
