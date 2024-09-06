@@ -26,7 +26,7 @@
         /// <param name="cancel"></param>
         /// <returns></returns>
         /// <exception cref="NotSupportedException"></exception>
-        public async Task RunParallelAsync(IProgress<IOProgressModel?> progress, IProgress<IOErrorModel> error, CancellationToken cancel) {
+        public async Task RunParallelAsync(IProgress<IOProgressModel> progress, IProgress<IOErrorModel> error, CancellationToken cancel) {
             long sizeDestination = 0;
             long countDestination = 0;
             IProgress<long> pDest = new Progress<long>().OnChange((_, add) => {
