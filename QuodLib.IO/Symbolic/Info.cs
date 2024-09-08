@@ -124,11 +124,16 @@ namespace QuodLib.IO.Symbolic {
             (bool isDir_source, bool sourceExists, sourceAttributes) = isDir(sourcePath);
             (bool isDir_target, bool targetExists, targetAttributes) = isDir(expectedTarget);
 
-            if (isDir_source !=  isDir_target)
+            if (isDir_source != isDir_target)
                 throw new ArgumentException($"Expected {nameof(sourcePath)} and {nameof(expectedTarget)} to both be files or both be directories.");
 
-            SymbolicLinkType linkType = TryGet(sourcePath, out link, out FileAttributes sourceFA);
-            sourceAttributes = sourceFA;
+            SymbolicLinkType linkType;
+            if (sourceExists)
+                 linkType = TryGet(sourcePath, out link, out _);
+            else {
+                link = null;
+                linkType = SymbolicLinkType.None;
+            }
 
             if (link != null) {
                 status = link.Target != expectedTarget
