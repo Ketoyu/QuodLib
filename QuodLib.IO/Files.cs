@@ -228,20 +228,6 @@ namespace QuodLib.IO
 		//}
 
 		#region openFile
-		public static string TextFile_GetAllText(string filename)
-		{
-			StreamReader rd = new StreamReader(filename);
-			string rtn = rd.ReadToEnd();
-			rd.Close();
-			return rtn;
-		}
-		public static void TextFile_Overwrite(string filename, string data)
-		{
-			StreamWriter wrt = new StreamWriter(filename);
-			wrt.Write(data);
-			wrt.Flush();
-			wrt.Close();
-		}
 		/// <summary>
 		/// Appends the text in a file.
 		/// </summary>
@@ -249,11 +235,9 @@ namespace QuodLib.IO
 		/// <param name="data">The text to send; it is recommended to prefix it with a new-line character</param>
 		public static void TextFile_Append(string filename, string data)
 		{
-			string pdata = (File.Exists(filename) ? TextFile_GetAllText(filename) : "");
-			StreamWriter wrt = new StreamWriter(filename);
+			string pdata = (File.Exists(filename) ? File.ReadAllText(filename) : "");
+			using StreamWriter wrt = new(filename);
 			wrt.Write(pdata + data);
-			wrt.Flush();
-			wrt.Close();
 		}
 		#endregion //openFile
 	}
