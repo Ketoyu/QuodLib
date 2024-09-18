@@ -255,46 +255,6 @@ namespace QuodLib.IO
 			wrt.Flush();
 			wrt.Close();
 		}
-		public static Dictionary<string, string> IniFile_GetSettings(string filename)
-		{
-			string[] entries = TextFile_GetAllText(filename).Replace("\r\n", "\n").Split('\n');
-			Dictionary<string, string> rtn = new Dictionary<string, string>();
-			foreach (string entry in entries)
-				if (entry != "") {
-					string[] splEnt = entry.Split('=');
-					rtn.Add(splEnt[0], splEnt[1]);
-				}
-
-			return rtn;
-		}
-		public static void IniFile_SendSettings(Dictionary<string, string> settings, string filename)
-		{
-			StreamWriter wrt = new StreamWriter(filename);
-			foreach (string key in settings.Keys)
-				wrt.WriteLine(key + "=" + settings[key]);
-
-			wrt.Close();
-		}
-		public static void IniFile_UpdateSetting(string key, string value, string filename, bool WriteIfNotFound)
-		{
-			Dictionary<string, string> settings = IniFile_GetSettings(filename);
-			if (settings.ContainsKey(key))
-				settings[key] = value;
-			else {
-				if (WriteIfNotFound) settings.Add(key, value);
-					else throw new Exception("Error: Key \"" + key + "\" not found in \"" + filename.Split("\n", -1) + "\".");
-			}
-			IniFile_SendSettings(settings, filename);
-		}
-		public static void IniFile_RemoveSetting(string key, string filename, bool ignoreAlreadyMissing)
-		{
-			Dictionary<string, string> settings = IniFile_GetSettings(filename);
-			if (settings.ContainsKey(key))
-				settings.Remove(key);
-			else if (!ignoreAlreadyMissing) throw new Exception("Error: Key \"" + key + "\" not found in \"" + filename.Split("\n", -1) + "\".");
-			
-			IniFile_SendSettings(settings, filename);
-		}
 		#endregion //openFile
 	}
 }
