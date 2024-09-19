@@ -19,7 +19,7 @@
         }
 
         /// <summary>
-        /// Extension for adding several <see cref="ListViewGroup"/>s to a <see cref="ListView"/>.
+        /// A fluid method for adding several <see cref="ListViewGroup"/>s to a <see cref="ListView"/>.
         /// </summary>
         /// <param name="parent"></param>
         /// <param name="groups"></param>
@@ -33,9 +33,11 @@
         /// </list>
         /// </remarks>
         /// <returns></returns>
-        public static void AddGroups(this ListView parent, IEnumerable<ListViewGroup> groups) {
+        public static ListView AddGroups(this ListView parent, IEnumerable<ListViewGroup> groups) {
             foreach (var group in groups)
                 parent.Groups.Add(group);
+
+            return parent;
         }
 
         /// <summary>
