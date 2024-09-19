@@ -19,6 +19,26 @@
         }
 
         /// <summary>
+        /// Extension for adding several <see cref="ListViewGroup"/>s to a <see cref="ListView"/>.
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="groups"></param>
+        /// <remarks>
+        /// <list type="bullet">
+        ///     <item>See also <see cref="ListView"/></item>
+        ///     <item>See also <see cref="ListViewGroup"/></item>
+        ///     <item>See also <see cref="ListView.Groups"/></item>
+        ///     <item>See also <see cref="ListViewGroupCollection.Add(ListViewGroup)"/></item>
+        ///     <item>See also <see cref="ListViewGroupCollection.AddRange(ListViewGroup[])"/></item>
+        /// </list>
+        /// </remarks>
+        /// <returns></returns>
+        public static void AddGroups(this ListView parent, IEnumerable<ListViewGroup> groups) {
+            foreach (var group in groups)
+                parent.Groups.Add(group);
+        }
+
+        /// <summary>
         /// A fluid method for adding items to a <see cref="ListViewGroup"/>.
         /// </summary>
         /// <param name="group"></param>
