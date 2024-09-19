@@ -23,5 +23,25 @@ namespace QuodLib.WinForms.Linq.Extensions {
             parent.DropDownItems.AddRange(items);
             return parent;
         }
+
+        /// <summary>
+        /// A fluid method for adding items to a <see cref="ListViewGroup"/>.
+        /// </summary>
+        /// <param name="group"></param>
+        /// <param name="items"></param>
+        /// <remarks>
+        /// <list type="bullet">
+        ///     <item>See also <see cref="ListViewItem"/></item>
+        ///     <item>See also <see cref="ListViewGroup"/></item>
+        ///     <item>See also <see cref="ListView.ListViewItemCollection.Add(ListViewItem)"/></item>
+        ///     <item>See also <see cref="ListView.ListViewItemCollection.AddRange(ListViewItem[])"/></item>
+        /// </list>
+        /// </remarks>
+        /// <returns></returns>
+        public static ListViewGroup AddItems(this ListViewGroup group, IEnumerable<ListViewItem> items) {
+            foreach (var item in items)
+                group.Items.Add(item);
+            return group;
+        }
     }
 }
