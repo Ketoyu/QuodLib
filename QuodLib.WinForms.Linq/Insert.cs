@@ -1,5 +1,7 @@
-﻿namespace QuodLib.WinForms.Linq.Extensions.Collections {
-    public static class Insert {
+﻿namespace QuodLib.WinForms.Linq
+{
+    public static class Insert
+    {
         /// <summary>
         /// A fluid method for adding sub-items to a <see cref="ToolStripMenuItem"/>.
         /// </summary>
@@ -13,7 +15,8 @@
         /// </list>
         /// </remarks>
         /// <returns></returns>
-        public static ToolStripMenuItem AddSubitems(this ToolStripMenuItem parent, params ToolStripMenuItem[] items) {
+        public static ToolStripMenuItem AddSubitems(this ToolStripMenuItem parent, params ToolStripMenuItem[] items)
+        {
             parent.DropDownItems.AddRange(items);
             return parent;
         }
@@ -33,7 +36,8 @@
         /// </list>
         /// </remarks>
         /// <returns></returns>
-        public static ListView AddGroups(this ListView parent, IEnumerable<ListViewGroup> groups) {
+        public static ListView AddGroups(this ListView parent, IEnumerable<ListViewGroup> groups)
+        {
             foreach (var group in groups)
                 parent.Groups.Add(group);
 
@@ -54,7 +58,8 @@
         /// </list>
         /// </remarks>
         /// <returns></returns>
-        public static ListViewGroup AddItems(this ListViewGroup group, IEnumerable<ListViewItem> items) {
+        public static ListViewGroup AddItems(this ListViewGroup group, IEnumerable<ListViewItem> items)
+        {
             foreach (var item in items)
                 group.Items.Add(item);
             return group;

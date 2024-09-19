@@ -1,4 +1,4 @@
-﻿namespace QuodLib.WinForms.Linq.Extensions.Collections
+﻿namespace QuodLib.WinForms.Linq
 {
     public static class Convert
     {
