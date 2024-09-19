@@ -1,5 +1,7 @@
-﻿namespace QuodLib.WinForms.Linq.Extensions {
-    public static class Collections {
+﻿namespace QuodLib.WinForms.Linq.Extensions.Collections
+{
+    public static class Convert
+    {
         /// <summary>
         /// Performs an <see cref="Enumerable.Cast{TResult}(System.Collections.IEnumerable)"/> on the <paramref name="source"/>.
         /// </summary>

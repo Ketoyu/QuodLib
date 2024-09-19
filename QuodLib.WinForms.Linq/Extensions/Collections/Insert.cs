@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuodLib.WinForms.Linq.Extensions {
-    public static class Nested {
+﻿namespace QuodLib.WinForms.Linq.Extensions.Collections {
+    public static class Insert {
         /// <summary>
         /// A fluid method for adding sub-items to a <see cref="ToolStripMenuItem"/>.
         /// </summary>
