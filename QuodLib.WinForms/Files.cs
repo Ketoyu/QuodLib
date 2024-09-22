@@ -1,103 +1,140 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-//using System.Text;
+﻿//using System.Text;
 //using System.Threading.Tasks;
 
-using System.Drawing;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 using DialogResult = System.Windows.Forms.DialogResult;
+using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 //using WinMusicProperties = Windows.Storage.FileProperties.MusicProperties;
 //using StorageFile = Windows.Storage.StorageFile;
 //using Windows.Foundation;
 
 namespace QuodLib.WinForms {
-	public static class Files
-	{
-		public static Image Image_FromFileSafely(string fl)
-		{
-			FileStream fs = new FileStream(fl, FileMode.Open);
-			Image img = Image.FromStream(fs);
-			fs.Close();
-			fs.Dispose();
-			return img;
-		}
+    public static class Files {
+        public const string ExtensionFilter_AllFiles = "All files (*.*)|*.*";
 
-		public static Icon Exe_ToIcon(string fl)
-			=> Icon.ExtractAssociatedIcon(fl);
-		public static void Exe_ExtractIconTo(string flExe, string flIco)
-		{
-			Exe_ToIcon(flExe).Save(new System.IO.FileStream(flIco, System.IO.FileMode.CreateNew));
-		}
-		public static Bitmap Exe_ToBitmap(string fl)
-			=> Icon.ExtractAssociatedIcon(fl).ToBitmap();
+        public static Image Image_FromFileSafely(string filepath) {
+            using FileStream fs = new(filepath, FileMode.Open);
+            Image img = Image.FromStream(fs);
+            return img;
+        }
 
-		public static void Exe_ExtractBitmapTo(string flExe, string flBMP)
-		{
-			Exe_ToBitmap(flExe).Save(flBMP);
-		}
+        public static Icon? Exe_ToIcon(string filepath)
+            => Icon.ExtractAssociatedIcon(filepath);
+        public static bool Exe_ExtractIconTo(string filepathExe, string filepathIco) {
+            Icon? icon = Exe_ToIcon(filepathExe);
+            if (icon == null)
+                return false;
 
-		#region openFile
-		public static string OpenFile()
-			=> OpenFile("ALL files", "*.*", "Open file");
+            using FileStream file = new(filepathIco, FileMode.CreateNew);
+            icon.Save(file);
+            return true;
+        }
 
-		public static string OpenFile(string typeName, string[] extensions, string title)
-			=> OpenFile(typeName, extListToExt(extensions), title);
+        public static Bitmap? Exe_ToBitmap(string filepath)
+            => Icon.ExtractAssociatedIcon(filepath)?.ToBitmap();
 
-		public static string OpenFile(string typeName, string[] extensions, string title, string initDir)
-			=> OpenFile(typeName, extListToExt(extensions), title, initDir);
+        public static bool Exe_ExtractBitmapTo(string filepathExe, string filepathBmp) {
+            Bitmap? bitmap = Exe_ToBitmap(filepathExe);
+            bitmap?.Save(filepathBmp);
+            return bitmap != null;
+        }
 
-		public static string OpenFile(string typeName, string extension, string title)
-			=> OpenFile(typeName, extension, title, "");
+        #region openFile
+        /// <summary>
+        /// Builds a <see cref="FileDialog.Filter"/>.
+        /// </summary>
+        /// <param name="filters">
+        /// <code>
+        /// {
+        ///     { "Description1", [ ".ext1, ".ext2" ] }, 
+        ///     { "Description2", [ ".ext3", ".ext4" ] }
+        /// }
+        /// </code>
+        /// </param>
+        public static string BuildExtensionFilter(Dictionary<string, string[]> filters)
+            => string.Join('|', filters.Select(pair => BuildExtensionFilter(pair.Key, pair.Value)));
 
-		public static string OpenFile(string typeName, string extension, string title, string initDir)
-		{
-			System.Windows.Forms.OpenFileDialog opn = new System.Windows.Forms.OpenFileDialog();
-			opn.Title = title;
+        /// <summary>
+        /// Builds a <see cref="FileDialog.Filter"/>.
+        /// </summary>
+        /// <param name="filters">
+        /// <code>
+        /// {
+        ///     { "Description1", { ".ext1, ".ext2" } }, 
+        ///     { "Description2", { ".ext3", ".ext4" } }
+        /// }
+        /// </code>
+        /// </param>
+        public static string BuildExtensionFilter(IEnumerable<KeyValuePair<string, IEnumerable<string>>> filters)
+            => string.Join('|', filters.Select(pair => BuildExtensionFilter(pair.Key, pair.Value)));
 
-			if (extension == "") extension = "*.*";
-			if (!extension.Contains("*")) extension = "*." + extension;
-			opn.Filter = typeName + " (" + extension + ") | " + extension;
-			
-			if (initDir != "") opn.InitialDirectory = initDir;
-			opn.ShowDialog();
-			return opn.FileName;
-		}
-		public static string OpenFolder(string initDir = "")
-		{
-			FolderBrowserDialog fld = new FolderBrowserDialog();
-			if (initDir != "") fld.SelectedPath = initDir;
-			DialogResult res = fld.ShowDialog();
-			if (res == DialogResult.Yes || res == DialogResult.OK) return fld.SelectedPath;
+        /// <summary>
+        /// Builds a <see cref="FileDialog.Filter"/>.
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="extensions"><code>{ ".ext1", ".ext2" }</code></param>
+        /// <returns></returns>
+        public static string BuildExtensionFilter(string description, IEnumerable<string> extensions) {
+            string list = JoinExtensions(extensions, true);
+            return $"{description} ({list})|{list}";
+        }
 
-			fld.Dispose();
-			return null;
-		}
-		public static string SaveFile(string typeName, string extension, string title, string initDir = "")
-		{
-			System.Windows.Forms.SaveFileDialog sv = new System.Windows.Forms.SaveFileDialog();
-			sv.Title = title;
+        private static string JoinExtensions(IEnumerable<string> extensions, bool hasDot) {
+            if (hasDot)
+                return $"*{string.Join(";*", extensions)}";
 
-			if (extension == "") extension = "*.*";
-			if (!extension.Contains("*")) extension = "*." + extension;
-			sv.Filter = typeName + " (" + extension + ") | " + extension;
-			
-			if (initDir != "") sv.InitialDirectory = initDir;
-			sv.ShowDialog();
-			return sv.FileName;
-		}
+            return $"*.{string.Join(";*.", extensions)}";
+        }
 
-		private static string extListToExt(string[] extensions)
-		{
-			string rtn = "*.";
-			for (byte i = 0; i < extensions.Length; i++) {
-				if (i > 0) rtn += ";*.";
-			   rtn += extensions[i];
-			}
-			return rtn;
-		}
-		#endregion //openFile
-	}
+        /// <summary>
+        /// Runs the <paramref name="dialog"/> and outputs the result.
+        /// </summary>
+        /// <param name="dialog"></param>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        /// <remarks>
+        ///     <list type="bullet">
+        ///         <item>See also <see cref="BuildExtensionFilter(string, IEnumerable{string})"/></item>
+        ///         <item>See also <see cref="BuildExtensionFilter(Dictionary{string, string[]})"/></item>
+        ///         <item>See also <see cref="BuildExtensionFilter(IEnumerable{KeyValuePair{string, IEnumerable{string}}})"/></item>
+        ///         <item>See also <see cref="ExtensionFilter_AllFiles"/></item>
+        ///     </list>
+        /// </remarks>
+        public static bool TryBrowseFile(FileDialog dialog, out string? filepath) {
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.Yes || result == DialogResult.OK) {
+                filepath = dialog.FileName;
+                return true;
+            }
+
+            filepath = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Runs the <paramref name="dialog"/> and outputs the result.
+        /// </summary>
+        /// <param name="dialog"></param>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        /// <remarks>
+        ///     <list type="bullet">
+        ///         <item>See also <see cref="BuildExtensionFilter(string, IEnumerable{string})"/></item>
+        ///         <item>See also <see cref="BuildExtensionFilter(Dictionary{string, string[]})"/></item>
+        ///         <item>See also <see cref="BuildExtensionFilter(IEnumerable{KeyValuePair{string, IEnumerable{string}}})"/></item>
+        ///         <item>See also <see cref="ExtensionFilter_AllFiles"/></item>
+        ///     </list>
+        /// </remarks>
+        public static bool TryBrowseFolder(FolderBrowserDialog dialog, out string? filepath) {
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.Yes || result == DialogResult.OK) {
+                filepath = dialog.SelectedPath;
+                return true;
+            }
+
+            filepath = null;
+            return false;
+        }
+
+        #endregion //openFile
+    }
 }
