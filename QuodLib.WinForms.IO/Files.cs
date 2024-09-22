@@ -7,7 +7,7 @@ using FolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 //using StorageFile = Windows.Storage.StorageFile;
 //using Windows.Foundation;
 
-namespace QuodLib.WinForms {
+namespace QuodLib.WinForms.IO {
     public static class Files {
         public const string ExtensionFilter_AllFiles = "All files (*.*)|*.*";
 
