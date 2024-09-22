@@ -78,6 +78,16 @@ namespace QuodLib.WinForms.IO {
             return $"{description} ({list})|{list}";
         }
 
+        /// <summary>
+        /// Builds a <see cref="FileDialog.Filter"/>.
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="extension"><code>".ext"</code></param>
+        /// <returns></returns>
+        public static string BuildExtensionFilter(string description, string extension) {
+            return $"{description} (*{extension})|*{extension}";
+        }
+
         private static string JoinExtensions(IEnumerable<string> extensions, bool hasDot) {
             if (hasDot)
                 return $"*{string.Join(";*", extensions)}";
