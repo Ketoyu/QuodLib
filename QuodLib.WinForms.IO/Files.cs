@@ -109,7 +109,7 @@ namespace QuodLib.WinForms.IO {
         ///         <item>See also <see cref="ExtensionFilter_AllFiles"/></item>
         ///     </list>
         /// </remarks>
-        public static bool TryBrowseFile(FileDialog dialog, out string? filepath) {
+        public static bool TryBrowse(this FileDialog dialog, out string? filepath) {
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.Yes || result == DialogResult.OK) {
                 filepath = dialog.FileName;
@@ -134,7 +134,7 @@ namespace QuodLib.WinForms.IO {
         ///         <item>See also <see cref="ExtensionFilter_AllFiles"/></item>
         ///     </list>
         /// </remarks>
-        public static bool TryBrowseFolder(FolderBrowserDialog dialog, out string? filepath) {
+        public static bool TryBrowse(this FolderBrowserDialog dialog, out string? filepath) {
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.Yes || result == DialogResult.OK) {
                 filepath = dialog.SelectedPath;
