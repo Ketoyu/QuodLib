@@ -1,7 +1,5 @@
-﻿using System.IO;
-using IODirectory = System.IO.Directory;
-using IOFile = System.IO.File;
-using IOPath = System.IO.Path;
+﻿using IODirectory = System.IO.Directory;
+using System.IO;
 
 namespace QuodLib.IO.Config {
     /// <summary>
@@ -20,12 +18,12 @@ namespace QuodLib.IO.Config {
         /// <param name="directory"></param>
         /// <remarks>
         ///     Replaces invalid characters with underscores.<br />
-        ///     See also <see cref="IOPath.GetInvalidPathChars"/>
+        ///     See also <see cref="Path.GetInvalidPathChars"/>
         /// </remarks>
         public RoutableConfig(string directory) {
-            string file = IOPath.Combine(directory, @"reroute.ini");
+            string file = Path.Combine(directory, @"reroute.ini");
 
-            bool exists = IOFile.Exists(file);
+            bool exists = File.Exists(file);
 
             if (exists && Ini.Load(file).TryGetValue("Path", out string? dir_) && !string.IsNullOrEmpty(dir_)) {
                 IODirectory.CreateDirectory(dir_);
@@ -48,7 +46,7 @@ namespace QuodLib.IO.Config {
         /// <param name="directory"></param>
         /// <param name="subPath"></param>
         protected RoutableConfig(string directory, string subPath) : this(directory) {
-            Directory = IOPath.Combine(Directory, subPath);
+            Directory = Path.Combine(Directory, subPath);
         }
     }
 }
