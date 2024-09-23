@@ -26,14 +26,14 @@
             switch (Operation) {
                 case FileOperationType.Copy:
                     if (Overwrite == OverwriteOption.IfNewer)
-                        Files.File_CopyIfNewer(SourcePath, TargetPath);
+                        Files.CopyIfNewer(SourcePath, TargetPath);
                     else
                         File.Copy(SourcePath, TargetPath, Overwrite == OverwriteOption.Yes);
                     return;
 
                 case FileOperationType.Move:
                     if (Overwrite == OverwriteOption.IfNewer)
-                        Files.File_MoveIfNewer(SourcePath, TargetPath);
+                        Files.MoveIfNewer(SourcePath, TargetPath);
                     else
                         File.Move(SourcePath, TargetPath, Overwrite == OverwriteOption.Yes);
                     return;

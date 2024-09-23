@@ -1,4 +1,4 @@
-﻿namespace QuodLib.IO {
+﻿namespace QuodLib.IO.Models {
     public enum PathType {
         File,
         Folder

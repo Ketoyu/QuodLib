@@ -1,4 +1,5 @@
-﻿namespace QuodLib.IO.Models {
+﻿namespace QuodLib.IO.Models
+{
     /// <summary>
     /// A collection of <see cref="IOOperation"/>s to be run.
     /// </summary>
