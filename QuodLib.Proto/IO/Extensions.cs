@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuodLib.IO.IOStorage {
+namespace QuodLib.Proto.IO {
     public static class Extensions {
         public static byte[] Serialize<T>(this T data) where T : class, IProto {
             using var ms = new MemoryStream();
