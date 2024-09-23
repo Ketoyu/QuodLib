@@ -14,14 +14,14 @@
 
         internal SymbolicDirectoryLink(DirectoryInfo info) {
             _info = info;
-            Destination = Info.LinkTarget!;
+            Target = Info.LinkTarget!;
         }
 
         /// <summary>
-        /// Checks whether the <see cref="Destination"/> exists.
+        /// Gets the <see cref="SymbolicLink.LinkStatus"/> of this link.
         /// </summary>
         /// <returns></returns>
-        public override bool IsBroken()
-            => Directory.Exists(Destination);
+        public override LinkStatus GetStatus()
+            => SymbolicLink.BuildStatus(true, true, Directory.Exists(Target));
     }
 }

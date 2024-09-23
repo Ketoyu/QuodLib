@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-//using System.Text;
+﻿//using System.Text;
 //using System.Threading.Tasks;
 
-using System.Drawing;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 //using WinMusicProperties = Windows.Storage.FileProperties.MusicProperties;
 //using StorageFile = Windows.Storage.StorageFile;
 //using Windows.Foundation;
 
-namespace QuodLib.IO
-{
-	public static class Files
-	{
-		/*public class MusicProperties
+namespace QuodLib.IO {
+    public static class Files {
+        /*public class MusicProperties
 		{
 			Windows.Storage.SystemMusicProperties properties;
 			public string Artist, Album, AlbumArtist, TrackNumber, Album_TrackCount, Year;
@@ -42,203 +34,44 @@ namespace QuodLib.IO
 				}
 			}
 		}*/
-		public static readonly char[] ILLEGAL_CHARS = {'/', ':', '*', '?', '\"', '<', '>', '|'};
-		public static string Filename_GetPath(string filename)
-		{
-			return filename.Substring(0, filename.LastIndexOf('\\'));
-		}
-		public static string Filename_WithoutPath(string filename)
-		{
-			return filename.Substring(filename.LastIndexOf('\\') + 1);
-		}
-		public static string Filename_GetExtension(string filename)
-		{
-			string temp = Filename_WithoutPath(filename);
-			if (!temp.Contains('.')) return "";
-			return temp.Substring(temp.LastIndexOf('.') + 1);
-		}
-		public static string Filename_WithoutExtension(string filename)
-		{
-			return filename.Substring(0, filename.LastIndexOf('.'));
-		}
-		public static string Filename_WithoutPathOrExtension(string filename)
-		{
-			return Filename_WithoutExtension(Filename_WithoutPath(filename));
-		}
-		public static void File_CopyIfNewer(string source, string destination)
-		{
-			DateTime src = File.GetLastWriteTime(source),
-				dest = File.GetLastWriteTime(destination);
-			if (src > dest) File.Copy(source, destination, true);
-		}
-        public static void File_MoveIfNewer(string source, string destination) {
+
+        public static void CopyIfNewer(string source, string destination) {
+            DateTime src = File.GetLastWriteTime(source),
+                dest = File.GetLastWriteTime(destination);
+
+            if (src > dest)
+                File.Copy(source, destination, true);
+        }
+        public static void MoveIfNewer(string source, string destination) {
             DateTime src = File.GetLastWriteTime(source),
                 dest = File.GetLastWriteTime(destination);
 
             if (src > dest)
                 File.Move(source, destination, true);
         }
-        public static void File_ForceNewer(string source1, string source2)
-		{
-			DateTime src1 = File.GetLastWriteTime(source1),
-				src2 = File.GetLastWriteTime(source2);
-			
-			if (src1 > src2)
-				File.Copy(source1, source2, true);
-			else if (src1 < src2)
-				File.Copy(source2, source1, true);
+        public static void ForceNewer(string source1, string source2) {
+            DateTime src1 = File.GetLastWriteTime(source1),
+                src2 = File.GetLastWriteTime(source2);
 
-			//else: the date is the same, don't waste the write-times.
-		}
-		public static string DirName_WithoutPath(string path)
-			=> path.Substring(path.LastIndexOf('\\') + 1);
+            if (src1 > src2)
+                File.Copy(source1, source2, true);
+            else if (src1 < src2)
+                File.Copy(source2, source1, true);
 
-		/// <summary>
-		/// Gets all immediate and nested subdirectories within <paramref name="rootDir"/>.
-		/// </summary>
-		/// <param name="rootDir"></param>
-		/// <returns></returns>
-		public static List<string> GetAllSubdirectories(string rootDir)
-			=> GetAllSubdirectories(rootDir, true);
+            //else: the date is the same, don't waste the write-times.
+        }
 
-		/// <summary>
-		/// Gets all immediate and nested subdirectories within <paramref name="rootDir"/>.
-		/// </summary>
-		/// <param name="rootDir"></param>
-		/// <param name="outputFullPath"></param>
-		/// <returns></returns>
-		public static List<string> GetAllSubdirectories(string rootDir, bool outputFullPath)
-		{
-			List<string> rtn = DirScanRecursive(rootDir);
-			if (!outputFullPath)
-				for (byte i = 0; i < rtn.Count(); i++)
-					rtn[i] = rtn[i].Replace(rootDir + "\\", "");
-
-			return rtn;
-		}
-		/// <summary>
-		/// Recursively scan a directory for dubdirectories.
-		/// </summary>
-		/// <param name="dir"></param>
-		/// <returns></returns>
-		private static List<string> DirScanRecursive(string dir)
-		{
-			List<string> rtn = new List<string>();
-			foreach (string subdir in Directory.GetDirectories(dir)) {
-				rtn.Add(subdir);
-				rtn.AddRange(DirScanRecursive(subdir));
-			}
-			return rtn;
-		}
-		/// <summary>
-		/// Creates <paramref name="dir"/> if that directory does not exist; does nothing otherwise.
-		/// </summary>
-		/// <param name="dir"></param>
-		/// <returns>False if the directory tried and failed to be created, True otherwise.</returns>
-		public static bool Dir_MakeIfNotExist(string dir)
-		{
-			if (Directory.Exists(dir))
-				return true;
-
-			try {
-				Directory.CreateDirectory(dir);
-				return true;
-			} catch (Exception) {
-				return false;
-			}
-		}
-		public static FileStream FileStream_FromFile(string fl)
-			=> new FileStream(fl, FileMode.Open);
-
-		public static class GetDir
-		{
-			public static string User { get { return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile); } }
-			public static string Docs { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); } }
-			public static string Music { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyMusic); } }
-			public static string Pics { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyPictures); } }
-			public static string Vids { get { return Environment.GetFolderPath(Environment.SpecialFolder.MyVideos); } }
-			private static bool AppIsData { get { return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Contains("AppData"); } }
-			public static string AppData {
-				get {
-					if (AppIsData)
-						return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).Replace("\\Roaming", "");
-
-					return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-				}
-			}
-			public static string AppRom {
-				get {
-					if (AppIsData)
-						return AppData + "\\Roaming";
-
-					return AppData;
-				}
-			}
-			public static string AppLoc { get { return AppRom.Replace("\\Roaming", "\\Local"); } }
-			public static string AppLocLow { get { return AppRom.Replace("\\Roaming", "\\LocalLow"); } }
-			public static string PFiles { get { return Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles); } }
-			public static string PFiles86 { get { return Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86); } }
-			public static string Win { get { return Environment.GetFolderPath(Environment.SpecialFolder.Windows); } }
-			public static string Sys { get { return Environment.GetFolderPath(Environment.SpecialFolder.System); } }
-			public static string Sys86 { get { return Environment.GetFolderPath(Environment.SpecialFolder.SystemX86); } }
-		}
-		public static class Serialization
-		{
-			/// <summary>
-			/// Convert the object to a serialized data string.
-			/// </summary>
-			/// <param name="obj"></param>
-			/// <returns></returns>
-			public static string Do(object obj)
-			{
-				MemoryStream stream = new MemoryStream();
-				BinaryFormatter format = new BinaryFormatter();
-
-				format.Serialize(stream, obj);
-				string serial = Convert.ToBase64String(stream.ToArray());
-
-				stream.Close();
-				return serial;
-			}
-			public static object Undo(string serial)
-			{
-				MemoryStream stream = new MemoryStream(Convert.FromBase64String(serial));
-				BinaryFormatter format = new BinaryFormatter();
-
-				object rtn = format.Deserialize(stream);
-
-				stream.Close();
-				return rtn;
-			}
-			public static object Undo(string serial, object example)
-			{
-				MemoryStream stream = new MemoryStream(Convert.FromBase64String(serial));
-				BinaryFormatter format = new BinaryFormatter();
-
-				object rtn = format.Deserialize(stream);
-				if (rtn.GetType() != example.GetType()) throw new Exception("Deserialized object of type \"" + rtn.GetType() + "\" not of type \"" + example.GetType() + "\".");
-				
-				stream.Close();
-				return rtn;
-			}
-		}
-
-		//public static string Dir_GetName(string dir) {
-		//	return dir.Split("\\")(dir.Split("\\"));
-		//}
-
-		#region openFile
-		/// <summary>
-		/// Appends the text in a file.
-		/// </summary>
-		/// <param name="filename"></param>
-		/// <param name="data">The text to send; it is recommended to prefix it with a new-line character</param>
-		public static void TextFile_Append(string filename, string data)
-		{
-			string pdata = (File.Exists(filename) ? File.ReadAllText(filename) : "");
-			using StreamWriter wrt = new(filename);
-			wrt.Write(pdata + data);
-		}
-		#endregion //openFile
-	}
+        #region openFile
+        /// <summary>
+        /// Appends the text in a file.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="data">The text to send; it is recommended to prefix it with a new-line character</param>
+        public static void TextFile_Append(string filename, string data) {
+            string pdata = (File.Exists(filename) ? File.ReadAllText(filename) : "");
+            using StreamWriter wrt = new(filename);
+            wrt.Write(pdata + data);
+        }
+        #endregion //openFile
+    }
 }

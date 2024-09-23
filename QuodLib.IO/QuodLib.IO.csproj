@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\QuodLib.Proto\QuodLib.Proto.csproj" />
+    <ProjectReference Include="..\QuodLib.Strings\QuodLib.Strings.csproj" />
   </ItemGroup>
 
 </Project>
