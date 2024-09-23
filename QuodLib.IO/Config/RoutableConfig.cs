@@ -8,7 +8,7 @@ namespace QuodLib.IO.Config {
     /// outputs the effective directory to <see cref="Directory"/>. Creates the file if it does not exist.
     /// </summary>
     public class RoutableConfig {
-        protected string Directory { get; }
+        public string Directory { get; protected init; }
 
         public RoutableConfig(string publisher, string programName) {
             string path = IOPath.Combine(
