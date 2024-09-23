@@ -16,7 +16,7 @@ namespace QuodLib.IO.Config {
                     string.Join('_', publisher.Split(IOPath.GetInvalidPathChars()))
                 );
 
-            string file = IOPath.Combine(path, @"\reroute.ini");
+            string file = IOPath.Combine(path, @"reroute.ini");
 
             if (!IOFile.Exists(file)) {
                 Ini.Save(new Dictionary<string, string>() {
