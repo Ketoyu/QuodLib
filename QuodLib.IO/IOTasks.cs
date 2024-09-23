@@ -21,6 +21,18 @@ namespace QuodLib.IO
         }
 
         /// <summary>
+        /// A fluid implementation of adding <paramref name="progressChanged"/> to <see cref="Progress{T}.ProgressChanged"/> of <paramref name="progress"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="progress">The <see cref="Progress{T}"/> to affect.</param>
+        /// <param name="progressChanged">The <see cref="Action{TEventArgs}"/> to attach.</param>
+        /// <returns></returns>
+        public static Progress<T> OnChange<T>(this Progress<T> progress, Action<T> progressChanged) {
+            progress.ProgressChanged += (_, data) => progressChanged(data);
+            return progress;
+        }
+
+        /// <summary>
         /// Options for controlling the way that <see cref="TraverseFilesAsync(IList{string}, IProgress{FileInfo}, IProgress{IOErrorModel}, CancellationToken, TraverseFilesAsyncOptions?)"/> traverses through directories and reports information.
         /// </summary>
         public sealed class TraverseFilesAsyncOptions {
