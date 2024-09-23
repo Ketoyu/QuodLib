@@ -51,6 +51,7 @@ namespace QuodLib.IO.Config {
         ///     Replaces invalid characters with underscores.
         ///     <list type="bullet">
         ///         <item>See also <see cref="Environment.SpecialFolder.MyDocuments"/></item>
+        ///         <item>See also <see cref="Environment.GetFolderPath(Environment.SpecialFolder)"/></item>
         ///         <item>See also <see cref="IOPath.GetInvalidPathChars"/></item>
         ///     </list>
         /// </remarks>
@@ -72,6 +73,7 @@ namespace QuodLib.IO.Config {
         ///     Replaces invalid characters with underscores.
         ///     <list type="bullet">
         ///         <item>See also <see cref="Environment.SpecialFolder.MyDocuments"/></item>
+        ///         <item>See also <see cref="Environment.GetFolderPath(Environment.SpecialFolder)"/></item>
         ///         <item>See also <see cref="IOPath.GetInvalidPathChars"/></item>
         ///     </list>
         /// </remarks>
@@ -88,6 +90,7 @@ namespace QuodLib.IO.Config {
         ///     Replaces invalid characters with underscores.
         ///     <list type="bullet">
         ///         <item>See also <see cref="Environment.SpecialFolder.MyDocuments"/></item>
+        ///         <item>See also <see cref="Environment.GetFolderPath(Environment.SpecialFolder)"/></item>
         ///         <item>See also <see cref="IOPath.GetInvalidPathChars"/></item>
         ///     </list>
         /// </remarks>
@@ -103,6 +106,7 @@ namespace QuodLib.IO.Config {
         ///     Replaces invalid characters with underscores.
         ///     <list type="bullet">
         ///         <item>See also <see cref="Environment.SpecialFolder.MyDocuments"/></item>
+        ///         <item>See also <see cref="Environment.GetFolderPath(Environment.SpecialFolder)"/></item>
         ///         <item>See also <see cref="IOPath.GetInvalidPathChars"/></item>
         ///     </list>
         /// </remarks>
