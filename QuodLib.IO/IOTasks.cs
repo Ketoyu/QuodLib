@@ -125,7 +125,7 @@ namespace QuodLib.IO
             });
 
             Stack<string> stkDir_root = new();
-            IProgress<string> proot = new Progress<string>().OnChange((dir_, dir) => stkDir_root.Push(dir));
+            IProgress<string> proot = new Progress<string>().OnChange((_, dir) => stkDir_root.Push(dir));
 
             //nested dir-list
             while (stkDirs_init.Any()) {
