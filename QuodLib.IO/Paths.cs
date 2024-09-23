@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace QuodLib.IO {
     public static class Paths {
@@ -22,5 +18,11 @@ namespace QuodLib.IO {
 
             return Path.Combine(targetDirectory, partialSource);
         }
+
+        public static string ReplaceInvalidPathChars(string folderName, char replacement = '_')
+            => string.Join(replacement, folderName.Split(Path.GetInvalidPathChars()));
+
+        public static string ReplaceInvalidFileNameChars(string folderName, char replacement = '_')
+            => string.Join(replacement, folderName.Split(Path.GetInvalidFileNameChars()));
     }
 }

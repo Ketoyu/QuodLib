@@ -43,77 +43,12 @@ namespace QuodLib.IO.Config {
         }
 
         /// <summary>
-        /// Rerouts via <code>$"{MyDocuments}\{<paramref name="publisher"/>}\reroute.ini"</code> and sets the <see cref="Directory"/> to <code>$"{routedDirectory}\{<paramref name="programName"/>}"</code>
+        /// Rerouts via <code>$"{<paramref name="directory"/>}\reroute.ini"</code> and sets the <see cref="Directory"/> to <code>$"{routedDirectory}\{<paramref name="subPath"/>}"</code>
         /// </summary>
-        /// <param name="publisher"></param>
-        /// <param name="programName"></param>
-        /// <remarks>
-        ///     Replaces invalid characters with underscores.
-        ///     <list type="bullet">
-        ///         <item>See also <see cref="Environment.SpecialFolder.MyDocuments"/></item>
-        ///         <item>See also <see cref="Environment.GetFolderPath(Environment.SpecialFolder)"/></item>
-        ///         <item>See also <see cref="IOPath.GetInvalidPathChars"/></item>
-        ///     </list>
-        /// </remarks>
-        protected RoutableConfig(string publisher, string programName) : this(MyDocuments(publisher)) {
-            //At this point Directory is "...\Documents\{publisher}\reroute.ini"
-
-            Directory = IOPath.Combine(
-                Directory, 
-                string.Join('_', programName.Split(IOPath.GetInvalidPathChars()))
-            );
+        /// <param name="directory"></param>
+        /// <param name="subPath"></param>
+        protected RoutableConfig(string directory, string subPath) : this(directory) {
+            Directory = IOPath.Combine(Directory, subPath);
         }
-
-        /// <summary>
-        /// Rerouts via <code>$"{MyDocuments}\{<paramref name="folderName"/>}\reroute.ini"</code>
-        /// </summary>
-        /// <param name="folderName"></param>
-        /// <returns></returns>
-        /// <remarks>
-        ///     Replaces invalid characters with underscores.
-        ///     <list type="bullet">
-        ///         <item>See also <see cref="Environment.SpecialFolder.MyDocuments"/></item>
-        ///         <item>See also <see cref="Environment.GetFolderPath(Environment.SpecialFolder)"/></item>
-        ///         <item>See also <see cref="IOPath.GetInvalidPathChars"/></item>
-        ///     </list>
-        /// </remarks>
-        public static RoutableConfig FromMyDocuments(string folderName)
-            => new(MyDocuments(folderName));
-
-        /// <summary>
-        /// Rerouts via <code>$"{MyDocuments}\{<paramref name="publisher"/>}\reroute.ini"</code> and sets the <see cref="Directory"/> to <code>$"{routedDirectory}\{<paramref name="programName"/>}"</code>
-        /// </summary>
-        /// <param name="publisher"></param>
-        /// <param name="programName"></param>
-        /// <returns></returns>
-        /// <remarks>
-        ///     Replaces invalid characters with underscores.
-        ///     <list type="bullet">
-        ///         <item>See also <see cref="Environment.SpecialFolder.MyDocuments"/></item>
-        ///         <item>See also <see cref="Environment.GetFolderPath(Environment.SpecialFolder)"/></item>
-        ///         <item>See also <see cref="IOPath.GetInvalidPathChars"/></item>
-        ///     </list>
-        /// </remarks>
-        public static RoutableConfig FromMyDocuments(string publisher, string programName)
-            => new(publisher, programName);
-
-        /// <summary>
-        /// Returns <code>$"{MyDocuments}\{<paramref name="folderName"/>}"</code>
-        /// </summary>
-        /// <param name="folderName"></param>
-        /// <returns></returns>
-        /// <remarks>
-        ///     Replaces invalid characters with underscores.
-        ///     <list type="bullet">
-        ///         <item>See also <see cref="Environment.SpecialFolder.MyDocuments"/></item>
-        ///         <item>See also <see cref="Environment.GetFolderPath(Environment.SpecialFolder)"/></item>
-        ///         <item>See also <see cref="IOPath.GetInvalidPathChars"/></item>
-        ///     </list>
-        /// </remarks>
-        protected static string MyDocuments(string folderName)
-            => IOPath.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    string.Join('_', folderName.Split(IOPath.GetInvalidPathChars()))
-                );
     }
 }
