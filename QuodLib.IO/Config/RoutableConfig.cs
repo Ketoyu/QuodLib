@@ -16,10 +16,6 @@ namespace QuodLib.IO.Config {
         /// Rerouts via <code>$"{<paramref name="directory"/>}\reroute.ini"</code>
         /// </summary>
         /// <param name="directory"></param>
-        /// <remarks>
-        ///     Replaces invalid characters with underscores.<br />
-        ///     See also <see cref="Path.GetInvalidPathChars"/>
-        /// </remarks>
         public RoutableConfig(string directory) {
             string file = Path.Combine(directory, @"reroute.ini");
 
