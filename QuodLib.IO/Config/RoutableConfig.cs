@@ -29,7 +29,7 @@ namespace QuodLib.IO.Config {
                 return;
             }
 
-            if (Ini.Load(path).TryGetValue("Path", out string? path_) && !string.IsNullOrEmpty(path_)) {
+            if (Ini.Load(file).TryGetValue("Path", out string? path_) && !string.IsNullOrEmpty(path_)) {
                 IODirectory.CreateDirectory(path_);
                 Directory = IOPath.Combine(path_, programName);
                 return;
