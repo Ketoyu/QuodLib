@@ -13,7 +13,7 @@ namespace QuodLib.IO.Config {
         public string Directory { get; protected init; }
 
         /// <summary>
-        /// Rerouts via <code>$"{<paramref name="directory"/>}\reroute.ini"</code>
+        /// Rerouts via <code>$"{<paramref name="directory"/>}\\reroute.ini"</code>
         /// </summary>
         /// <param name="directory"></param>
         public RoutableConfig(string directory) {
@@ -37,7 +37,7 @@ namespace QuodLib.IO.Config {
         }
 
         /// <summary>
-        /// Rerouts via <code>$"{<paramref name="directory"/>}\reroute.ini"</code> and sets the <see cref="Directory"/> to <code>$"{routedDirectory}\{<paramref name="subPath"/>}"</code>
+        /// Rerouts via <code>$"{<paramref name="directory"/>}\\reroute.ini"</code> and sets the <see cref="Directory"/> to <code>$"{routedDirectory}\\{<paramref name="subPath"/>}"</code>
         /// </summary>
         /// <param name="directory"></param>
         /// <param name="subPath"></param>
