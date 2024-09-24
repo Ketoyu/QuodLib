@@ -17,6 +17,9 @@ namespace QuodLib.Objects
         /// <typeparam name="T"></typeparam>
         public static readonly EmptyProgress<T> Value = new();
 
+        private EmptyProgress()
+        { }
+
         /// <summary>
         /// Empty implementation; does nothing.
         /// </summary>
