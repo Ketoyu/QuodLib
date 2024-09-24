@@ -7,7 +7,7 @@
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static IEnumerable<ListViewItem> AsEnumerable(this ListView.ListViewItemCollection source)
+        public static IEnumerable<ListViewItem> ToEnumerable(this ListView.ListViewItemCollection source)
             => source.Cast<ListViewItem>();
     }
 }
