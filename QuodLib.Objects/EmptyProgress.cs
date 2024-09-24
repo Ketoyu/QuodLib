@@ -14,7 +14,6 @@ namespace QuodLib.Objects
         /// <summary>
         /// An empty <see cref="IProgress{T}"/>.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         public static readonly EmptyProgress<T> Value = new();
 
         private EmptyProgress()
