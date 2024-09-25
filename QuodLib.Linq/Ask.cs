@@ -80,6 +80,16 @@ namespace QuodLib.Linq {
         /// <param name="item"></param>
         /// <param name="comparisonType"></param>
         /// <returns></returns>
+        public static bool Contains(this IList<string> source, string item, StringComparison comparisonType)
+            => ((IEnumerable<string>)source).Contains(item, comparisonType);
+
+        /// <summary>
+        /// Determines whether an <paramref name="item"/> is in the <paramref name="source"/>, using the provided <paramref name="comparisonType"/>.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="item"></param>
+        /// <param name="comparisonType"></param>
+        /// <returns></returns>
         public static bool Contains(this IEnumerable<string> source, string item, StringComparison comparisonType)
             => source.Any(s => s.Equals(item, comparisonType));
 
