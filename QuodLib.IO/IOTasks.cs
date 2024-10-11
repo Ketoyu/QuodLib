@@ -36,6 +36,30 @@ namespace QuodLib.IO
         /// Options for controlling the way that <see cref="TraverseFilesAsync(IList{string}, IProgress{FileInfo}, IProgress{IOErrorModel}, CancellationToken, TraverseFilesAsyncOptions?)"/> traverses through directories and reports information.
         /// </summary>
         public sealed class TraverseFilesAsyncOptions {
+            public struct SkipNestModel {
+                public required bool Skip { get; init; }
+
+                /// <summary>
+                /// Whether to still process the <see cref="FileNest"/>'s files when <see cref="Skip"/> is true.
+                /// </summary>
+                public required bool IncludeFiles { get; init; }
+            }
+
+            /// <summary>
+            /// When to process <see cref="SkipNest"/>.
+            /// </summary>
+            public enum SkipNestStyle {
+                /// <summary>
+                /// If <see cref="SkipNest"/> returns true, abort the current <see cref="FileNest"/> immediately.
+                /// </summary>
+                IgnoreFiles,
+
+                /// <summary>
+                /// If <see cref="SkipNest"/> returns true, process any files from the current <see cref="FileNest"/> before aborting it.
+                /// </summary>
+                IncludeFiles
+            }
+
             /// <summary>
             /// Reports a <see cref="Symbolic.SymbolicLink"/>.
             /// </summary>
@@ -58,7 +82,7 @@ namespace QuodLib.IO
             /// <summary>
             /// Given the files and subdirectories of the <b><i>current</i></b> directory, don't scan this level or nest further.
             /// </summary>
-            public Func<FileNest, bool>? SkipNest { get; init; }
+            public Func<FileNest, SkipNestModel>? SkipNest { get; init; }
 
             /// <summary>
             /// Don't nest into these subdirectories.
@@ -166,12 +190,17 @@ namespace QuodLib.IO
                         continue;
                     }
 
-                    if (!options?.SkipNest?.Invoke(new FileNest {
+                    TraverseFilesAsyncOptions.SkipNestModel skipNest = options?.SkipNest?.Invoke(new FileNest {
                         Directory = rootInfo!,
                         Filepaths = files,
                         Subdirectories = subdirs
-                    }) ?? true) {
-                        //all files
+                    }) ?? new TraverseFilesAsyncOptions.SkipNestModel() { 
+                        Skip = false, 
+                        IncludeFiles = false 
+                    };
+
+                    //all files
+                    if (!skipNest.Skip || skipNest.IncludeFiles) {
                         try {
                             await Parallel.ForEachAsync(files, cancel, (fl, _) => {
                                 try {
@@ -190,8 +219,10 @@ namespace QuodLib.IO
                         } catch (Exception ex) {
                             error.Report(new(PathType.File, root, ex));
                         }
+                    }
 
-                        //subdirectories
+                    //subdirectories
+                    if (!skipNest.Skip) {
                         try {
                             
 
