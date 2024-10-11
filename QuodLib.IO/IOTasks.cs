@@ -1,4 +1,5 @@
-﻿using QuodLib.IO.Models;
+﻿using NickChapsas.ParallelForEachAsync;
+using QuodLib.IO.Models;
 using QuodLib.IO.Symbolic;
 
 namespace QuodLib.IO
@@ -130,35 +131,33 @@ namespace QuodLib.IO
         /// <returns></returns>
         /// <remarks>Does not nest into <see cref="SymbolicLink"/>s.</remarks>
         public async static Task TraverseFilesAsync(IList<string> sources, IProgress<FileInfo> file, IProgress<IOErrorModel> error, CancellationToken cancel, TraverseFilesAsyncOptions? options = null) {
-            Stack<string> stkDirs_init = new();
-            IProgress<string> pinit = new Progress<string>().OnChange((_, dir) => stkDirs_init.Push(dir));
-
-            await Parallel.ForEachAsync(sources, cancel, (dir, _) => {
+            List<string?> lDirs_init = await sources.ParallelForEachAsync<string, string?>(Environment.ProcessorCount, dir => {
                 try {
                     if (Info.TryGet(dir, out SymbolicLink? link) != SymbolicLinkType.None) {
                         options?.SymbolicLink?.Report(link!);
-                        return ValueTask.CompletedTask;
+                        return Task.FromResult<string?>(null);
                     }
-                } catch (Exception ex) {
+                }
+                catch (Exception ex) {
                     error.Report(new(PathType.Folder, dir, ex));
-                    return ValueTask.CompletedTask;
+                    return Task.FromResult<string?>(null);
                 }
 
-                pinit.Report(dir);
-                return ValueTask.CompletedTask;
+                return Task.FromResult<string?>(dir);
             });
-
+            Stack<string> stkDirs_init = new(lDirs_init.OfType<string>());
             Stack<string> stkDir_root = new();
-            IProgress<string> proot = new Progress<string>().OnChange((_, dir) => stkDir_root.Push(dir));
 
             //nested dir-list
-            while (stkDirs_init.Any()) {
+            while (stkDirs_init.Count > 0) {
                 if (cancel.IsCancellationRequested)
                     return;
 
-                stkDir_root.Push(stkDirs_init.Pop()); //hold one root-dir.
 
-                while (stkDir_root.Any()) //for (that root-dir)
+                string nested = stkDirs_init.Pop(); 
+                stkDir_root.Push(nested); //hold one root-dir.
+
+                while (stkDir_root.Count > 0) //for (that root-dir)
                 {
                     if (cancel.IsCancellationRequested)
                         return;
@@ -202,20 +201,25 @@ namespace QuodLib.IO
                     //all files
                     if (!skipNest.Skip || skipNest.IncludeFiles) {
                         try {
-                            await Parallel.ForEachAsync(files, cancel, (fl, _) => {
-                                try {
-                                    FileInfo fI = new(fl);
+                            await Parallel.ForEachAsync(
+                                files, 
+                                new ParallelOptions() {
+                                    MaxDegreeOfParallelism = Environment.ProcessorCount
+                                },
+                                (fl, _) => {
+                                    try {
+                                        FileInfo fI = new(fl);
 
-                                    if (Info.TryGet(fI, out SymbolicLink? link))
-                                        options?.SymbolicLink?.Report(link!);
-                                    else
-                                        file.Report(fI);
-                                } catch (Exception ex) {
-                                    error.Report(new(PathType.File, fl, ex));
-                                }
+                                        if (Info.TryGet(fI, out SymbolicLink? link))
+                                            options?.SymbolicLink?.Report(link!);
+                                        else
+                                            file.Report(fI);
+                                    } catch (Exception ex) {
+                                        error.Report(new(PathType.File, fl, ex));
+                                    }
 
-                                return ValueTask.CompletedTask;
-                            });
+                                    return ValueTask.CompletedTask;
+                                });
                         } catch (Exception ex) {
                             error.Report(new(PathType.File, root, ex));
                         }
@@ -224,27 +228,31 @@ namespace QuodLib.IO
                     //subdirectories
                     if (!skipNest.Skip) {
                         try {
-                            
-
-                            await Parallel.ForEachAsync(subdirs, cancel, (subdir, _) => {
+                            List<string?> newRoots = await subdirs.ParallelForEachAsync(Environment.ProcessorCount, subdir => {
                                 //Ignore symbolic
                                 try {
                                     if (options?.SkipSubdirectory?.Invoke(subdir) ?? false)
-                                        return ValueTask.CompletedTask;
+                                        return Task.FromResult<string?>(null);
 
                                     if (Info.TryGet(subdir, out SymbolicLink? link) != SymbolicLinkType.None) {
                                         options?.SymbolicLink?.Report(link!);
-                                        return ValueTask.CompletedTask;
-                                    } else {
-                                        proot.Report(subdir);
-                                        hasSubdirs = true;
+                                        return Task.FromResult<string?>(null);
                                     }
+                                    
+                                    return Task.FromResult<string?>(subdir);
                                 } catch (Exception ex) {
                                     error.Report(new(PathType.Folder, subdir, ex));
+                                    return Task.FromResult<string?>(null);
                                 }
-
-                                return ValueTask.CompletedTask;
                             });
+
+                            var newRoots_real = newRoots.OfType<string>();
+
+                            if (newRoots_real.Any()) {
+                                hasSubdirs = true;
+                                foreach (string subdir in newRoots_real)
+                                    stkDir_root.Push(subdir);
+                            }
                         } catch (Exception ex) {
                             error.Report(new(PathType.File, root, ex));
                         }
