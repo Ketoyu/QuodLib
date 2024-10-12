@@ -88,20 +88,20 @@ namespace QuodLib.IO
             /// <summary>
             /// Don't nest into these subdirectories.
             /// </summary>
-            private List<string>? SkipSources { get; set; }
+            private HashSet<string>? SkipSources { get; set; }
 
             /// <summary>
             /// Sets or augments <see cref="SkipSubdirectory"/> to check <paramref name="sources"/>.
             /// </summary>
             /// <param name="sources"></param>
-            public TraverseFilesAsyncOptions SkipSubdirectories(IList<string> sources) {
+            public TraverseFilesAsyncOptions SkipSubdirectories(ICollection<string> sources) {
                 if (SkipSources == null) {
-                    SkipSources = new List<string>(sources);
+                    SkipSources = new HashSet<string>(sources);
                     _skipSubdirectory = _skipSubdirectory == null
                         ? subdir => SkipSources.Contains(subdir)
                         : subdir => _skipSubdirectory(subdir) || SkipSources.Contains(subdir);
                 } else
-                    SkipSources.AddRange(sources);
+                    SkipSources.UnionWith(sources);
 
                 return this;
             }
