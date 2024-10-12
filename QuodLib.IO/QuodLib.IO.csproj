@@ -13,10 +13,10 @@
 
   <ItemGroup>
     <Reference Include="AlexandruPuiu.ParallelForeachAsync">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Users\Jonathan\OneDrive\Personal\_Programming\Rider\[OpenSource]\Alexandru Puiu\AlexandruPuiu.ParallelForeachAsync\bin\Debug\net6.0\AlexandruPuiu.ParallelForeachAsync.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Rider\[OpenSource]\Alexandru Puiu\AlexandruPuiu.ParallelForeachAsync\bin\Debug\net6.0\AlexandruPuiu.ParallelForeachAsync.dll</HintPath>
     </Reference>
     <Reference Include="NickChapsas.ParallelForEachAsync">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Users\Jonathan\OneDrive\Personal\_Programming\Rider\[OpenSource]\Nick Chapsas\NickChapsas.ParallelForEachAsync\bin\Debug\net6.0\NickChapsas.ParallelForEachAsync.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Rider\[OpenSource]\Nick Chapsas\NickChapsas.ParallelForEachAsync\bin\Debug\net6.0\NickChapsas.ParallelForEachAsync.dll</HintPath>
     </Reference>
   </ItemGroup>
 

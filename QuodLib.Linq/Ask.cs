@@ -74,6 +74,30 @@ namespace QuodLib.Linq {
         }
 
         /// <summary>
+        /// Returns the first <typeparamref name="TSource"/> whose <typeparamref name="TKey"/> is found
+        /// within <param name="search"></param>, or null if it is not found.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="keySelector"></param>
+        /// <param name="search"></param>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <returns></returns>
+        public static TSource? FindOrDefaultBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector,
+            IEnumerable<TKey> search)
+            where TSource : notnull
+            where TKey : notnull {
+
+            Dictionary<TKey, TSource> dic = source.ToDictionary(keySelector, i => i);
+            foreach (TKey item in search) {
+                if (dic.TryGetValue(item, out TSource? found))
+                    return found;
+            }
+
+            return default;
+        }
+
+        /// <summary>
         /// Determines whether an <paramref name="item"/> is in the <paramref name="source"/>, using the provided <paramref name="comparisonType"/>.
         /// </summary>
         /// <param name="source"></param>
