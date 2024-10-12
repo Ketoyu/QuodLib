@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -83,6 +84,28 @@ namespace QuodLib.Linq {
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
+        public static TSource? FindOrDefaultBy<TSource, TKey>(this IList<TSource> source, Func<TSource, TKey> keySelector,
+            IList<TKey> search)
+            where TSource : notnull
+            where TKey : notnull {
+
+            if (source.Count < search.Count) //find by converting source to a dictionary (for constant lookup times)
+                return ((IEnumerable<TSource>)source).FindOrDefaultBy(keySelector, search);
+
+            //find by converting search to a HashSet (for constant lookup times)
+            return source.FindOrDefaultBy(keySelector, search.ToHashSet());
+        }
+
+        /// <summary>
+        /// Returns the first <typeparamref name="TSource"/> whose <typeparamref name="TKey"/> is found
+        /// within <param name="search"></param>, or null if it is not found.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="keySelector"></param>
+        /// <param name="search"></param>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <returns></returns>
         public static TSource? FindOrDefaultBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector,
             IEnumerable<TKey> search)
             where TSource : notnull
@@ -96,6 +119,24 @@ namespace QuodLib.Linq {
 
             return default;
         }
+
+        /// <summary>
+        /// Returns the first <typeparamref name="TSource"/> whose <typeparamref name="TKey"/> is found
+        /// within <param name="search"></param>, or null if it is not found.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="keySelector"></param>
+        /// <param name="search"></param>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <returns></returns>
+        public static TSource? FindOrDefaultBy<TSource, TKey>(this IEnumerable<TSource> source,
+            Func<TSource, TKey> keySelector,
+            HashSet<TKey> search)
+            where TSource : notnull
+            where TKey : notnull
+            //check using the hash key (for constant lookup times)
+            => source.FirstOrDefault(item => search.Contains(keySelector(item)));
 
         /// <summary>
         /// Determines whether an <paramref name="item"/> is in the <paramref name="source"/>, using the provided <paramref name="comparisonType"/>.
