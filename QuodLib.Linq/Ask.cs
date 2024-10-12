@@ -84,16 +84,16 @@ namespace QuodLib.Linq {
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
-        public static TSource? FindOrDefaultBy<TSource, TKey>(this IList<TSource> source, Func<TSource, TKey> keySelector,
+        public static TSource? FindByOrDefault<TSource, TKey>(this IList<TSource> source, Func<TSource, TKey> keySelector,
             IList<TKey> search)
             where TSource : notnull
             where TKey : notnull {
 
             if (source.Count < search.Count) //find by converting source to a dictionary (for constant lookup times)
-                return ((IEnumerable<TSource>)source).FindOrDefaultBy(keySelector, search);
+                return ((IEnumerable<TSource>)source).FindByOrDefault(keySelector, search);
 
             //find by converting search to a HashSet (for constant lookup times)
-            return source.FindOrDefaultBy(keySelector, search.ToHashSet());
+            return source.FindByOrDefault(keySelector, search.ToHashSet());
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace QuodLib.Linq {
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
-        public static TSource? FindOrDefaultBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector,
+        public static TSource? FindByOrDefault<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector,
             IEnumerable<TKey> search)
             where TSource : notnull
             where TKey : notnull {
@@ -131,7 +131,7 @@ namespace QuodLib.Linq {
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TKey"></typeparam>
         /// <returns></returns>
-        public static TSource? FindOrDefaultBy<TSource, TKey>(this IEnumerable<TSource> source,
+        public static TSource? FindByOrDefault<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector,
             HashSet<TKey> search)
             where TSource : notnull
