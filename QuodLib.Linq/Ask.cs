@@ -111,6 +111,7 @@ namespace QuodLib.Linq {
             where TSource : notnull
             where TKey : notnull {
 
+            //find by converting source to a dictionary (for constant lookup times)
             Dictionary<TKey, TSource> dic = source.ToDictionary(keySelector, i => i);
             foreach (TKey item in search) {
                 if (dic.TryGetValue(item, out TSource? found))
